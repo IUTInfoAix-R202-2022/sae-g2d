@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<GridPane fx:controller="uwu.sae201.HelloController" id="gridpane" xmlns:fx="http://javafx.com/fxml/1">
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="80.0" />
+    </columnConstraints>
+    <VBox alignment="CENTER" spacing="15" GridPane.columnIndex="0" style="-fx-background-color: rgb(182,182,255);">
+        <padding>
+            <Insets topRightBottomLeft="15"></Insets>
+        </padding>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(25, 241, 228, 1)" id="button" text="1" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(66, 187, 255, 0.68)" id="button" text="2" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(75, 12, 255, 0.68)" id="button" text="3" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(47, 59, 101, 0.68)" id="button" text="4" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(255, 0, 0, 0.68)" id="button" text="5" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(244, 84, 34, 1)" id="button" text="6" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(255, 179, 66, 1)" id="button" text="7" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(255, 215, 7, 1)" id="button" text="8" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(160, 255, 66, 1)" id="button" text="9" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(66, 255, 119, 0.68)" id="button" text="10" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(79, 183, 90, 1)" id="button" text="11" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(55, 125, 44, 1)" id="button" text="12" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+        <Button stylesheets="@style.css" style="-fx-background-color: rgba(13, 86, 33, 1)" id="button" text="13" prefWidth="Infinity" prefHeight="1000" onAction="#handleButtonAction"></Button>
+    </VBox>
+
+</GridPane>
