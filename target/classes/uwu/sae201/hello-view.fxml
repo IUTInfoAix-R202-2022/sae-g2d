@@ -10,9 +10,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import java.net.URL?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="uwu.sae201.HelloController" styleClass="background">
     <stylesheets>
         <URL value="@style.css" />
@@ -31,18 +28,10 @@
         <TextField prefHeight="20" maxWidth="200"></TextField>
         <Label text="MOT DE PASSE"></Label>
         <TextField prefHeight="20" maxWidth="200"></TextField>
-
         <Button alignment="CENTER" text="Se connecter" maxWidth="150">
             <padding>
                 <Insets topRightBottomLeft="15"></Insets>
             </padding>
-            <graphic>
-                <ImageView>
-                    <image>
-                        <Image url = ""></Image>
-                    </image>
-                </ImageView>
-            </graphic>
         </Button>
     </VBox>
 </GridPane>
