@@ -3,6 +3,8 @@ package uwu.sae201;
 import java.sql.*;
 
 public class Jdbc {
+
+
     // Chaîne de connexion
     static final String CONNECT_URL = "jdbc:postgresql://kesavan.db.elephantsql.com/cssqfxzf";
     static final String LOGIN = "cssqfxzf";
@@ -23,8 +25,17 @@ public class Jdbc {
             // Creation d'une instruction SQL
             Statement stmt = conn.createStatement();
 
+            System.out.println("Execution de la requête : " + req );
+            ResultSet rset = stmt.executeQuery(req);
+
+            while(rset.next()) {
+                System.out.print(rset.getString("TEXT") + " ");
+            }
             // Fermeture de l'instruction (libération des ressources)
             stmt.close();
+
+            System.out.println("\nOk.\n");
+
         } catch (SQLException e) {
             //Ceci n'est pas une gestion réaliste des erreurs
             e.printStackTrace();// Arggg!!!
