@@ -2,19 +2,20 @@ package uwu.sae201;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 public class HelloController {
     @FXML
-    private Label welcomeText;
+    private VBox vbox;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void initialize(){
+        System.out.println("nique");
+
+        Button b = new Button();
+        b.setText("nique");
+        vbox.getChildren().add(b);
     }
 
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-    }
 }
