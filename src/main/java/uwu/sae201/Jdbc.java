@@ -17,8 +17,8 @@ public class Jdbc {
     List<String> colors = new ArrayList<>();
 
     // La requête de test
-    static final String req = "SELECT DISTINCT * " +
-                            "FROM test ";
+    static final String req = "SELECT DISTINCT THEMATIQUE_USAGE " +
+                            "FROM typologie ";
 
 
     public void initialize(){
@@ -47,7 +47,7 @@ public class Jdbc {
             ResultSet rset = statement.executeQuery(req);
 
             while(rset.next()) {
-                vbox.getChildren().add(new Button(rset.getString("TEXT")));
+                vbox.getChildren().add(new Button(rset.getString("THEMATIQUE_USAGE")));
             }
 
             String css = this.getClass().getResource("style.css").toExternalForm();

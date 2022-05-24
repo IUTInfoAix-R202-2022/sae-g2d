@@ -2,7 +2,6 @@
   <library name="Maven: mysql:mysql-connector-java:8.0.29">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29.jar!/" />
-      <root url="jar://$PROJECT_DIR$/postgresql-42.3.5.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.29/mysql-connector-java-8.0.29-javadoc.jar!/" />

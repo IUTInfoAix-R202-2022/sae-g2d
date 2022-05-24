@@ -7,15 +7,5 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class HelloController {
-    @FXML
-    private VBox vbox;
-
-    public void initialize(){
-        System.out.println("nique");
-
-        Button b = new Button();
-        b.setText("nique");
-        vbox.getChildren().add(b);
-    }
 
 }
