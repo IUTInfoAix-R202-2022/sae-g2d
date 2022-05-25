@@ -51,47 +51,47 @@ public class ModificationBDD {
 
 
     @FXML
-    public void initialize() {
-        try {
-            statement = connection.createStatement();
+    public void initialize() throws SQLException {
+        setNumeroByCount();
+        initializeList();
+    }
 
-            String reqNumero = "SELECT COUNT(*) FROM typologie;";
+    private void initializeList() {
+        textFieldList.add(thematique_usage);
+        textFieldList.add(discipline);
+        textFieldList.add(degre);
+        textFieldList.add(academie);
+        textFieldList.add(region_academique);
+        textFieldList.add(type_acteur);
+        textFieldList.add(identite_acteur);
+        textFieldList.add(url_ressource);
+        textFieldList.add(nom_ressource);
+        textFieldList.add(type_source);
+        textFieldList.add(commentaires);
 
-            System.out.println("Execution de la requête : " + reqNumero );
-            ResultSet rset = statement.executeQuery(reqNumero);
+        stringUsageList.add("THEMATIQUE_USAGE");
+        stringUsageList.add("DISCIPLINE");
+        stringUsageList.add("DEGRE");
+        stringUsageList.add("ACADEMIE");
+        stringUsageList.add("REGION_ACADEMIQUE");
+        stringUsageList.add("TYPE_ACTEUR");
+        stringUsageList.add("IDENTITE_ACTEUR");
+        stringUsageList.add("URL_RESSOURCE");
+        stringUsageList.add("NOM_RESSOURCE");
+        stringUsageList.add("TYPE_SOURCE");
+        stringUsageList.add("COMMENTAIRES");
+    }
 
-            while(rset.next()){
-                numero = rset.getInt(1) + 1;
-            }
+    private void setNumeroByCount() throws SQLException {       //A finir
+        statement = connection.createStatement();
 
-            textFieldList.add(thematique_usage);
-            textFieldList.add(discipline);
-            textFieldList.add(degre);
-            textFieldList.add(academie);
-            textFieldList.add(region_academique);
-            textFieldList.add(type_acteur);
-            textFieldList.add(identite_acteur);
-            textFieldList.add(url_ressource);
-            textFieldList.add(nom_ressource);
-            textFieldList.add(type_source);
-            textFieldList.add(commentaires);
+        String reqNumero = "SELECT COUNT(*) FROM typologie;";
 
-            stringUsageList.add("THEMATIQUE_USAGE");
-            stringUsageList.add("DISCIPLINE");
-            stringUsageList.add("DEGRE");
-            stringUsageList.add("ACADEMIE");
-            stringUsageList.add("REGION_ACADEMIQUE");
-            stringUsageList.add("TYPE_ACTEUR");
-            stringUsageList.add("IDENTITE_ACTEUR");
-            stringUsageList.add("URL_RESSOURCE");
-            stringUsageList.add("NOM_RESSOURCE");
-            stringUsageList.add("TYPE_SOURCE");
-            stringUsageList.add("COMMENTAIRES");
+        System.out.println("Execution de la requête : " + reqNumero );
+        ResultSet rset = statement.executeQuery(reqNumero);
 
-
-       } catch (SQLException e) {
-            System.out.println("erreur");
-            throw new RuntimeException(e);
+        while(rset.next()){
+            numero = rset.getInt(1) + 1;
         }
     }
     @FXML
@@ -112,38 +112,33 @@ public class ModificationBDD {
         System.out.println("action de la requête en cours");
 
         try {
-            req = "INSERT INTO typologie (NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
-            ;
-
-            preparedStatement = connection.prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, numero);
-            preparedStatement.setString(2, String.valueOf(thematique_usage.getText()));
-            preparedStatement.setString(3, String.valueOf(discipline.getText()));
-            preparedStatement.setString(4, String.valueOf(degre.getText()));
-            preparedStatement.setString(5, String.valueOf(academie.getText()));
-            preparedStatement.setString(6, String.valueOf(region_academique.getText()));
-            preparedStatement.setString(7, String.valueOf(type_acteur.getText()));
-            preparedStatement.setString(8, String.valueOf(identite_acteur.getText()));
-            preparedStatement.setString(9, String.valueOf(url_ressource.getText()));
-            preparedStatement.setString(10, String.valueOf(nom_ressource.getText()));
-            preparedStatement.setString(11, String.valueOf(type_source.getText()));
-            preparedStatement.setString(12, String.valueOf(commentaires.getText()));
-
+            //Alerte
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Exécution de la requête SQL en cours");
-            alert.setContentText("Voulez-vous vraiment ajouter ces tuples dans la base de données");
+            alert.setContentText("Voulez-vous vraiment ajouter ces tuples dans la base de données ?");
 
-            Optional<ButtonType> result = alert.showAndWait();
+            Optional<ButtonType> result = alert.showAndWait();  //Creer option OK | CANCEL
             if (result.get() == ButtonType.OK){
+                //Requete
+                req = "INSERT INTO typologie (NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
+                ;
+
+                preparedStatement = connection.prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
+
+                //Remplir le preparedStatement
+                preparedStatement.setInt(1, numero);
+                for (int i = 0; i < textFieldList.size(); ++i) {
+                    preparedStatement.setString(i+2, String.valueOf(textFieldList.get(i).getText()));
+                }
+
+                //Execution
                 preparedStatement.executeUpdate();
                 System.out.println("requête envoyée");
-                ++this.numero;
-
+                setNumeroByCount();
             } else {
                 System.out.println("requête annulée");
             }
-
         } catch (SQLException e) {
             System.out.println("erreur");
             throw new RuntimeException(e);
@@ -153,20 +148,32 @@ public class ModificationBDD {
     @FXML
     private void suppression(){
         try {
-            req = "DELETE FROM typologie WHERE (";
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Exécution de la requête SQL en cours");
+            alert.setContentText("Voulez-vous vraiment supprimer ces tuples de la base de données ?");
 
-            for (int i = 0; i < textFieldList.size(); ++i) {
-                if (!(textFieldList.get(i).getText().isEmpty())) {
-                    req += stringUsageList.get(i) + " = " + textFieldList.get(i).getText() + ", ";
+            Optional<ButtonType> result = alert.showAndWait();  //Creer option OK | CANCEL
+            if(result.get() == ButtonType.OK) {
+
+                //Requete
+                req = "DELETE FROM typologie WHERE ";
+
+                for (int i = 0; i < textFieldList.size(); ++i) {
+                    if (!(textFieldList.get(i).getText().isEmpty())) {
+                        req += stringUsageList.get(i) + " = '" + textFieldList.get(i).getText() + "'";
+                        if (i != textFieldList.size() - 1) {
+                            req += " and ";
+                        }
+                    }
                 }
+                req += ";";
+
+                //Execution
+                PreparedStatement pstmt = connection.prepareStatement(req);
+                pstmt.executeUpdate();
+
+                System.out.println("requête envoyée");
             }
-            req += ")";
-
-            PreparedStatement pstmt = connection.prepareStatement(req);
-            pstmt.executeUpdate();
-
-            System.out.println("requête envoyée");
-
         } catch (SQLException e) {
             System.out.println("erreur");
             throw new RuntimeException(e);
