@@ -6,6 +6,23 @@
     -fx-background-size: 100% 100%;
 }
 
+.label {
+    -fx-pref-width: 380.0;
+    -fx-pref-height: 24.0;
+}
+
+.text-field {
+    -fx-max-width: 459.0;
+    -fx-pref-height: 20.0;
+    -fx-pref-width: 459.0;
+    -fx-text-box-border: black;
+    -fx-background-insets: 0, 1 5 1 5;
+}
+
+.text-field:focused {
+    -fx-focus-color: #486ab5;
+}
+
 .button {
     -fx-background-color: #f4f4f9;
     -fx-border-color: #b7b6fe;
@@ -17,3 +34,4 @@
 .button:hover {
     -fx-background-color: rgba(86, 86, 246, 0.19);
 }
+
