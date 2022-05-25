@@ -2,13 +2,17 @@ package uwu.sae201;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ModificationBDD {
 
@@ -95,16 +99,15 @@ public class ModificationBDD {
         for (TextField l : textFieldList){
             if (l.getText().isEmpty()){
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setHeaderText("Input not valid");
-                errorAlert.setContentText("The size of First Name must be between 2 and 25 characters");
+                errorAlert.setHeaderText("Exécution de la requête SQL Impossible");
+                errorAlert.setContentText("Tous les champs doivent être remplis");
                 errorAlert.showAndWait();
-                break;
-            } else {
-                System.out.println("test");
+                return;
             }
         }
+        ajout();
     }
-    @FXML
+
     private void ajout(){
         System.out.println("action de la requête en cours");
 
@@ -126,27 +129,34 @@ public class ModificationBDD {
             preparedStatement.setString(10, String.valueOf(nom_ressource.getText()));
             preparedStatement.setString(11, String.valueOf(type_source.getText()));
             preparedStatement.setString(12, String.valueOf(commentaires.getText()));
-            ++this.numero;
-            System.out.println(numero);
 
-            preparedStatement.executeUpdate();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Exécution de la requête SQL en cours");
+            alert.setContentText("Voulez-vous vraiment ajouter ces tuples dans la base de données");
 
-            System.out.println("requête envoyée");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                preparedStatement.executeUpdate();
+                System.out.println("requête envoyée");
+                ++this.numero;
+
+            } else {
+                System.out.println("requête annulée");
+            }
 
         } catch (SQLException e) {
             System.out.println("erreur");
             throw new RuntimeException(e);
         }
-        System.out.println("fin de la requête");
 
     }
     @FXML
-    private void supression(){
+    private void suppression(){
         try {
             req = "DELETE FROM typologie WHERE (";
 
             for (int i = 0; i < textFieldList.size(); ++i) {
-                if (!(textFieldList.get(i).getText().equals(""))) {
+                if (!(textFieldList.get(i).getText().isEmpty())) {
                     req += stringUsageList.get(i) + " = " + textFieldList.get(i).getText() + ", ";
                 }
             }

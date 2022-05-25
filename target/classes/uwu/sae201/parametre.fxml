@@ -128,7 +128,7 @@
                         </HBox>
                     </graphic>
                 </Button>
-                <Button styleClass="button" alignment="CENTER" maxWidth="167.0" prefHeight="49.0" prefWidth="150.0">
+                <Button styleClass="button" alignment="CENTER" maxWidth="167.0" prefHeight="49.0" prefWidth="150.0" onAction="#supression">
                     <padding>
                         <Insets topRightBottomLeft="10" />
                     </padding>
