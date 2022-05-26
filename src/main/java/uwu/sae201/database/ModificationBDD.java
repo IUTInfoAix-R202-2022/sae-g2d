@@ -47,7 +47,6 @@ public class ModificationBDD {
 
     @FXML
     public void initialize() throws SQLException {
-        setNumeroByCount();
         initializeList();
     }
 
@@ -118,11 +117,12 @@ public class ModificationBDD {
                 req = "INSERT INTO typologie (NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
                         "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
                 ;
-
                 preparedStatement = connection.prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
 
                 //Remplir le preparedStatement
+                setNumeroByCount();
                 preparedStatement.setInt(1, numero);
+
                 for (int i = 0; i < textFieldList.size(); ++i) {
                     preparedStatement.setString(i+2, String.valueOf(textFieldList.get(i).getText()));
                 }
@@ -130,7 +130,6 @@ public class ModificationBDD {
                 //Execution
                 preparedStatement.executeUpdate();
                 System.out.println("requête envoyée");
-                setNumeroByCount();
             } else {
                 System.out.println("requête annulée");
             }
@@ -166,7 +165,6 @@ public class ModificationBDD {
                 //Execution
                 PreparedStatement pstmt = connection.prepareStatement(req);
                 pstmt.executeUpdate();
-                setNumeroByCount();
 
                 System.out.println("requête envoyée");
             }
