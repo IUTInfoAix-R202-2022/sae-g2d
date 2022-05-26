@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import uwu.sae201.database.Database;
 
 import java.sql.*;
 import java.util.ArrayList;

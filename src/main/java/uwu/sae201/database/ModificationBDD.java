@@ -1,14 +1,9 @@
-package uwu.sae201;
+package uwu.sae201.database;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import uwu.sae201.database.Database;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,6 +166,7 @@ public class ModificationBDD {
                 //Execution
                 PreparedStatement pstmt = connection.prepareStatement(req);
                 pstmt.executeUpdate();
+                setNumeroByCount();
 
                 System.out.println("requête envoyée");
             }

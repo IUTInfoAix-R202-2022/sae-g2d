@@ -1,14 +1,21 @@
-package uwu.sae201;
+package uwu.sae201.database;
 
 import java.sql.*;
 
 public class Database {
 
-    // Chaîne de connexion
+    /**
+     * Chaine de connection, URL, LOGIN, PASSWORD
+     */
     private static final String CONNECT_URL = "jdbc:postgresql://kesavan.db.elephantsql.com/cssqfxzf";
     private static final String LOGIN = "cssqfxzf";
     private static final String PASSWORD = "M6crtbHWKBQW0Cl7iXPIQeLmuCaeDMdj";
 
+    /**
+     * Retourne la connection direct de la base de données ElephantSQL
+     *
+     * @return
+     */
     public static Connection getDBConnection(){
         Connection connection = null;
 

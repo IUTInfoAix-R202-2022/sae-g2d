@@ -6,4 +6,6 @@ module uwu.sae201 {
 
     opens uwu.sae201 to javafx.fxml;
     exports uwu.sae201;
+    exports uwu.sae201.database;
+    opens uwu.sae201.database to javafx.fxml;
 }
