@@ -35,8 +35,8 @@
         </Label>
         <VBox alignment="CENTER" prefWidth="300.0" spacing="12.0" GridPane.rowIndex="1">
             <children>
-                <Label prefHeight="16.0" prefWidth="380.0" styleClass="label" text="Thématique d'usage *" VBox.vgrow="SOMETIMES" />
-                <TextField fx:id="thematique_usage" maxWidth="-Infinity" prefHeight="24.0" prefWidth="380.0" styleClass="textField" VBox.vgrow="SOMETIMES">
+                <Label styleClass="label" text="Thématique d'usage *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="thematique_usage" styleClass="textField" VBox.vgrow="SOMETIMES">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin>
