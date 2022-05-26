@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" prefHeight="784.0" prefWidth="1044.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-border-width: 5; -fx-background-radius: 11; -fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uwu.sae201.database.ModificationBDD">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="0.0" prefWidth="450.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="450.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="294.0" minHeight="10.0" prefHeight="148" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="550.0" minHeight="10.0" prefHeight="380" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="550.0" minHeight="10.0" prefHeight="67" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="285" minHeight="10.0" prefHeight="242.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" text="PARAMÈTRES" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+            <font>
+                <Font name="System Bold" size="26.0" />
+            </font>
+            <padding>
+                <Insets top="15" />
+            </padding>
+        </Label>
+        <VBox alignment="CENTER" prefWidth="300.0" spacing="12.0" GridPane.rowIndex="1">
+            <children>
+                <Label prefHeight="16.0" prefWidth="380.0" styleClass="label" text="Thématique d'usage *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="thematique_usage" maxWidth="-Infinity" prefHeight="24.0" prefWidth="380.0" styleClass="textField" VBox.vgrow="SOMETIMES">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label styleClass="label" text="Discipline *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="discipline" styleClass="textField" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="label" text="Degré *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="degre" styleClass="textField" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="label" text="Académie *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="academie" styleClass="textField" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="label" text="Région académique *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="region_academique" styleClass="textField" VBox.vgrow="SOMETIMES" />
+            </children>
+            <padding>
+                <Insets left="10.0" right="10.0" bottom="10" />
+            </padding>
+        </VBox>
+        <VBox alignment="CENTER" layoutX="10.0" layoutY="86.0" prefWidth="300.0" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+                <Label styleClass="label" text="Type d'acteurs *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="type_acteur" styleClass="textField" VBox.vgrow="SOMETIMES">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </TextField>
+                <Label styleClass="label" text="Identité de l'acteur (Nom Prénom) *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="identite_acteur" styleClass="textField" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="label" text="Lien de la ressource *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="url_ressource" styleClass="textField" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="label" text="Nom de la ressource *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="nom_ressource" styleClass="textField" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="label" text="Type de la ressource *" VBox.vgrow="SOMETIMES" />
+                <TextField fx:id="type_source" styleClass="textField" VBox.vgrow="SOMETIMES" />
+            </children>
+            <padding>
+                <Insets left="10.0" right="10.0" bottom="10.0" />
+            </padding>
+        </VBox>
+        <VBox alignment="CENTER" spacing="10.0" GridPane.columnSpan="2" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" GridPane.rowIndex="2">
+            <padding>
+                <Insets topRightBottomLeft="10"></Insets>
+            </padding>
+            <children>
+                <Label alignment="CENTER" text="Commentaires *" />
+                <TextField fx:id="commentaires" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="380.0" styleClass="textField" />
+            </children>
+        </VBox>
+        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="330.0" spacing="50.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+            <children>
+                <Button styleClass="button" alignment="CENTER" maxWidth="140.0" prefHeight="47.0" prefWidth="150.0" HBox.hgrow="SOMETIMES">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <graphic>
+                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="328.0" spacing="20.0">
+                            <children>
+                                <!--<ImageView fitHeight="25.0" fitWidth="25.0" HBox.hgrow="SOMETIMES">
+                                    <image>
+                                        <Image url="@importer.png" />
+                                    </image>
+                                </ImageView>-->
+                                <Label text="Importer" HBox.hgrow="SOMETIMES">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </graphic>
+                </Button>
+                <Button styleClass="button" alignment="CENTER" maxWidth="140.0" prefHeight="47.0" prefWidth="150.0" HBox.hgrow="SOMETIMES" onAction="#verificationDesLabels">
+                    <padding>
+                        <Insets topRightBottomLeft="10" />
+                    </padding>
+                    <graphic>
+                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="328.0" spacing="20.0">
+                            <children>
+                                <!--<ImageView fitHeight="25.0" fitWidth="25.0" HBox.hgrow="SOMETIMES">
+                                    <image>
+                                        <Image url="@finaliser.png" />
+                                    </image>
+                                </ImageView>-->
+                                <Label text="Finaliser" HBox.hgrow="SOMETIMES">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </graphic>
+                </Button>
+                <Button styleClass="button" alignment="CENTER" maxWidth="167.0" prefHeight="49.0" prefWidth="150.0" onAction="#suppression">
+                    <padding>
+                        <Insets topRightBottomLeft="10" />
+                    </padding>
+                    <graphic>
+                        <HBox alignment="CENTER" prefHeight="110.0" prefWidth="328.0" spacing="20.0">
+                            <children>
+                                <!--<ImageView fitHeight="25.0" fitWidth="25.0" HBox.hgrow="SOMETIMES">
+                                    <image>
+                                        <Image url="@supprimer.png" />
+                                    </image>
+                                </ImageView>-->
+                                <Label text="Supprimer" HBox.hgrow="SOMETIMES">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="15" />
+            </padding>
+        </HBox>
+    </children>
+</GridPane>
