@@ -11,46 +11,47 @@ import java.util.Optional;
 
 public class ModificationBDD {
 
-    private static int numero;
+    public static int numero;
 
     @FXML
-    private TextField thematique_usage;
+    private static TextField thematique_usage;
     @FXML
-    private TextField discipline;
+    private static TextField discipline;
     @FXML
-    private TextField degre;
+    private static TextField degre;
     @FXML
-    private TextField academie;
+    private static TextField academie;
     @FXML
-    private TextField region_academique;
+    private static TextField region_academique;
     @FXML
-    private TextField type_acteur;
+    private static TextField type_acteur;
     @FXML
-    private TextField identite_acteur;
+    private static TextField identite_acteur;
     @FXML
-    private TextField url_ressource;
+    private static TextField url_ressource;
     @FXML
-    private TextField nom_ressource;
+    private static TextField nom_ressource;
     @FXML
-    private TextField type_source;
+    private static TextField type_source;
     @FXML
-    private TextField commentaires;
+    private static TextField commentaires;
 
-    private List<TextField> textFieldList = new ArrayList<>();
-    private List<String> stringUsageList = new ArrayList<>();
+    private static List<TextField> textFieldList = new ArrayList<>();
+    private static List<String> stringUsageList = new ArrayList<>();
 
-    private Connection connection = Database.getDBConnection();
+    private static Connection connection = Database.getDBConnection();
     private PreparedStatement preparedStatement;
-    private Statement statement;
+    private static Statement statement;
     private String req;
 
 
     @FXML
     public void initialize() throws SQLException {
-        initializeList();
+        initializeTextFieldList();
+        initializeStringUsageList();
     }
 
-    private void initializeList() {
+    public static List<TextField> initializeTextFieldList() {
         textFieldList.add(thematique_usage);
         textFieldList.add(discipline);
         textFieldList.add(degre);
@@ -62,7 +63,11 @@ public class ModificationBDD {
         textFieldList.add(nom_ressource);
         textFieldList.add(type_source);
         textFieldList.add(commentaires);
+        return textFieldList;
 
+    }
+
+    public static List<String> initializeStringUsageList() {
         stringUsageList.add("THEMATIQUE_USAGE");
         stringUsageList.add("DISCIPLINE");
         stringUsageList.add("DEGRE");
@@ -74,9 +79,10 @@ public class ModificationBDD {
         stringUsageList.add("NOM_RESSOURCE");
         stringUsageList.add("TYPE_SOURCE");
         stringUsageList.add("COMMENTAIRES");
+        return stringUsageList;
     }
 
-    private void setNumeroByCount() throws SQLException {       //A finir
+    public static void setNumeroByCount() throws SQLException {
         statement = connection.createStatement();
 
         String reqNumero = "SELECT COUNT(*) FROM typologie;";
