@@ -2,7 +2,6 @@ package uwu.sae201.database;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import uwu.sae201.database.Database;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,30 +13,30 @@ public class ModificationBDD {
     public static int numero;
 
     @FXML
-    private static TextField thematique_usage;
+    public TextField thematique_usage;
     @FXML
-    private static TextField discipline;
+    public TextField discipline;
     @FXML
-    private static TextField degre;
+    public TextField degre;
     @FXML
-    private static TextField academie;
+    public TextField academie;
     @FXML
-    private static TextField region_academique;
+    public TextField region_academique;
     @FXML
-    private static TextField type_acteur;
+    public TextField type_acteur;
     @FXML
-    private static TextField identite_acteur;
+    public TextField identite_acteur;
     @FXML
-    private static TextField url_ressource;
+    public TextField url_ressource;
     @FXML
-    private static TextField nom_ressource;
+    public TextField nom_ressource;
     @FXML
-    private static TextField type_source;
+    public TextField type_source;
     @FXML
-    private static TextField commentaires;
+    public TextField commentaires;
 
-    private static List<TextField> textFieldList = new ArrayList<>();
-    private static List<String> stringUsageList = new ArrayList<>();
+    private List<TextField> textFieldList = new ArrayList<>();
+    private List<String> stringUsageList = new ArrayList<>();
 
     private static Connection connection = Database.getDBConnection();
     private PreparedStatement preparedStatement;
@@ -51,7 +50,7 @@ public class ModificationBDD {
         initializeStringUsageList();
     }
 
-    public static List<TextField> initializeTextFieldList() {
+    public List<TextField> initializeTextFieldList() {
         textFieldList.add(thematique_usage);
         textFieldList.add(discipline);
         textFieldList.add(degre);
@@ -67,7 +66,7 @@ public class ModificationBDD {
 
     }
 
-    public static List<String> initializeStringUsageList() {
+    public List<String> initializeStringUsageList() {
         stringUsageList.add("THEMATIQUE_USAGE");
         stringUsageList.add("DISCIPLINE");
         stringUsageList.add("DEGRE");
