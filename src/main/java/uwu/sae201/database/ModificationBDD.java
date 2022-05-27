@@ -107,7 +107,7 @@ public class ModificationBDD {
         ajout();
     }
 
-    private void ajout(){
+    public void ajout(){
         System.out.println("action de la requête en cours");
 
         try {
@@ -145,7 +145,7 @@ public class ModificationBDD {
 
     }
     @FXML
-    private void suppression(){
+    public void suppression(){
         try {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Exécution de la requête SQL en cours");
