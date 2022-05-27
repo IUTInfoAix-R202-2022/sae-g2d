@@ -74,7 +74,8 @@ public class ImportBDD extends Application {
 
     public void read() throws IOException, SQLException {
         {
-            stringUsageList = ModificationBDD.initializeStringUsageList();
+            ModificationBDD BDD = new ModificationBDD();
+            stringUsageList = BDD.initializeStringUsageList();
 
             BufferedReader br = new BufferedReader(new FileReader(filename));
             String ligne = null;
