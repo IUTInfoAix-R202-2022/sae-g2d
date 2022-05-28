@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SAE201.iml" filepath="$PROJECT_DIR$/SAE201.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../francefx.iml" filepath="$PROJECT_DIR$/../francefx.iml" />
     </modules>
   </component>
 </project>
