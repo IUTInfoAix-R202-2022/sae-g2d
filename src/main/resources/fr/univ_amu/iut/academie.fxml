@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<SplitPane dividerPositions="0.0" orientation="VERTICAL" prefWidth="1800.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-border-width: 10; -fx-background-radius: 11; -fx-background-color: #b7b6fe;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #b7b6fe;" SplitPane.resizableWithParent="false">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Nom de l'académie" wrapText="true" HBox.hgrow="SOMETIMES">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                    </HBox.margin>
+                </Label>
+                <Button fx:id="fermer" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </HBox.margin>
+                    <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@fermer.png" />
+                            </image>
+                            <viewport>
+                                <Rectangle2D minX="40.0" minY="40.0" />
+                            </viewport>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </HBox>
+        <ScrollPane fx:id="scrollPaneAcademie" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="false" style="-fx-background-color: white;">
+            <content>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: white;">
+                    <children>
+                        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="8.0" VBox.vgrow="SOMETIMES">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Thématique d'usage" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Discipline" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Degré" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Région académique" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Type d'acteur" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Identité des acteurs" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Lien de la ressource" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Nom de la ressource" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Commentaire" textAlignment="CENTER" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                            </padding>
+                                        </Label>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets left="10.0" />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" minWidth="-Infinity" prefWidth="100.0" spacing="8.0" VBox.vgrow="SOMETIMES">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-background-radius: 6; -fx-background-color: #b7b6fe;" text="Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong " wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Discipline" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Degré" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Région académique" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Type d'acteur" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Identité des acteurs" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                            <graphic>
+                                                <Hyperlink text="https://iutinfoaix.notion.site/iutinfoaix/Cartographie-des-usages-p-dagogiques-8b91072fe9f2467c862124a3ca2b8184" wrapText="true" />
+                                            </graphic>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Nom de la ressource" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Commentaire" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets left="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                                <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="68.0" minWidth="-Infinity" prefWidth="100.0" spacing="8.0">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-background-radius: 6; -fx-background-color: #b7b6fe;" text="Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong Thématique d'usage longlonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglonglolonglonglonglonglonglonglonglonglonglonglonglonglonglonglongnglonglonglonglonglonglonglong " wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Discipline" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Degré" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Région académique" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Type d'acteur" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Identité des acteurs" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                            <graphic>
+                                                <Hyperlink text="https://iutinfoaix.notion.site/iutinfoaix/Cartographie-des-usages-p-dagogiques-8b91072fe9f2467c862124a3ca2b8184" wrapText="true" />
+                                            </graphic>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Nom de la ressource" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" style="-fx-border-color: black; -fx-border-radius: 2;" text="Commentaire" wrapText="true" HBox.hgrow="SOMETIMES">
+                                            <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                            </padding>
+                                        </Label>
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                    <VBox.margin>
+                                        <Insets left="10.0" />
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </items>
+</SplitPane>
