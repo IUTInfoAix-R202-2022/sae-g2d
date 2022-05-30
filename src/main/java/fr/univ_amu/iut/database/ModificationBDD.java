@@ -95,9 +95,11 @@ public class ModificationBDD {
         while(rset.next()){
             numero = rset.getInt(1) + 1;
         }
+        
     }
     @FXML
     private void verificationDesLabels(){
+        Typologie t = new Typologie();
         for (TextField l : textFieldList){
             if (l.getText().isEmpty()){
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -107,43 +109,44 @@ public class ModificationBDD {
                 return;
             }
         }
-        ajout();
+
     }
 
-    public void ajout(){
+    public Typologie setTypologie(){
+        Typologie typologie = new Typologie();
+        typologie.setThematique_usage(thematique_usage.getText());
+        typologie.setDiscipline(discipline.getText());
+        typologie.setAcademie(academie.getText());
+        typologie.setRegion_academique(region_academique.getText());
+        typologie.setType_acteur(type_acteur.getText());
+        typologie.setIdentite_acteur(identite_acteur.getText());
+        typologie.setUrl_ressource(url_ressource.getText());
+        typologie.setNom_ressource(nom_ressource.getText());
+        typologie.setType_source(type_source.getText());
+        typologie.setCommentaires(commentaires.getText());
+        typologie.setDegre(degre.getText());
+        return typologie;
+    }
+
+    public void ajout() throws SQLException {
+
+        Typologie typologie = setTypologie();
+        DAOTypologieJDBC dao = new DAOTypologieJDBC();
+
         System.out.println("action de la requête en cours");
 
-        try {
-            //Alerte
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Exécution de la requête SQL en cours");
-            alert.setContentText("Voulez-vous vraiment ajouter ces tuples dans la base de données ?");
+        //Alerte
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Exécution de la requête SQL en cours");
+        alert.setContentText("Voulez-vous vraiment ajouter ces tuples dans la base de données ?");
 
-            Optional<ButtonType> result = alert.showAndWait();  //Creer option OK | CANCEL
-            if (result.get() == ButtonType.OK){
-                //Requete
-                req = "INSERT INTO typologie (NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
-                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
-                ;
-                preparedStatement = connection.prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
+        Optional<ButtonType> result = alert.showAndWait();  //Creer option OK | CANCEL
+        if (result.get() == ButtonType.OK){
+            dao.insert(typologie);
 
-                //Remplir le preparedStatement
-                setNumeroByCount();
-                preparedStatement.setInt(1, numero);
-
-                for (int i = 0; i < textFieldList.size(); ++i) {
-                    preparedStatement.setString(i+2, String.valueOf(textFieldList.get(i).getText()));
-                }
-
-                //Execution
-                preparedStatement.executeUpdate();
-                System.out.println("requête envoyée");
-            } else {
-                System.out.println("requête annulée");
-            }
-        } catch (SQLException e) {
-            System.out.println("erreur");
-            throw new RuntimeException(e);
+            System.out.println("requête envoyée");
+        } else {
+            System.out.println("requête annulée");
         }
 
     }

@@ -98,7 +98,7 @@
                         </HBox>
                     </graphic>
                 </Button>
-                <Button styleClass="button" alignment="CENTER" maxWidth="140.0" prefHeight="47.0" prefWidth="150.0" HBox.hgrow="SOMETIMES" onAction="#verificationDesLabels">
+                <Button styleClass="button" alignment="CENTER" maxWidth="140.0" prefHeight="47.0" prefWidth="150.0" HBox.hgrow="SOMETIMES" onAction="#ajout">
                     <padding>
                         <Insets topRightBottomLeft="10" />
                     </padding>
