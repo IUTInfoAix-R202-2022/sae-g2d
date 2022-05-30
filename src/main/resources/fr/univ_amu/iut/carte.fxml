@@ -14,10 +14,12 @@
             <Insets topRightBottomLeft="15" />
         </padding>
     </VBox>
-    <VBox alignment="CENTER" styleClass="boxcarte" stylesheets="@style.css" GridPane.columnIndex="1">
-        <StackPane fx:id="carte">
-        </StackPane>
-    </VBox>
+    <HBox GridPane.columnIndex="1" alignment="CENTER">
+        <VBox alignment="CENTER">
+            <StackPane fx:id="carte">
+            </StackPane>
+        </VBox>
+    </HBox>
    <rowConstraints>
       <RowConstraints />
    </rowConstraints>
