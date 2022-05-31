@@ -1,8 +1,14 @@
-module uwu.sae201 {
-    requires javafx.controls;
-    requires javafx.fxml;
+open module francefx {
+    requires transitive javafx.base;
+    requires transitive javafx.controls;
+    requires transitive javafx.graphics;
+    requires transitive javafx.fxml;
+    requires transitive org.kordamp.ikonli.javafx;
+    requires transitive org.kordamp.ikonli.materialdesign;
+    requires transitive org.kordamp.ikonli.core;
 
+    requires jakarta.persistence;
 
-    opens uwu.sae201 to javafx.fxml;
-    exports uwu.sae201;
+    exports fr.univ_amu.iut;
+    exports fr.univ_amu.iut.model;
 }
