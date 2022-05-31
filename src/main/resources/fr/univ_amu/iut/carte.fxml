@@ -3,7 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane id="gridpane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.Jdbc">
+<GridPane id="gridpane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.Jdbc" style="-fx-background-color: white">
 
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
