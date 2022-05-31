@@ -6,7 +6,22 @@
     -fx-background-size: 100% 100%;
 }
 
+<<<<<<< HEAD
+.check-box .box{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-radius: 4;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: black;
+}
+
+
+.label {
+=======
 .labels {
+>>>>>>> c4d04ce61ac1dd2b444ab60a2492de3184edf2df
     -fx-pref-width: 380.0;
     -fx-pref-height: 24.0;
 }
