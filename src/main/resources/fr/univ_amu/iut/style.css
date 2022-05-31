@@ -16,11 +16,11 @@
     -fx-background-color: black;
 }
 
-
+/*
 .label {
     -fx-pref-width: 380.0;
     -fx-pref-height: 24.0;
-}
+}*/
 
 .text-field {
     -fx-max-width: 459.0;
