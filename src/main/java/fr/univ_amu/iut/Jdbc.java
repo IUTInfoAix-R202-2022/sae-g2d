@@ -4,6 +4,7 @@ import fr.univ_amu.iut.database.Database;
 import fr.univ_amu.iut.view.map.AcademiePath;
 import fr.univ_amu.iut.view.map.France;
 import fr.univ_amu.iut.view.map.FranceBuilder;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -11,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,6 +45,8 @@ public class Jdbc {
     @FXML
     public void initialize(){
 
+        SceneController sc = new SceneController();
+
         String css = this.getClass().getResource("style.css").toExternalForm();
 
         france = FranceBuilder.create()
@@ -54,6 +58,12 @@ public class Jdbc {
                 .selectedColor(Color.web("#b81111"))
                 .mousePressHandler(evt -> {
                     AcademiePath academiePath = (AcademiePath) evt.getSource();
+
+                    try {
+                        sc.switchTo2(carte,"academie.fxml");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println("On vient de cliquer sur l'"+academiePath.getAcademie().getNom());
                 })
                 .selectionEnabled(true)
