@@ -35,19 +35,19 @@
         </Label>
         <VBox alignment="CENTER" prefWidth="300.0" spacing="12.0" GridPane.rowIndex="1">
             <children>
-                <Label prefHeight="16.0" prefWidth="380.0" styleClass="label" text="Thématique d'usage *" VBox.vgrow="SOMETIMES" />
+                <Label prefHeight="16.0" prefWidth="380.0" styleClass="labelParameter" text="Thématique d'usage *" VBox.vgrow="SOMETIMES" />
                 <TextField maxWidth="-Infinity" prefHeight="24.0" prefWidth="380.0" styleClass="textField" VBox.vgrow="SOMETIMES">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </TextField>
-                <Label styleClass="label" text="Discipline *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Discipline *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
-                <Label styleClass="label" text="Degré *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Degré *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
-                <Label styleClass="label" text="Académie *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Académie *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
-                <Label styleClass="label" text="Région académique *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Région académique *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
             </children>
             <padding>
@@ -56,19 +56,19 @@
         </VBox>
         <VBox alignment="CENTER" layoutX="10.0" layoutY="86.0" prefWidth="300.0" spacing="12.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <children>
-                <Label styleClass="label" text="Type d'acteurs *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Type d'acteurs *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES">
                     <VBox.margin>
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </TextField>
-                <Label styleClass="label" text="Identité de l'acteur (Nom Prénom) *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Identité de l'acteur (Nom Prénom) *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
-                <Label styleClass="label" text="LIen de la ressource *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="LIen de la ressource *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
-                <Label styleClass="label" text="Nom de la ressource *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Nom de la ressource *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
-                <Label styleClass="label" text="Type de la ressource *" VBox.vgrow="SOMETIMES" />
+                <Label styleClass="labelParameter" text="Type de la ressource *" VBox.vgrow="SOMETIMES" />
                 <TextField styleClass="textField" VBox.vgrow="SOMETIMES" />
             </children>
             <padding>
