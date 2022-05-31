@@ -6,11 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
+        <module name="SAE201" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SAE201" target="17" />
+=======
         <module name="francefx" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="francefx" target="17" />
+>>>>>>> aa10467d78f8f9ab87ca5a6ffd72ad2316250a5f
     </bytecodeTargetLevel>
   </component>
 </project>

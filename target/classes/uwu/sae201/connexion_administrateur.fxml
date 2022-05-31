@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="uwu.sae201.HelloController" id="background">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="30"/>
+        <ColumnConstraints hgrow="SOMETIMES" percentWidth="70" />
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="SOMETIMES" prefHeight="100" />
+    </rowConstraints>
+    <children>
+        <VBox id="vbox" GridPane.halignment="CENTER"  GridPane.valignment="CENTER" alignment="CENTER" maxHeight="300" maxWidth="400" spacing="20" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <children>
+                <Label text="IDENTIFIANT" textAlignment="LEFT" styleClass="textLabel"></Label>
+                <TextField prefHeight="35" maxWidth="200" styleClass="textField"></TextField>
+                <Label text="MOT DE PASSE" styleClass="textLabel"></Label>
+                <TextField prefHeight="35" maxWidth="200" styleClass="textField"></TextField>
+                <Button id="button" alignment="CENTER" maxWidth="150">
+                    <padding>
+                        <Insets topRightBottomLeft="10"></Insets>
+                    </padding>
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="10">
+                            <children>
+                                <ImageView>
+                                    <image>
+                                        <Image url="@background_image.jpg" requestedWidth="25" requestedHeight="25" ></Image>
+                                    </image>
+                                </ImageView>
+                                <Label text="Se connecter"></Label>
+                            </children>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</GridPane>
