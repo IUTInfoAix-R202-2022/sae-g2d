@@ -6,13 +6,21 @@
     -fx-background-size: 100% 100%;
 }
 
-.check-box .box{
+.borderPage {
+    -fx-border-color: #b7b6fe;
+    -fx-border-radius: 5;
+    -fx-border-width: 5;
+    -fx-background-radius: 11;
+    -fx-background-color: white;
+}
+
+.checkBoxCategorie .box{
     -fx-background-color: white;
     -fx-border-color: black;
     -fx-border-radius: 4;
 }
 
-.check-box:selected .mark {
+.checkBoxCategorie:selected .mark {
     -fx-background-color: black;
 }
 
@@ -22,7 +30,7 @@
     -fx-pref-height: 24.0;
 }
 
-.text-field {
+.textFieldParameter {
     -fx-max-width: 459.0;
     -fx-pref-height: 20.0;
     -fx-pref-width: 459.0;
@@ -30,7 +38,7 @@
     -fx-background-insets: 0, 1 5 1 5;
 }
 
-.text-field:focused {
+.textFieldParameter:focused {
     -fx-focus-color: #486ab5;
 }
 
@@ -42,20 +50,8 @@
     -fx-border-radius: 10;
 }
 
-.boxcarte {
-    -fx-alignment: center-right;
-}
-
 .button:hover {
     -fx-background-color: rgba(86, 86, 246, 0.19);
-}
-
-#background {
-    -fx-background-image: url("background_image.jpg");
-    -fx-background-size: contain;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    -fx-background-size: 100% 100%;
 }
 
 #vbox {
@@ -68,12 +64,12 @@
     -fx-text-fill: #8fafe9;
 }
 
-.textField {
+.textFieldAjoutCategorie {
     -fx-text-box-border: #b7b6fe;
     -fx-background-insets: 0, 1 5 1 5 ;
 }
 
-.textField:focused{
+.textFieldAjoutCategorie:focused{
     -fx-focus-color: #486ab5;
 }
 

@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<SplitPane dividerPositions="0.0" orientation="VERTICAL" prefWidth="1800.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-border-width: 10; -fx-background-radius: 11; -fx-background-color: #b7b6fe;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.0" orientation="VERTICAL" prefWidth="1800.0" styleClass="borderPage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <items>
         <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #b7b6fe;" SplitPane.resizableWithParent="false">
             <children>
