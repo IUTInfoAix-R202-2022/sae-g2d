@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="507.0" prefWidth="694.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-border-width: 10; -fx-background-radius: 11; -fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uwu.sae201.HelloController">
+    <center>
+        <VBox alignment="CENTER" prefHeight="464.0" prefWidth="674.0" spacing="5.0">
+            <children>
+                <Label prefHeight="16.0" prefWidth="459.0" text="Nom de la catégorie *" />
+                <TextField styleClass="textField">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </TextField>
+                <Button styleClass="button" alignment="CENTER" maxWidth="140.0" prefHeight="47.0" prefWidth="140.0" stylesheets="@style.css">
+                    <padding>
+                        <Insets topRightBottomLeft="10" />
+                    </padding>
+                    <graphic>
+                        <HBox alignment="CENTER" spacing="20.0">
+                            <children>
+                                <ImageView fitHeight="25.0" fitWidth="25.0">
+                                    <image>
+                                        <Image url="@finaliser.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Finaliser">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </children>
+        </VBox>
+    </center>
+    <top>
+        <Label id="titre" alignment="CENTER" contentDisplay="CENTER"  prefHeight="65.0" prefWidth="451.0" text="AJOUTER UNE CATÉGORIE" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="26.0" />
+            </font>
+        </Label>
+    </top>
+</BorderPane>
