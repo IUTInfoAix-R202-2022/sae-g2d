@@ -30,7 +30,7 @@
                         <Insets left="10.0" right="10.0" />
                     </HBox.margin>
                 </Label>
-                <Button fx:id="fermer" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES">
+                <Button fx:id="fermer" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: transparent;" HBox.hgrow="SOMETIMES" onAction="#switchTo" userData="carte.fxml">
                     <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </HBox.margin>
