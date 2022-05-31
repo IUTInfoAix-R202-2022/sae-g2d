@@ -23,7 +23,7 @@
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="969.0" spacing="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-                <Button mnemonicParsing="false" fx:id="accueil" onAction="#switchToCarte" prefHeight="43.0" prefWidth="119.0" text="Accéder &gt;">
+                <Button mnemonicParsing="false" fx:id="accueil" onAction="#switchTo" prefHeight="43.0" prefWidth="119.0" text="Accéder &gt;">
                     <font>
                         <Font size="15.0" />
                     </font>

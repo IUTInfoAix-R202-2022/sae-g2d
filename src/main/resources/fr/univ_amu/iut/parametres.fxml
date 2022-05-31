@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" prefHeight="784.0" prefWidth="1044.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-border-width: 5; -fx-background-radius: 11; -fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uwu.sae201.HelloController">
+<GridPane alignment="CENTER" prefHeight="784.0" prefWidth="1044.0" style="-fx-border-color: #b7b6fe; -fx-border-radius: 5; -fx-border-width: 5; -fx-background-radius: 11; -fx-background-color: white;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="0.0" prefWidth="450.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="450.0" />

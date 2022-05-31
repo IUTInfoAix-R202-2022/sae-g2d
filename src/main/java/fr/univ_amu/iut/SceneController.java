@@ -16,11 +16,11 @@ public class SceneController {
     private Scene scene;
     private Parent root;
 
-    @FXML
-    Button accueil;
+    public void switchTo(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource() ;
+        String data = (String) node.getUserData();
 
-    public void switchToCarte(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("carte.fxml"));
+        root = FXMLLoader.load(getClass().getResource(data));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setMaximized(true);
         scene = new Scene(root,1280,720);

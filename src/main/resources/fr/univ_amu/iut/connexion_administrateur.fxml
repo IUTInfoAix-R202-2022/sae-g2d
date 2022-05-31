@@ -15,7 +15,7 @@
 <?import javafx.scene.image.Image?>
 <GridPane xmlns:fx="http://javafx.com/fxml" id="background">
     <stylesheets>
-        <URL value="@../../../uwu/sae201/style.css" />
+        <URL value="@../../../fr/univ_amu/iut/style.css" />
     </stylesheets>
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="30"/>
