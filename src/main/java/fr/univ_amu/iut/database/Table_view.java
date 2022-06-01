@@ -4,14 +4,14 @@ package fr.univ_amu.iut.database;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -22,7 +22,7 @@ import java.sql.Statement;
 
 public class Table_view extends Application {
     private static TableView<Typologie> table;
-
+    private TextField filterField;
     private TableColumn<Typologie,Integer> numero;
     private TableColumn<Typologie,String> thematique_usage;
     private TableColumn<Typologie,String> discipline;
@@ -42,19 +42,28 @@ public class Table_view extends Application {
     @Override
     public void start(Stage stage) throws SQLException {
 
+        BorderPane root = new BorderPane();
+
+
         table = new TableView<>();
         table.setEditable(true);
 
         initialiserColonnes();
         table.getColumns().addAll(numero,thematique_usage, discipline, degre, academie, region_academique, type_acteur, identite_acteur, url_ressource, nom_ressource, type_source, commentaires);
 
+
         data = ajouterTypologies(); // On entre les données
         table.setItems(data);
 
+        StackPane tableview = new StackPane();
+        tableview.setPadding(new Insets(5));
+        tableview.getChildren().add(table);
 
-        StackPane root = new StackPane();
-        root.setPadding(new Insets(5));
-        root.getChildren().add(table);
+        filterField = new TextField();
+        root.setTop(filterField);
+        root.setCenter(tableview);
+        initialiserSearchBar();
+
         stage.setTitle("TableView (o7planning.org)");
         Scene scene = new Scene(root, 450, 300);
         stage.setScene(scene);
@@ -255,6 +264,41 @@ public class Table_view extends Application {
         statement.close();
         return list;
 
+    }
+
+    private void initialiserSearchBar() {
+        // 1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(filterWords -> {
+                // si le texte est vide, on laisse comme c'était
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Comparaison de l'academie de chaque tuple avec le filtre
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (filterWords.getAcademie() == null) {
+                    return false;
+                } else if (filterWords.getAcademie().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+
+                return false;
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Typologie> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        table.setItems(sortedData);
     }
 
 
