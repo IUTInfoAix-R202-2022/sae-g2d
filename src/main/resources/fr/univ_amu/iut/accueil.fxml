@@ -20,7 +20,7 @@
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="969.0" spacing="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#switchTo" userData="carte.fxml">
                     <graphic>
                         <HBox alignment="CENTER" prefHeight="107.0" prefWidth="108.0" spacing="20.0">
                             <children>
