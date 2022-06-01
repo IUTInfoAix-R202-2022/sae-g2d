@@ -38,6 +38,12 @@
     -fx-background-insets: 0, 1 5 1 5;
 }
 
+.closeButton {
+    -fx-border-color: black;
+    -fx-background-radius: 11;
+    -fx-border-width: 2;
+}
+
 .textFieldParameter:focused {
     -fx-focus-color: #486ab5;
 }

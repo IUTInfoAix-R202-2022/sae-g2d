@@ -24,7 +24,9 @@ public class SceneController {
         root = FXMLLoader.load(getClass().getResource(data));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setMaximized(true);
-        scene = new Scene(root,1280,720);
+        scene = new Scene(root,1280,850);
+        stage.minHeightProperty().set(850);
+        stage.minWidthProperty().set(1280);
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();
@@ -34,7 +36,9 @@ public class SceneController {
         root = FXMLLoader.load(getClass().getResource(filename));
         stage = (Stage) node.getScene().getWindow();
         stage.setMaximized(true);
-        scene = new Scene(root,1280,720);
+        scene = new Scene(root,1280,850);
+        stage.minHeightProperty().set(850);
+        stage.minWidthProperty().set(1280);
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();
