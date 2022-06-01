@@ -97,20 +97,6 @@ public class ModificationBDD {
         }
         
     }
-    @FXML
-    private void verificationDesLabels(){
-        Typologie t = new Typologie();
-        for (TextField l : textFieldList){
-            if (l.getText().isEmpty()){
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setHeaderText("Exécution de la requête SQL Impossible");
-                errorAlert.setContentText("Tous les champs doivent être remplis");
-                errorAlert.showAndWait();
-                return;
-            }
-        }
-
-    }
 
     public Typologie setTypologie(){
         Typologie typologie = new Typologie();
@@ -128,6 +114,7 @@ public class ModificationBDD {
         return typologie;
     }
 
+    @FXML
     public void ajout() throws SQLException {
 
         Typologie typologie = setTypologie();
@@ -151,37 +138,16 @@ public class ModificationBDD {
 
     }
     @FXML
-    public void suppression(){
-        try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Exécution de la requête SQL en cours");
-            alert.setContentText("Voulez-vous vraiment supprimer ces tuples de la base de données ?");
+    public void suppression() throws SQLException {
 
-            Optional<ButtonType> result = alert.showAndWait();  //Creer option OK | CANCEL
-            if(result.get() == ButtonType.OK) {
+        Typologie typologie = setTypologie();
+        DAOTypologieJDBC dao = new DAOTypologieJDBC();
+        String req = "SELECT * FROM typologie WHERE";
 
-                //Requete
-                req = "DELETE FROM typologie WHERE ";
 
-                for (int i = 0; i < textFieldList.size(); ++i) {
-                    if (!(textFieldList.get(i).getText().isEmpty())) {
-                        req += stringUsageList.get(i) + " = '" + textFieldList.get(i).getText() + "'";
-                        if (i != textFieldList.size() - 1) {
-                            req += " and ";
-                        }
-                    }
-                }
-                req += ";";
+        req += " THEMATIQUE_USAGE = " + typologie.getThematique_usage();
 
-                //Execution
-                PreparedStatement pstmt = connection.prepareStatement(req);
-                pstmt.executeUpdate();
+        System.out.println(req);
 
-                System.out.println("requête envoyée");
-            }
-        } catch (SQLException e) {
-            System.out.println("erreur");
-            throw new RuntimeException(e);
-        }
     }
 }

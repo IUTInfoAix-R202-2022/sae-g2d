@@ -1,7 +1,5 @@
 package fr.univ_amu.iut.database;
 
-import javafx.scene.control.Alert;
-
 public class Typologie {
 
     private int numero;
@@ -27,9 +25,6 @@ public class Typologie {
     private String type_source;
 
     private String commentaires;
-
-    public Typologie(){
-    }
 
 
     public int getNumero() {
