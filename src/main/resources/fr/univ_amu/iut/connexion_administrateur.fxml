@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<GridPane xmlns:fx="http://javafx.com/fxml" id="background">
+<GridPane xmlns:fx="http://javafx.com/fxml" id="background" stylesheets="@style.css" styleClass="background">
     <stylesheets>
         <URL value="@../../../fr/univ_amu/iut/style.css" />
     </stylesheets>
@@ -41,7 +41,7 @@
                             <children>
                                 <ImageView>
                                     <image>
-                                        <Image url="@background_image.jpg" requestedWidth="25" requestedHeight="25" ></Image>
+                                        <Image url="@suivant.png" requestedWidth="25" requestedHeight="25" ></Image>
                                     </image>
                                 </ImageView>
                                 <Label text="Se connecter"></Label>

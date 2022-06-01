@@ -1,4 +1,4 @@
-.accueilBackground{
+.background{
     -fx-background-image: url(background_accueil.jpg);
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
@@ -64,13 +64,5 @@
     -fx-text-fill: #8fafe9;
 }
 
-.textFieldAjoutCategorie {
-    -fx-text-box-border: #b7b6fe;
-    -fx-background-insets: 0, 1 5 1 5 ;
-}
-
-.textFieldAjoutCategorie:focused{
-    -fx-focus-color: #486ab5;
-}
 
 
