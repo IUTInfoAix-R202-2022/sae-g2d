@@ -26,6 +26,24 @@ public class Typologie {
 
     private String commentaires;
 
+    public Typologie(){
+
+    }
+
+    public Typologie(int numero, String thematique_usage, String discipline, String degre, String academie, String region_academique, String type_acteur, String identite_acteur, String url_ressource, String nom_ressource, String type_source, String commentaires) {
+        this.numero = numero;
+        this.thematique_usage = thematique_usage;
+        this.discipline = discipline;
+        this.degre = degre;
+        this.academie = academie;
+        this.region_academique = region_academique;
+        this.type_acteur = type_acteur;
+        this.identite_acteur = identite_acteur;
+        this.url_ressource = url_ressource;
+        this.nom_ressource = nom_ressource;
+        this.type_source = type_source;
+        this.commentaires = commentaires;
+    }
 
     public int getNumero() {
         return numero;
