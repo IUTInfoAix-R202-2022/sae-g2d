@@ -1,10 +1,14 @@
 package fr.univ_amu.iut;
 
+import fr.univ_amu.iut.database.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Database;
+import fr.univ_amu.iut.database.Typologie;
 import fr.univ_amu.iut.view.map.AcademiePath;
 import fr.univ_amu.iut.view.map.France;
 import fr.univ_amu.iut.view.map.FranceBuilder;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -32,12 +36,16 @@ public class Jdbc {
 
     private SceneController sceneController = new SceneController();
 
+    private DAOTypologieJDBC dao = new DAOTypologieJDBC();
+
     /*
        On instancie HelloApplication pour récupérer le lien de la bdd pour éviter de le faire à chaque fois
     */
     HelloApplication rootApplication = new HelloApplication();
 
     private static AcademiePath academiePath;
+
+    private List<Typologie> thematiquesUsageGroupByAcademie;
 
     @FXML
     private VBox vbox;
@@ -54,7 +62,7 @@ public class Jdbc {
                             "FROM typologie ";
 
 
-    public Jdbc() {
+    public Jdbc() throws SQLException {
     }
 
     @FXML
@@ -120,6 +128,13 @@ public class Jdbc {
             for (Node e : vbox.getChildren()){
                 if (i > colors.size() - 1) { i = 0; }
                 Button button = (Button) e;
+                button.setOnAction(event -> {
+                    try {
+                        thematiquesUsageGroupByAcademie = dao.findByThematiquesUsageGroupByAcademie(button.getText());
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                });
                 button.setId("button");
                 button.getStylesheets().add(css);
                 button.setStyle("-fx-background-color: " + colors.get(i));
@@ -141,7 +156,10 @@ public class Jdbc {
         }
     }
 
+
+
     public static AcademiePath getAcademiePath() {
         return academiePath;
     }
+
 }

@@ -13,6 +13,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
     private final PreparedStatement deleteStatament;
     private final PreparedStatement updateStatement;
     private final PreparedStatement findByAcademie;
+    private final PreparedStatement findByThematiquesUsageGroupByAcademie;
 
     private final Connection connection = HelloApplication.getDBConnection();   //On récupère la connection
 
@@ -29,6 +30,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
         updateStatement = connection.prepareStatement("UPDATE typologie SET THEMATIQUE_USAGE = ?" +
                 ", DISCIPLINE = ?, DEGRE = ?, ACADEMIE = ?, REGION_ACADEMIQUE = ?, TYPE_ACTEUR = ?, IDENTITE_ACTEUR = ?, URL_RESSOURCE = ?, NOM_RESSOURCE = ?, TYPE_SOURCE = ?, COMMENTAIRES = ? WHERE NUMERO = ?");
         findByAcademie = connection.prepareStatement("SELECT * FROM typologie WHERE ACADEMIE = ?");
+        findByThematiquesUsageGroupByAcademie = connection.prepareStatement("SELECT ACADEMIE FROM typologie WHERE THEMATIQUE_USAGE = ?");
     }
 
     /**
@@ -107,7 +109,6 @@ public class DAOTypologieJDBC implements DAOTypologie {
         updateStatement.close();
     }
 
-
     @Override
     public List<Typologie> findByAcademie(String nomAcademie) throws SQLException {
         List<Typologie> donneesAcademie = new ArrayList<>();
@@ -131,5 +132,21 @@ public class DAOTypologieJDBC implements DAOTypologie {
             donneesAcademie.add(typologie);
         }
         return donneesAcademie;
+    }
+
+    @Override
+    public List<Typologie> findByThematiquesUsageGroupByAcademie(String nomThematiqueUsage) throws SQLException {
+        List<Typologie> donneesAcademie = new ArrayList<>();
+        findByThematiquesUsageGroupByAcademie.setString(1,nomThematiqueUsage);
+        ResultSet resultSet = findByThematiquesUsageGroupByAcademie.executeQuery();
+
+        while (resultSet.next()){
+            Typologie typologie = new Typologie();
+            typologie.setAcademie(resultSet.getString(1));
+            donneesAcademie.add(typologie);
+        }
+
+        return donneesAcademie;
+
     }
 }
