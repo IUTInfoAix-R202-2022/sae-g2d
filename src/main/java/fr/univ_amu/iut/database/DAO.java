@@ -1,11 +1,13 @@
 package fr.univ_amu.iut.database;
 
+import jakarta.persistence.Entity;
+
 import java.sql.SQLException;
 
-public interface DAO {
+public interface DAO<Entity, Key> {
 
-    void insert(Typologie typologie) throws SQLException;
-    void delete(Typologie typologie) throws SQLException;
-    void update(Typologie typologie) throws SQLException;
+    Entity insert(Entity obj) throws SQLException;
+    boolean delete(Entity obj) throws SQLException;
+    boolean update(Entity obj) throws SQLException;
 
 }
