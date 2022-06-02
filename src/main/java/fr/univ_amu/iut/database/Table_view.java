@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,7 +23,10 @@ import java.sql.Statement;
 
 public class Table_view extends Application {
     private static TableView<Typologie> table;
-    private TextField filterField;
+    private TextField filterAcademieField;
+    private TextField filterThematiqueUsageField;
+    private TextField filterDisciplineField;
+    private TextField filterDegreField;
     private TableColumn<Typologie,Integer> numero;
     private TableColumn<Typologie,String> thematique_usage;
     private TableColumn<Typologie,String> discipline;
@@ -44,9 +48,11 @@ public class Table_view extends Application {
 
         BorderPane root = new BorderPane();
 
-
         table = new TableView<>();
         table.setEditable(true);
+        table.getSelectionModel().setSelectionMode(
+                SelectionMode.MULTIPLE
+        );
 
         initialiserColonnes();
         table.getColumns().addAll(numero,thematique_usage, discipline, degre, academie, region_academique, type_acteur, identite_acteur, url_ressource, nom_ressource, type_source, commentaires);
@@ -59,10 +65,12 @@ public class Table_view extends Application {
         tableview.setPadding(new Insets(5));
         tableview.getChildren().add(table);
 
-        filterField = new TextField();
-        root.setTop(filterField);
+        filterAcademieField = new TextField();
+        root.setTop(filterAcademieField);
         root.setCenter(tableview);
-        initialiserSearchBar();
+
+        // Search
+        initialiserAllSearchBar();
 
         stage.setTitle("TableView (o7planning.org)");
         Scene scene = new Scene(root, 450, 300);
@@ -266,18 +274,26 @@ public class Table_view extends Application {
 
     }
 
-    private void initialiserSearchBar() {
-        // 1. Wrap the ObservableList in a FilteredList (initially display all data).
+    private void initialiserAllSearchBar() {
+        initialiserAcademieSearchBar();
+        /*
+        initialiserThematiqueUsageSearchBar();
+        initialiserDisciplineSearchBar();
+        initialiserDegreSearchBar();
+         */
+    }
+
+    private void initialiserAcademieSearchBar() {
+        // ObservableList => FilteredList
         FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
 
-        // 2. Set the filter Predicate whenever the filter changes.
-        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+        // Listener
+        filterAcademieField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(filterWords -> {
                 // si le texte est vide, on laisse comme c'était
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
                 // Comparaison de l'academie de chaque tuple avec le filtre
                 String lowerCaseFilter = newValue.toLowerCase();
 
@@ -286,20 +302,120 @@ public class Table_view extends Application {
                 } else if (filterWords.getAcademie().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
-
                 return false;
             });
         });
 
-        // 3. Wrap the FilteredList in a SortedList.
+        // FilteredList => SortedList.
         SortedList<Typologie> sortedData = new SortedList<>(filteredData);
 
-        // 4. Bind the SortedList comparator to the TableView comparator.
+        // Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(table.comparatorProperty());
 
-        // 5. Add sorted (and filtered) data to the table.
+        // Ajout des académies filtrées dans la table.
         table.setItems(sortedData);
     }
 
+    private void initialiserThematiqueUsageSearchBar() {
+        // ObservableList => FilteredList
+        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
 
+        // Listener
+        filterThematiqueUsageField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(filterWords -> {
+                // si le texte est vide, on laisse comme c'était
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Comparaison de la thématique de chaque tuple avec le filtre
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (filterWords.getThematique_usage() == null) {
+                    return false;
+                } else if (filterWords.getThematique_usage().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        // FilteredList => SortedList.
+        SortedList<Typologie> sortedData = new SortedList<>(filteredData);
+
+        // Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+
+        // Ajout des thématiques filtrées dans la table.
+        table.setItems(sortedData);
+    }
+
+    private void initialiserDisciplineSearchBar() {
+        // ObservableList => FilteredList
+        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
+
+        // Listener
+        filterDisciplineField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(filterWords -> {
+                // si le texte est vide, on laisse comme c'était
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Comparaison de la discipline de chaque tuple avec le filtre
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (filterWords.getDiscipline() == null) {
+                    return false;
+                } else if (filterWords.getDiscipline().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        // FilteredList => SortedList.
+        SortedList<Typologie> sortedData = new SortedList<>(filteredData);
+
+        // Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+
+        // Ajout des disciplines filtrées dans la table.
+        table.setItems(sortedData);
+    }
+
+    private void initialiserDegreSearchBar() {
+        // ObservableList => FilteredList
+        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
+
+        // Listener
+        filterDegreField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(filterWords -> {
+                // si le texte est vide, on laisse comme c'était
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Comparaison du degre de chaque tuple avec le filtre
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (filterWords.getDegre() == null) {
+                    return false;
+                } else if (filterWords.getDegre().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        // FilteredList => SortedList.
+        SortedList<Typologie> sortedData = new SortedList<>(filteredData);
+
+        // Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+
+        // Ajout des degrés filtrés dans la table.
+        table.setItems(sortedData);
+    }
+
+    private void deleteRowsSelected(ActionEvent event){
+        table.getItems().removeAll(table.getSelectionModel().getSelectedItems());
+    }
 }
