@@ -15,7 +15,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
     private final PreparedStatement findByAcademie;
     private final PreparedStatement findByThematiquesUsageGroupByAcademie;
 
-    private final Connection connection = HelloApplication.getDBConnection();   //On récupère la connection
+    private final Connection connection = Database.getDBConnection();   //On récupère la connection
 
     /**
      * Constructeur
@@ -56,7 +56,8 @@ public class DAOTypologieJDBC implements DAOTypologie {
      *
      * @param typologie
      */
-    public void insert(Typologie typologie) throws SQLException {
+    @Override
+    public Typologie insert(Typologie typologie) throws SQLException {
         createStatement.setInt(1, setNumeroByCount());
         createStatement.setString(2, typologie.getThematique_usage());
         createStatement.setString(3, typologie.getDiscipline());
@@ -72,6 +73,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
 
         createStatement.executeUpdate();
         createStatement.close();
+        return typologie;
 
     }
 
@@ -80,10 +82,16 @@ public class DAOTypologieJDBC implements DAOTypologie {
      *
      * @param typologie
      */
-    public void delete(Typologie typologie) throws SQLException {
-        deleteStatament.setInt(1, typologie.getNumero());
-        deleteStatament.executeUpdate();
-        deleteStatament.close();
+    @Override
+    public boolean delete(Typologie typologie) throws SQLException {
+        try {
+            deleteStatament.setInt(1, typologie.getNumero());
+            deleteStatament.executeUpdate();
+            deleteStatament.close();
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -92,21 +100,27 @@ public class DAOTypologieJDBC implements DAOTypologie {
      * @param typologie
      * @throws SQLException
      */
-    public void update(Typologie typologie) throws SQLException {
-        updateStatement.setString(1, typologie.getThematique_usage());
-        updateStatement.setString(2, typologie.getDiscipline());
-        updateStatement.setString(3, typologie.getDegre());
-        updateStatement.setString(4, typologie.getAcademie());
-        updateStatement.setString(5, typologie.getRegion_academique());
-        updateStatement.setString(6, typologie.getType_acteur());
-        updateStatement.setString(7, typologie.getIdentite_acteur());
-        updateStatement.setString(8, typologie.getUrl_ressource());
-        updateStatement.setString(9, typologie.getNom_ressource());
-        updateStatement.setString(10, typologie.getType_source());
-        updateStatement.setString(11, typologie.getCommentaires());
-        updateStatement.setInt(12, typologie.getNumero());
-        updateStatement.executeUpdate();
-        updateStatement.close();
+    @Override
+    public boolean update(Typologie typologie) throws SQLException {
+        try {
+            updateStatement.setString(1, typologie.getThematique_usage());
+            updateStatement.setString(2, typologie.getDiscipline());
+            updateStatement.setString(3, typologie.getDegre());
+            updateStatement.setString(4, typologie.getAcademie());
+            updateStatement.setString(5, typologie.getRegion_academique());
+            updateStatement.setString(6, typologie.getType_acteur());
+            updateStatement.setString(7, typologie.getIdentite_acteur());
+            updateStatement.setString(8, typologie.getUrl_ressource());
+            updateStatement.setString(9, typologie.getNom_ressource());
+            updateStatement.setString(10, typologie.getType_source());
+            updateStatement.setString(11, typologie.getCommentaires());
+            updateStatement.setInt(12, typologie.getNumero());
+            updateStatement.executeUpdate();
+            updateStatement.close();
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
     }
 
     @Override

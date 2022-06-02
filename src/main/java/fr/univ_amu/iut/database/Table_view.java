@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -88,6 +89,7 @@ public class Table_view extends Application {
 
         filterField = new TextField();
         filterLabel = new Label("Search");
+        column1.setHalignment(HPos.CENTER);
         filterLabel.setPadding(new Insets(5));
 
         // Search
