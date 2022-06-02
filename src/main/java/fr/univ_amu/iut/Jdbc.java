@@ -30,27 +30,14 @@ public class Jdbc {
     private Scene scene;
     private Parent root;
 
-    @FXML
-    public void switchTo(ActionEvent event) throws IOException {
-        Node node = (Node) event.getSource() ;
-        String data = (String) node.getUserData();
-
-        root = FXMLLoader.load(getClass().getResource(data));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setMaximized(true);
-        scene = new Scene(root,1280,850);
-        stage.minHeightProperty().set(850);
-        stage.minWidthProperty().set(1280);
-        stage.setTitle("Dico Pédago");
-        stage.setScene(scene);
-        stage.show();
-    }
-
+    private SceneController sceneController = new SceneController();
 
     /*
        On instancie HelloApplication pour récupérer le lien de la bdd pour éviter de le faire à chaque fois
     */
     HelloApplication rootApplication = new HelloApplication();
+
+    private static AcademiePath academiePath;
 
     @FXML
     private VBox vbox;
@@ -66,10 +53,16 @@ public class Jdbc {
     static final String req = "SELECT DISTINCT THEMATIQUE_USAGE " +
                             "FROM typologie ";
 
+
+    public Jdbc() {
+    }
+
+    @FXML
+    public void switchTo() throws IOException {
+        sceneController.switchTo2(carte,"accueil.fxml");
+    }
     @FXML
     public void initialize(){
-
-        SceneController sc = new SceneController();
 
         String css = this.getClass().getResource("style.css").toExternalForm();
 
@@ -81,10 +74,9 @@ public class Jdbc {
                 .pressedColor(Color.web("#FFFFFF"))
                 .selectedColor(Color.web("#b81111"))
                 .mousePressHandler(evt -> {
-                    AcademiePath academiePath = (AcademiePath) evt.getSource();
-
-                    try {
-                        sc.switchTo2(carte,"academie.fxml");
+                    academiePath = (AcademiePath) evt.getSource();
+                   try {
+                        sceneController.switchTo2(carte,"academie.fxml");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -147,5 +139,9 @@ public class Jdbc {
             System.out.println(e.getMessage() + "\n");
             System.out.println("Diconnected");
         }
+    }
+
+    public static AcademiePath getAcademiePath() {
+        return academiePath;
     }
 }

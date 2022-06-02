@@ -1,15 +1,20 @@
 package fr.univ_amu.iut.database;
 
-import java.sql.*;
+import fr.univ_amu.iut.HelloApplication;
 
-public class DAOTypologieJDBC implements DAO {
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DAOTypologieJDBC implements DAOTypologie {
 
     public static int numero;
     private final PreparedStatement createStatement;
     private final PreparedStatement deleteStatament;
     private final PreparedStatement updateStatement;
+    private final PreparedStatement findByAcademie;
 
-    private final Connection connection = Database.getDBConnection();   //On récupère la connection
+    private final Connection connection = HelloApplication.getDBConnection();   //On récupère la connection
 
     /**
      * Constructeur
@@ -23,6 +28,7 @@ public class DAOTypologieJDBC implements DAO {
         deleteStatament = connection.prepareStatement("DELETE FROM typologie WHERE NUMERO = ?");
         updateStatement = connection.prepareStatement("UPDATE typologie SET THEMATIQUE_USAGE = ?" +
                 ", DISCIPLINE = ?, DEGRE = ?, ACADEMIE = ?, REGION_ACADEMIQUE = ?, TYPE_ACTEUR = ?, IDENTITE_ACTEUR = ?, URL_RESSOURCE = ?, NOM_RESSOURCE = ?, TYPE_SOURCE = ?, COMMENTAIRES = ? WHERE NUMERO = ?");
+        findByAcademie = connection.prepareStatement("SELECT * FROM typologie WHERE ACADEMIE = ?");
     }
 
     /**
@@ -99,5 +105,31 @@ public class DAOTypologieJDBC implements DAO {
         updateStatement.setInt(12, typologie.getNumero());
         updateStatement.executeUpdate();
         updateStatement.close();
+    }
+
+
+    @Override
+    public List<Typologie> findByAcademie(String nomAcademie) throws SQLException {
+        List<Typologie> donneesAcademie = new ArrayList<>();
+        findByAcademie.setString(1,nomAcademie);
+        ResultSet resultSet = findByAcademie.executeQuery();
+
+        while (resultSet.next()){
+            Typologie typologie = new Typologie();
+            typologie.setNumero(resultSet.getInt(1));
+            typologie.setThematique_usage(resultSet.getString(2));
+            typologie.setDiscipline(resultSet.getString(3));
+            typologie.setDegre(resultSet.getString(4));
+            typologie.setAcademie(resultSet.getString(5));
+            typologie.setRegion_academique(resultSet.getString(6));
+            typologie.setType_acteur(resultSet.getString(7));
+            typologie.setIdentite_acteur(resultSet.getString(8));
+            typologie.setUrl_ressource(resultSet.getString(9));
+            typologie.setNom_ressource(resultSet.getString(10));
+            typologie.setType_source(resultSet.getString(11));
+            typologie.setCommentaires(resultSet.getString(12));
+            donneesAcademie.add(typologie);
+        }
+        return donneesAcademie;
     }
 }

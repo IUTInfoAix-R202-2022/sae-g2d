@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SceneController {
     private Stage stage;
@@ -21,11 +22,11 @@ public class SceneController {
         Node node = (Node) event.getSource() ;
         String data = (String) node.getUserData();
 
-        root = FXMLLoader.load(getClass().getResource(data));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(data)));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setMaximized(true);
-        scene = new Scene(root,1280,850);
-        stage.minHeightProperty().set(850);
+        scene = new Scene(root,1280,720);
+        stage.minHeightProperty().set(720);
         stage.minWidthProperty().set(1280);
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);

@@ -1,0 +1,47 @@
+.bouton_fermer {
+    -fx-background-color: #b7b6fe;
+    -fx-border-color: #b7b6fe;
+    -fx-border-width: 2;
+    -fx-background-radius: 11;
+    -fx-border-radius: 10;
+}
+
+.bouton_fermer:hover {
+    -fx-background-color: rgba(86, 86, 246, 90);
+}
+
+.fenetre {
+    -fx-border-color: #b7b6fe;
+    -fx-border-radius: 5;
+    -fx-border-width: 10;
+}
+
+.scroll_pane {
+    -fx-background-color: white;
+    -fx-background: white;
+}
+
+.labels_donnees {
+    -fx-alignment: CENTER;
+    -fx-content-display: CENTER;
+    -fx-min-width: none;
+    -fx-min-height: none;
+    -fx-pref-width: 300.0;
+    -fx-text-alignment: CENTER;
+    -fx-wrap-text: true;
+    -fx-label-padding: 3.0 3.0 3.0 3.0;
+}
+
+.labels_donnees_academie {
+    -fx-border-color: #b7b6fe;
+    -fx-border-radius: 5;
+    -fx-background-radius: 6;
+    -fx-background-color: #b7b6fe;
+    -fx-padding: 10.0;
+}
+
+.labels_donnees_informations {
+    -fx-border-color: black;
+    -fx-border-radius: 2;
+    -fx-padding: 10.0;
+}

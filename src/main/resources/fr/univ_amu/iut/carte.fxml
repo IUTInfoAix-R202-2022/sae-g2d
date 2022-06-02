@@ -12,18 +12,22 @@
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="80.0" />
     </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="SOMETIMES" percentHeight="10" />
+        <RowConstraints vgrow="SOMETIMES" percentHeight="90"/>
+    </rowConstraints>
     <VBox fx:id="vbox" alignment="CENTER" prefWidth="33.0" spacing="15" style="-fx-background-color: rgb(182,182,255);" GridPane.rowSpan="2">
         <padding>
             <Insets topRightBottomLeft="15" />
         </padding>
     </VBox>
-    <HBox alignment="CENTER" GridPane.columnIndex="1">
+    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <Label alignment="CENTER" prefHeight="31.0" prefWidth="436.0" text="Cartographie des usages" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="17.0" />
             </font>
         </Label>
-        <Button fx:id="fermer" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#switchTo" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" styleClass="closeButton" stylesheets="@style.css" userData="accueil.fxml" HBox.hgrow="SOMETIMES">
+        <Button fx:id="fermer" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" styleClass="closeButton" stylesheets="@style.css" onAction="#switchTo" userData="accueil.fxml" HBox.hgrow="SOMETIMES">
             <HBox.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
@@ -45,8 +49,4 @@
             </StackPane>
         </HBox>
     </VBox>
-   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints />
-   </rowConstraints>
 </GridPane>
