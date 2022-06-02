@@ -6,14 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -22,11 +21,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Table_view extends Application {
+
+    private Connection connection = Database.getDBConnection();
+
+    private DAOTypologieJDBC dao = new DAOTypologieJDBC();
+
     private static TableView<Typologie> table;
-    private TextField filterAcademieField;
-    private TextField filterThematiqueUsageField;
-    private TextField filterDisciplineField;
-    private TextField filterDegreField;
+
+    private TextField filterField;
+
+    private Label filterLabel;
+
+
+    private Button buttonAdd;
+    private Button buttonDelete;
+
     private TableColumn<Typologie,Integer> numero;
     private TableColumn<Typologie,String> thematique_usage;
     private TableColumn<Typologie,String> discipline;
@@ -42,11 +51,23 @@ public class Table_view extends Application {
 
     private ObservableList<Typologie> data;
 
+    public Table_view() throws SQLException {
+    }
+
     // private static TableColumn
     @Override
     public void start(Stage stage) throws SQLException {
 
-        BorderPane root = new BorderPane();
+        GridPane root = new GridPane();
+        ColumnConstraints column1 = new ColumnConstraints();
+        column1.setPercentWidth(30);
+        column1.setHgrow(Priority.SOMETIMES);
+
+        ColumnConstraints column2 = new ColumnConstraints();
+        column2.setPercentWidth(70);
+        column1.setHgrow(Priority.SOMETIMES);
+
+        root.getColumnConstraints().addAll(column1, column2);
 
         table = new TableView<>();
         table.setEditable(true);
@@ -65,19 +86,66 @@ public class Table_view extends Application {
         tableview.setPadding(new Insets(5));
         tableview.getChildren().add(table);
 
-        filterAcademieField = new TextField();
-        root.setTop(filterAcademieField);
-        root.setCenter(tableview);
+        filterField = new TextField();
+        filterLabel = new Label("Search");
+        filterLabel.setPadding(new Insets(5));
 
         // Search
-        initialiserAllSearchBar();
+        initialiserSearchBar();
 
-        stage.setTitle("TableView (o7planning.org)");
+        root.add(filterField, 1, 0);
+        root.add(filterLabel,0,0);
+        root.add(tableview, 0, 1, 2, 1);
+
+        HBox content = new HBox();
+
+        buttonAdd = new Button("Ajouter");
+        buttonDelete = new Button("Supprimer");
+
+        buttonAdd.setOnAction(event -> {
+            System.out.println("ajouté");
+            try {
+                ajouterLigne();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        buttonDelete.setOnAction(event -> {
+            try {
+                supprimerLigne();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        content.getChildren().addAll(buttonAdd,buttonDelete);
+
+        root.add(content,0,5,2,1);
+        content.setAlignment(Pos.CENTER);
+        content.setSpacing(5);
+
+        stage.setTitle("TableView");
         Scene scene = new Scene(root, 450, 300);
         stage.setScene(scene);
         stage.show();
     }
 
+
+    private void ajouterLigne() throws SQLException {
+        Typologie typologie = new Typologie();
+        typologie.setNumero(table.getItems().size() + 1);
+        table.scrollTo(table.getItems().size());
+        data.add(typologie);
+        dao.insert(typologie);
+    }
+
+    private void supprimerLigne() throws SQLException {
+        Typologie typologie = table.getSelectionModel().getSelectedItem();
+        dao.delete(typologie);
+
+        data.remove(typologie);
+    }
     private TableColumn<Typologie,Integer> initialiserColNumero(){
         TableColumn<Typologie, Integer> numero = new TableColumn<>("Numéro");
         numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
@@ -92,7 +160,12 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setThematique_usage(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
         });
         return thematique_usage;
     }
@@ -165,12 +238,12 @@ public class Table_view extends Application {
         TableColumn<Typologie, String> identite_acteur = new TableColumn<>("Identité_Acteur");
         identite_acteur.setCellValueFactory(new PropertyValueFactory<>("identite_acteur"));
         identite_acteur.setCellFactory(TextFieldTableCell.forTableColumn());
+
         identite_acteur.setOnEditCommit(event-> {
             TablePosition<Typologie, String> pos = event.getTablePosition();
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setIdentite_acteur(nouveau);
-            System.out.println(typologie);
         });
         return identite_acteur;
     }
@@ -227,7 +300,7 @@ public class Table_view extends Application {
         return commentaires;
     }
 
-    private void initialiserColonnes(){
+    private void initialiserColonnes() throws SQLException {
         numero = initialiserColNumero();
         thematique_usage = initialiserColThematique_usage();
         discipline = initialiserColDiscipline();
@@ -245,8 +318,6 @@ public class Table_view extends Application {
 
     private ObservableList<Typologie> ajouterTypologies() throws SQLException {
 
-
-        Connection connection = Database.getDBConnection();
         Statement statement = connection.createStatement();
 
         String findAll = "SELECT * FROM typologie;";
@@ -270,25 +341,17 @@ public class Table_view extends Application {
             list.add(t);
         }
         statement.close();
+        connection.close();
         return list;
 
     }
 
-    private void initialiserAllSearchBar() {
-        initialiserAcademieSearchBar();
-        /*
-        initialiserThematiqueUsageSearchBar();
-        initialiserDisciplineSearchBar();
-        initialiserDegreSearchBar();
-         */
-    }
-
-    private void initialiserAcademieSearchBar() {
+    private void initialiserSearchBar() {
         // ObservableList => FilteredList
         FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
 
         // Listener
-        filterAcademieField.textProperty().addListener((observable, oldValue, newValue) -> {
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(filterWords -> {
                 // si le texte est vide, on laisse comme c'était
                 if (newValue == null || newValue.isEmpty()) {
@@ -297,9 +360,13 @@ public class Table_view extends Application {
                 // Comparaison de l'academie de chaque tuple avec le filtre
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (filterWords.getAcademie() == null) {
-                    return false;
-                } else if (filterWords.getAcademie().toLowerCase().contains(lowerCaseFilter)) {
+                if ((filterWords.getAcademie() != null) && (filterWords.getAcademie().toLowerCase().contains(lowerCaseFilter))){
+                    return true;
+                } else if ((filterWords.getDiscipline() != null) && (filterWords.getDiscipline().toLowerCase().contains(lowerCaseFilter))) {
+                    return true;
+                } else if ((filterWords.getThematique_usage() != null) && (filterWords.getThematique_usage().toLowerCase().contains(lowerCaseFilter))) {
+                    return true;
+                } else if ((filterWords.getDegre() != null) && (filterWords.getDegre().toLowerCase().contains(lowerCaseFilter))) {
                     return true;
                 }
                 return false;
@@ -314,108 +381,5 @@ public class Table_view extends Application {
 
         // Ajout des académies filtrées dans la table.
         table.setItems(sortedData);
-    }
-
-    private void initialiserThematiqueUsageSearchBar() {
-        // ObservableList => FilteredList
-        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
-
-        // Listener
-        filterThematiqueUsageField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(filterWords -> {
-                // si le texte est vide, on laisse comme c'était
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                // Comparaison de la thématique de chaque tuple avec le filtre
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (filterWords.getThematique_usage() == null) {
-                    return false;
-                } else if (filterWords.getThematique_usage().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-
-        // FilteredList => SortedList.
-        SortedList<Typologie> sortedData = new SortedList<>(filteredData);
-
-        // Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(table.comparatorProperty());
-
-        // Ajout des thématiques filtrées dans la table.
-        table.setItems(sortedData);
-    }
-
-    private void initialiserDisciplineSearchBar() {
-        // ObservableList => FilteredList
-        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
-
-        // Listener
-        filterDisciplineField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(filterWords -> {
-                // si le texte est vide, on laisse comme c'était
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                // Comparaison de la discipline de chaque tuple avec le filtre
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (filterWords.getDiscipline() == null) {
-                    return false;
-                } else if (filterWords.getDiscipline().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-
-        // FilteredList => SortedList.
-        SortedList<Typologie> sortedData = new SortedList<>(filteredData);
-
-        // Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(table.comparatorProperty());
-
-        // Ajout des disciplines filtrées dans la table.
-        table.setItems(sortedData);
-    }
-
-    private void initialiserDegreSearchBar() {
-        // ObservableList => FilteredList
-        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
-
-        // Listener
-        filterDegreField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(filterWords -> {
-                // si le texte est vide, on laisse comme c'était
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                // Comparaison du degre de chaque tuple avec le filtre
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (filterWords.getDegre() == null) {
-                    return false;
-                } else if (filterWords.getDegre().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-                return false;
-            });
-        });
-
-        // FilteredList => SortedList.
-        SortedList<Typologie> sortedData = new SortedList<>(filteredData);
-
-        // Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(table.comparatorProperty());
-
-        // Ajout des degrés filtrés dans la table.
-        table.setItems(sortedData);
-    }
-
-    private void deleteRowsSelected(ActionEvent event){
-        table.getItems().removeAll(table.getSelectionModel().getSelectedItems());
     }
 }
