@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane styleClass="borderPage" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane styleClass="borderPage" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.SceneController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="82.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="386.0" />
@@ -45,7 +45,7 @@
                 <CheckBox mnemonicParsing="true" styleClass="checkBoxCategorie" text="WEBRADIO" wrapText="true" VBox.vgrow="SOMETIMES" />
             </children>
         </VBox>
-        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="button" stylesheets="@style.css" GridPane.columnIndex="2">
+        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="button" stylesheets="@style.css" GridPane.columnIndex="2" onAction="#switchTo" userData="ajouter_une_categorie.fxml">
             <graphic>
                 <HBox alignment="CENTER" prefHeight="43.0" prefWidth="102.0" spacing="20.0">
                     <children>
@@ -59,7 +59,7 @@
                 </HBox>
             </graphic>
         </Button>
-        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#switchTo" userData="parametres.fxml">
             <graphic>
                 <HBox alignment="CENTER" prefHeight="43.0" prefWidth="102.0" spacing="20.0">
                     <children>
