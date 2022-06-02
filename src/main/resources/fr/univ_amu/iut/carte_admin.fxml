@@ -12,7 +12,7 @@
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="80.0" />
     </columnConstraints>
-    <VBox fx:id="vbox" alignment="CENTER" prefWidth="33.0" spacing="15" style="-fx-background-color: rgb(182,182,255);" GridPane.rowSpan="2">
+    <VBox fx:id="vbox" alignment="CENTER" prefWidth="33.0" spacing="15" style="-fx-background-color: rgb(182,182,255);" GridPane.rowSpan="3">
         <padding>
             <Insets topRightBottomLeft="15" />
         </padding>
@@ -45,8 +45,31 @@
             </StackPane>
         </HBox>
     </VBox>
+   <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+       <Button id="button" alignment="CENTER" maxWidth="150" onAction="#switchTo" userData="categorie.fxml" stylesheets="@style.css" styleClass="button">
+           <padding>
+               <Insets topRightBottomLeft="10" />
+           </padding>
+           <graphic>
+               <HBox alignment="CENTER" spacing="10">
+                   <children>
+                       <ImageView>
+                           <image>
+                               <Image requestedHeight="25" requestedWidth="25" url="@parametres.png" />
+                           </image>
+                       </ImageView>
+                       <Label text="Configurer" />
+                   </children>
+               </HBox>
+           </graphic>
+         <HBox.margin>
+            <Insets bottom="20.0" right="20.0" />
+         </HBox.margin>
+       </Button>
+    </HBox>
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
    </rowConstraints>
 </GridPane>

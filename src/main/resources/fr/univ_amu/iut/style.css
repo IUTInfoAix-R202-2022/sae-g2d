@@ -1,4 +1,4 @@
-.accueilBackground{
+.background{
     -fx-background-image: url(background_accueil.jpg);
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
@@ -38,6 +38,12 @@
     -fx-background-insets: 0, 1 5 1 5;
 }
 
+.closeButton {
+    -fx-border-color: black;
+    -fx-background-radius: 11;
+    -fx-border-width: 2;
+}
+
 .textFieldParameter:focused {
     -fx-focus-color: #486ab5;
 }
@@ -64,13 +70,5 @@
     -fx-text-fill: #8fafe9;
 }
 
-.textFieldAjoutCategorie {
-    -fx-text-box-border: #b7b6fe;
-    -fx-background-insets: 0, 1 5 1 5 ;
-}
-
-.textFieldAjoutCategorie:focused{
-    -fx-focus-color: #486ab5;
-}
 
 

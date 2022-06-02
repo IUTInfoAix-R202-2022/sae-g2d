@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="accueilBackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.SceneController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.SceneController">
     <columnConstraints>
         <ColumnConstraints maxWidth="971.3334147135416" minWidth="10.0" prefWidth="802.4739379882812" />
         <ColumnConstraints maxWidth="1645.3334045410156" minWidth="10.0" prefWidth="627.5228271484375" />
@@ -20,7 +20,7 @@
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="969.0" spacing="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2" onAction="#switchTo" userData="carte.fxml">
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchTo" prefHeight="50.0" prefWidth="124.0" styleClass="button" userData="carte.fxml" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <graphic>
                         <HBox alignment="CENTER" prefHeight="107.0" prefWidth="108.0" spacing="20.0">
                             <children>
@@ -37,7 +37,7 @@
                         </HBox>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#switchTo" userData="connexion_administrateur.fxml" prefHeight="43.0" prefWidth="119.0" text="Se connecter">
+                <Button mnemonicParsing="false" onAction="#switchTo" prefHeight="52.0" prefWidth="130.0" text="Se connecter" userData="connexion_administrateur.fxml">
                     <font>
                         <Font size="15.0" />
                     </font>

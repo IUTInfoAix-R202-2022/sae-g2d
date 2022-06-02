@@ -6,11 +6,15 @@ import fr.univ_amu.iut.view.map.France;
 import fr.univ_amu.iut.view.map.FranceBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,6 +25,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jdbc {
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    @FXML
+    public void switchTo(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource() ;
+        String data = (String) node.getUserData();
+
+        root = FXMLLoader.load(getClass().getResource(data));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setMaximized(true);
+        scene = new Scene(root,1280,850);
+        stage.minHeightProperty().set(850);
+        stage.minWidthProperty().set(1280);
+        stage.setTitle("Dico Pédago");
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     /*
