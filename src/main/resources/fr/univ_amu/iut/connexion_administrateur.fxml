@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane id="background" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.SceneController">
+<GridPane id="background" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.LoginController">
     <stylesheets>
         <URL value="@../../../fr/univ_amu/iut/style.css" />
     </stylesheets>
@@ -43,7 +43,7 @@
                             </HBox>
                         </graphic>
                     </Button>
-                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#switchTo" prefHeight="49.0" prefWidth="130.0" userData="accueil.fxml">
+                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#verificationSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="accueil.fxml">
                         <padding>
                             <Insets topRightBottomLeft="10" />
                         </padding>
