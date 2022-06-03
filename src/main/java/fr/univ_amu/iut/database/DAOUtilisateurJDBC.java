@@ -1,5 +1,6 @@
 package fr.univ_amu.iut.database;
 
+import fr.univ_amu.iut.HelloApplication;
 import javafx.scene.chart.PieChart;
 
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class DAOUtilisateurJDBC implements DAOUtilisateur{
 
-    private final Connection connection = Database.getDBConnection();
+    private final Connection connection = HelloApplication.getDBConnection();
     private final PreparedStatement findAllStatement;
 
     /**

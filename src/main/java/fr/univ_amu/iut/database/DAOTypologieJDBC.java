@@ -15,7 +15,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
     private final PreparedStatement findByAcademie;
     private final PreparedStatement findByThematiquesUsageGroupByAcademie;
 
-    private final Connection connection = Database.getDBConnection();   //On récupère la connection
+    private final Connection connection = HelloApplication.getDBConnection();   //On récupère la connection
 
     /**
      * Constructeur

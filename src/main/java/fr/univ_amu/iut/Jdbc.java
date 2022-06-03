@@ -38,10 +38,11 @@ public class Jdbc {
 
     private DAOTypologieJDBC dao = new DAOTypologieJDBC();
 
+    private Connection connection = HelloApplication.getDBConnection();
+
     /*
        On instancie HelloApplication pour récupérer le lien de la bdd pour éviter de le faire à chaque fois
     */
-    HelloApplication rootApplication = new HelloApplication();
 
     private static AcademiePath academiePath;
 
@@ -96,7 +97,6 @@ public class Jdbc {
         carte.getChildren().addAll(france);
         carte.setBackground(new Background(new BackgroundFill(france.getBackgroundColor(), CornerRadii.EMPTY, Insets.EMPTY)));
 
-        Connection connection = null;
         Statement statement = null;
 
         colors.add("rgba(25, 241, 228, 1)");
@@ -113,7 +113,6 @@ public class Jdbc {
         colors.add("rgba(55, 125, 44, 1)");
 
         try {
-            connection = rootApplication.getDBConnection();
             statement = connection.createStatement();
 
             System.out.println("Execution de la requête : " + req );
