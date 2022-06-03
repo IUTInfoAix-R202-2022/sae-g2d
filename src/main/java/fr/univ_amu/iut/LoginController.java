@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,7 @@ public class LoginController {
             SceneController s = new SceneController();
             s.switchTo(event);
         }
+
     }
 
     public List<Utilisateur> initialiseDatabaseLogin() throws SQLException {

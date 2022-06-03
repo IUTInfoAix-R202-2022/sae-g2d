@@ -24,7 +24,7 @@
                 <Label styleClass="textLabel" text="IDENTIFIANT" textAlignment="LEFT" />
                 <TextField fx:id="identifiant" maxWidth="200" prefHeight="35" styleClass="textField" />
                 <Label styleClass="textLabel" text="MOT DE PASSE" />
-                <TextField fx:id="motDePasse" maxWidth="200" prefHeight="35" styleClass="textField" />
+                <PasswordField fx:id="motDePasse" maxWidth="200" prefHeight="35" styleClass="textField" />
                 <HBox alignment="CENTER" spacing="30">
                     <Button id="button" alignment="CENTER" maxWidth="150" onAction="#verificationSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="carte_admin.fxml">
                         <padding>
