@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         connection = Database.getDBConnection();
-        Parent root = FXMLLoader.load(getClass().getResource("parametres.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("connexion_administrateur.fxml"));
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setTitle("Dico Pédago");
         stage.minHeightProperty().set(HEIGHT);
