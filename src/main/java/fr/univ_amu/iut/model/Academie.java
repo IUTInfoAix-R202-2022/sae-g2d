@@ -39,7 +39,7 @@ public class Academie {
     @Transient
     public static Academie Amiens = new Academie("AM", "Academie d'Amiens", RegionAcademique.HautsDeFrance);
     @Transient
-    public static Academie OrleansTours = new Academie("OR", "Academie d'Orléans-Tours", RegionAcademique.CentreValDeLoire);
+    public static Academie OrleansTours = new Academie("OR", "Academie d'Orleans-Tours", RegionAcademique.CentreValDeLoire);
     @Transient
     public static Academie Corse = new Academie("CO", "Academie de Corse", RegionAcademique.Corse);
     @Transient
@@ -59,7 +59,7 @@ public class Academie {
     @Transient
     public static Academie Strasbourg = new Academie("ST", "Academie de Strasbourg", RegionAcademique.GrandEst);
     @Transient
-    public static Academie Creteil = new Academie("CR", "Academie de Créteil", RegionAcademique.IleDeFrance);
+    public static Academie Creteil = new Academie("CR", "Academie de Creteil", RegionAcademique.IleDeFrance);
     @Transient
     public static Academie Montpellier = new Academie("MO", "Academie de Montpellier", RegionAcademique.Occitanie);
     @Transient

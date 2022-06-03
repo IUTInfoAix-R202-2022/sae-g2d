@@ -29,7 +29,6 @@ public class Database {
         try {
             connection = DriverManager.getConnection(CONNECT_URL,LOGIN,PASSWORD);
             System.out.println("Lien effectue avec la base de données. Connecte\n");
-
             return connection;
 
         } catch (SQLException e) {
