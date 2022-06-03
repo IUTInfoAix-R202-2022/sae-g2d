@@ -22,6 +22,12 @@ public class LoginController {
     private TextField motDePasse;
 
     @FXML
+    public void callSwitchTo(ActionEvent event) throws IOException {
+        SceneController s = new SceneController();
+        s.switchTo(event);
+    }
+
+    @FXML
     public void verificationSwitchTo(ActionEvent event) throws SQLException, IOException {
         //Récupération du login de la BDD
         List<Utilisateur> listUtilisateur;
@@ -38,7 +44,8 @@ public class LoginController {
         //Vérification
 
         if ((encryptLogin(inputID).equals(hashID)) && (encryptLogin(inputMotDePasse).equals(hashMotDePasse))) {
-            SceneController.switchTo(event);
+            SceneController s = new SceneController();
+            s.switchTo(event);
         }
     }
 
