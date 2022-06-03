@@ -103,7 +103,9 @@ public class AcademieController {
         academiePath = jdbc.getAcademiePath();
         System.out.println(academiePath.getAcademie().getNom());
         List<Typologie> donneesAcademie = dao.findByAcademie(academiePath.getAcademie().getNom());
+        System.out.println(donneesAcademie.size());
         for (Typologie t : donneesAcademie) {
+            System.out.println(t);
             vbox.getChildren().add(setNewHbox(t));
         }
     }

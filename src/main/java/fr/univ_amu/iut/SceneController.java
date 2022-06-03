@@ -28,11 +28,11 @@ public class SceneController {
         Node node = (Node) event.getSource() ;
         String data = (String) node.getUserData();
 
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(data)));
+        root = FXMLLoader.load(getClass().getResource(data));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root,WIDTH,HEIGHT);
-        stage.minHeightProperty().set(HEIGHT);
-        stage.minWidthProperty().set(WIDTH);
+        scene = new Scene(root,stage.getWidth(),stage.getHeight());
+        stage.minHeightProperty().set(stage.getHeight());
+        stage.minWidthProperty().set(stage.getWidth());
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();
@@ -42,9 +42,9 @@ public class SceneController {
     public void switchTo2(Node node, String filename) throws IOException {
         root = FXMLLoader.load(getClass().getResource(filename));
         stage = (Stage) node.getScene().getWindow();
-        scene = new Scene(root,WIDTH,HEIGHT);
-        stage.minHeightProperty().set(HEIGHT);
-        stage.minWidthProperty().set(WIDTH);
+        scene = new Scene(root,stage.getWidth(),stage.getHeight());
+        stage.minHeightProperty().set(stage.getHeight());
+        stage.minWidthProperty().set(stage.getWidth());
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();
