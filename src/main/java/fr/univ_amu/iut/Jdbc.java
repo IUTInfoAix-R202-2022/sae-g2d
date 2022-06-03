@@ -158,7 +158,7 @@ public class Jdbc {
      * @
      */
     public void initializeColorsOfCarte(List<Typologie> list){
-        //france.setFillColor(Color.web("#b6b6ff"));
+        france.setFillColor(Color.web("#b6b6ff"));
         for (Academie a : Academie.toutes()){
             for (Typologie typologie : list){
                 if (typologie.getAcademie().equals(a.getNom())){
