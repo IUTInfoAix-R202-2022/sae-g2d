@@ -30,9 +30,6 @@ public class Database {
             connection = DriverManager.getConnection(CONNECT_URL,LOGIN,PASSWORD);
             System.out.println("Lien effectue avec la base de données. Connecte\n");
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Connexion avec la base de données établie !");
-            alert.showAndWait();
             return connection;
 
         } catch (SQLException e) {
