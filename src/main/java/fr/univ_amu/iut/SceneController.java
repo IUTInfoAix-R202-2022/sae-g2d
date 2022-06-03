@@ -29,20 +29,20 @@ public class SceneController {
     private static final double HEIGHT = Screen.getPrimary().getBounds().getHeight() / 1.2;
     private static final double WIDTH = Screen.getPrimary().getBounds().getWidth() / 1.2;
 
-    private static Stage stage;
-    private static Scene scene;
-    private static Parent root;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
     @FXML
-    public static void switchTo(ActionEvent event) throws IOException {
+    public void switchTo(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource() ;
         String data = (String) node.getUserData();
 
-        root = FXMLLoader.load(Objects.requireNonNull(SceneController.class.getResource(data)));
+        root = FXMLLoader.load(getClass().getResource(data));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root,WIDTH,HEIGHT);
-        stage.minHeightProperty().set(HEIGHT);
-        stage.minWidthProperty().set(WIDTH);
+        scene = new Scene(root,stage.getWidth(),stage.getHeight());
+        stage.minHeightProperty().set(stage.getHeight());
+        stage.minWidthProperty().set(stage.getWidth());
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();
@@ -52,9 +52,9 @@ public class SceneController {
     public void switchTo2(Node node, String filename) throws IOException {
         root = FXMLLoader.load(getClass().getResource(filename));
         stage = (Stage) node.getScene().getWindow();
-        scene = new Scene(root,WIDTH,HEIGHT);
-        stage.minHeightProperty().set(HEIGHT);
-        stage.minWidthProperty().set(WIDTH);
+        scene = new Scene(root,stage.getWidth(),stage.getHeight());
+        stage.minHeightProperty().set(stage.getHeight());
+        stage.minWidthProperty().set(stage.getWidth());
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();

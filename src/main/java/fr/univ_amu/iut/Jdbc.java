@@ -3,6 +3,7 @@ package fr.univ_amu.iut;
 import fr.univ_amu.iut.database.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Database;
 import fr.univ_amu.iut.database.Typologie;
+import fr.univ_amu.iut.model.Academie;
 import fr.univ_amu.iut.view.map.AcademiePath;
 import fr.univ_amu.iut.view.map.France;
 import fr.univ_amu.iut.view.map.FranceBuilder;
@@ -36,17 +37,13 @@ public class Jdbc {
 
     private SceneController sceneController = new SceneController();
 
-    private DAOTypologieJDBC dao = new DAOTypologieJDBC();
-
     private Connection connection = HelloApplication.getDBConnection();
 
-    /*
-       On instancie HelloApplication pour récupérer le lien de la bdd pour éviter de le faire à chaque fois
-    */
+    private DAOTypologieJDBC dao = new DAOTypologieJDBC();
 
     private static AcademiePath academiePath;
 
-    private List<Typologie> thematiquesUsageGroupByAcademie;
+    private static List<Typologie> thematiquesUsageGroupByAcademie;
 
     @FXML
     private VBox vbox;
@@ -72,7 +69,6 @@ public class Jdbc {
     }
     @FXML
     public void initialize(){
-
         String css = this.getClass().getResource("style.css").toExternalForm();
 
         france = FranceBuilder.create()
@@ -89,7 +85,6 @@ public class Jdbc {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("On vient de cliquer sur l'"+academiePath.getAcademie().getNom());
                 })
                 .selectionEnabled(true)
                 .build();
@@ -97,7 +92,12 @@ public class Jdbc {
         carte.getChildren().addAll(france);
         carte.setBackground(new Background(new BackgroundFill(france.getBackgroundColor(), CornerRadii.EMPTY, Insets.EMPTY)));
 
-        Statement statement = null;
+        /**
+         * On récupère les anciennes academies sélectionnées
+         */
+        if (thematiquesUsageGroupByAcademie != null){
+            initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
+        }
 
         colors.add("rgba(25, 241, 228, 1)");
         colors.add("rgba(66, 187, 255, 0.68)");
@@ -113,9 +113,8 @@ public class Jdbc {
         colors.add("rgba(55, 125, 44, 1)");
 
         try {
-            statement = connection.createStatement();
+            Statement statement = connection.createStatement();
 
-            System.out.println("Execution de la requête : " + req );
             ResultSet rset = statement.executeQuery(req);
 
             while(rset.next()) {
@@ -123,15 +122,15 @@ public class Jdbc {
             }
 
             int i = 0;
-
             for (Node e : vbox.getChildren()){
                 if (i > colors.size() - 1) { i = 0; }
                 Button button = (Button) e;
                 button.setOnAction(event -> {
                     try {
                         thematiquesUsageGroupByAcademie = dao.findByThematiquesUsageGroupByAcademie(button.getText());
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
+                        initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
+                        } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
                     }
                 });
                 button.setId("button");
@@ -139,23 +138,36 @@ public class Jdbc {
                 button.setStyle("-fx-background-color: " + colors.get(i));
                 button.setPrefWidth(1000.0);
                 button.setPrefHeight(1000.0);
-                System.out.println(button.getText());
                 ++i;
             }
             // Fermeture de l'instruction (libération des ressources)
             statement.close();
-
             System.out.println("\nOk.\n");
 
         } catch (SQLException e) {
             //Ceci n'est pas une gestion réaliste des erreurs
             e.printStackTrace();// Arggg!!!
             System.out.println(e.getMessage() + "\n");
-            System.out.println("Diconnected");
         }
     }
 
 
+    /**
+     *
+     * @param list
+     * @
+     */
+    public void initializeColorsOfCarte(List<Typologie> list){
+        //france.setFillColor(Color.web("#b6b6ff"));
+        for (Academie a : Academie.toutes()){
+            for (Typologie typologie : list){
+                if (typologie.getAcademie().equals(a.getNom())){
+                    academiePath = AcademiePath.get(a);
+                    academiePath.setFill(Color.RED);
+                }
+            }
+        }
+    }
 
     public static AcademiePath getAcademiePath() {
         return academiePath;

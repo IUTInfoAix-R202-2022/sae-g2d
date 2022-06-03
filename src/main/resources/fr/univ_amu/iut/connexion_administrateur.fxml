@@ -43,7 +43,7 @@
                             </HBox>
                         </graphic>
                     </Button>
-                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#verificationSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="accueil.fxml">
+                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#callSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="accueil.fxml">
                         <padding>
                             <Insets topRightBottomLeft="10" />
                         </padding>

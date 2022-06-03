@@ -20,11 +20,11 @@
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="969.0" spacing="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-                <Button alignment="CENTER" contentDisplay="CENTER" onAction="#switchTo" userData="carte.fxml" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                <Button alignment="CENTER" contentDisplay="CENTER" onAction="#switchTo" userData="carte.fxml" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2" id="boutonAccederAccueil">
                     <graphic>
                         <HBox alignment="CENTER" prefHeight="107.0" prefWidth="108.0" spacing="20.0">
                             <children>
-                                <Label text="Accéder" HBox.hgrow="SOMETIMES">
+                                <Label text="Accéder" HBox.hgrow="SOMETIMES" id="labelBoutonAccederAccueil">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
@@ -37,7 +37,7 @@
                         </HBox>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#switchTo" prefHeight="52.0" prefWidth="130.0" text="Se connecter" userData="connexion_administrateur.fxml">
+                <Button mnemonicParsing="false" onAction="#switchTo" prefHeight="52.0" prefWidth="130.0" text="Se connecter" userData="connexion_administrateur.fxml" id="boutonSeConnecterAccueil">
                     <font>
                         <Font size="15.0" />
                     </font>
