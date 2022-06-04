@@ -53,12 +53,6 @@ public class Jdbc {
 
     France france;
 
-    List<String> colors = new ArrayList<>();
-
-
-    public Jdbc() throws SQLException {
-    }
-
     @FXML
     public void switchTo(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource() ;
@@ -140,7 +134,7 @@ public class Jdbc {
      * @param list
      * @
      */
-    public void initializeColorsOfCarte(List<Typologie> list) {
+    public AcademiePath initializeColorsOfCarte(List<Typologie> list) {
         france.setFillColor(Color.web("#b6b6ff"));
         for (Academie a : Academie.toutes()) {
             for (Typologie typologie : list) {
@@ -150,6 +144,7 @@ public class Jdbc {
                 }
             }
         }
+        return academiePath;
     }
 
     public static AcademiePath getAcademiePath() {

@@ -2,13 +2,10 @@ package fr.univ_amu.iut.page_accueil;
 
 import fr.univ_amu.iut.HelloApplication;
 import javafx.application.Platform;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -52,25 +49,22 @@ public class TestAccueil extends ApplicationTest {
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
     }
-    //@Disabled
+
     @Test
-    void should_initialize_stage_is_showing() {
+    public void should_initialize_stage_is_showing() {
         assertThat(stage.isShowing()).isTrue();
     }
 
-    //@Disabled
     @Test
-    void should_initialize_stage_with_correct_title() {
+    public void should_initialize_stage_with_correct_title() {
         assertThat(stage.getTitle()).isEqualTo("Dico Pédago");
     }
 
-    //@Disabled
     @Test
     public void should_contain_button_with_label_acceder() {
         verifyThat("#labelBoutonAccederAccueil", hasText("Accéder"));
     }
 
-    //@Disabled
     @Test
     public void should_contain_button_with_text_se_connecter() {
         verifyThat("#boutonSeConnecterAccueil", hasText("Se connecter"));
@@ -78,7 +72,7 @@ public class TestAccueil extends ApplicationTest {
 
     @Test
     public void button_se_connecter_should_redirect_to_connexion_administrateur() {
-        clickOn("#boutonSeConnecterAccueil");
         assertThat(clickOn("#boutonSeConnecterAccueil").equals(new FxRobotException("")));//On vérifie qu'on est plus sur la page accueil'
     }
+
 }

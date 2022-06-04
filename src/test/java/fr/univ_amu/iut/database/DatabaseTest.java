@@ -40,13 +40,13 @@ public class DatabaseTest {
     }
 
     @Test
-    public void devrait_effectue_le_lien_avec_la_bdd() {
+    public void should_initialize_bdd_link() {
         Connection connection = HelloApplication.getDBConnection();
         assertNotEquals(connection,null);
 
     }
     @Test
-    public void devrait_ajouter_tuple_dans_la_bdd() throws SQLException {
+    public void should_add_tuple_in_bdd() throws SQLException {
         DAOTypologieJDBC dao = new DAOTypologieJDBC();
         Typologie test = new Typologie(1,"x","x","x","x","x","x","x","x","x","x","x");
         assertEquals(dao.insert(test),test);
@@ -56,7 +56,7 @@ public class DatabaseTest {
     }
 
    @Test
-    public void deverait_supprimer_tuple_dans_la_bdd() throws SQLException {
+    public void should_delete_tuple_in_bdd() throws SQLException {
         DAOTypologieJDBC dao = new DAOTypologieJDBC();
         int actualNumero = dao.setNumeroByCount();
 
