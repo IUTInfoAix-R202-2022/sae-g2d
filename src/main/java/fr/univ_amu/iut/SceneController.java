@@ -2,6 +2,7 @@ package fr.univ_amu.iut;
 
 import fr.univ_amu.iut.database.DAOUtilisateur;
 import fr.univ_amu.iut.database.DAOUtilisateurJDBC;
+import fr.univ_amu.iut.database.Table_view;
 import fr.univ_amu.iut.database.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,5 +56,13 @@ public class SceneController {
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void switchToConfigurer() throws SQLException {
+        Table_view tb = new Table_view();
+        Stage stage = new Stage();
+        tb.start(stage);
+
+
     }
 }

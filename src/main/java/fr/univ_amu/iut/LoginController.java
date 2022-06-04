@@ -4,6 +4,7 @@ import fr.univ_amu.iut.database.DAOUtilisateurJDBC;
 import fr.univ_amu.iut.database.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -47,6 +48,9 @@ public class LoginController {
         if ((encryptLogin(inputID).equals(hashID)) && (encryptLogin(inputMotDePasse).equals(hashMotDePasse))) {
             SceneController s = new SceneController();
             s.switchTo(event);
+        } else{
+            Alert erreurDeSaisi = new Alert(Alert.AlertType.ERROR, "L'identifiant ou le mot de passe saisi est incorrect !");
+            erreurDeSaisi.show();
         }
 
     }

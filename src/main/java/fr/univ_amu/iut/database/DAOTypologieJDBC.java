@@ -24,7 +24,6 @@ public class DAOTypologieJDBC implements DAOTypologie {
      * @throws SQLException
      */
     public DAOTypologieJDBC() throws SQLException {
-        System.out.println(connection);
         createStatement = connection.prepareStatement("INSERT INTO typologie (NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);      //On prépare la requête pour insérer un tuple
         deleteStatament = connection.prepareStatement("DELETE FROM typologie WHERE NUMERO = ?");
@@ -49,7 +48,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
         while (rset.next()) {
             numero = rset.getInt(1) + 1;
         }
-        statement.close();
+        //statement.close();
         return numero;
     }
 
@@ -74,7 +73,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
         createStatement.setString(12, typologie.getCommentaires());
 
         createStatement.executeUpdate();
-        createStatement.close();
+        //createStatement.close();
         return typologie;
 
     }
@@ -89,7 +88,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
         try {
             deleteStatament.setInt(1, typologie.getNumero());
             deleteStatament.executeUpdate();
-            deleteStatament.close();
+           //deleteStatament.close();
         } catch (SQLException e) {
             return false;
         }
@@ -118,7 +117,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
             updateStatement.setString(11, typologie.getCommentaires());
             updateStatement.setInt(12, typologie.getNumero());
             updateStatement.executeUpdate();
-            updateStatement.close();
+            //updateStatement.close();
         } catch (SQLException e) {
             return false;
         }
@@ -176,7 +175,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
             typologie.setThematique_usage(resultSet.getString(1));
             donneesAcademie.add(typologie);
         }
-        resultSet.close();
+        //resultSet.close();
         return donneesAcademie;
     }
 }

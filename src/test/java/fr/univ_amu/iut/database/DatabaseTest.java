@@ -68,8 +68,6 @@ public class DatabaseTest {
         int expectedNumero = dao.setNumeroByCount();
         assertEquals(expectedNumero,actualNumero);
 
-
-
     }
 }
 

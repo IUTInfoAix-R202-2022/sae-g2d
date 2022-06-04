@@ -1,5 +1,9 @@
 package fr.univ_amu.iut.database;
 
+import fr.univ_amu.iut.model.Academie;
+import fr.univ_amu.iut.model.RegionAcademique;
+import jakarta.persistence.Transient;
+
 public class Typologie {
 
     private int numero;

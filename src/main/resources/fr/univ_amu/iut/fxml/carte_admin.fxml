@@ -46,7 +46,7 @@
         </HBox>
     </VBox>
    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-       <Button id="button" alignment="CENTER" maxWidth="150" onAction="#switchTo" userData="fxml/categorie.fxml" stylesheets="@../assets/style.css" styleClass="button">
+       <Button fx:id="configurer" id="button" alignment="CENTER" maxWidth="150" onAction="#switchToConfigurer" stylesheets="@../assets/style.css" styleClass="button">
            <padding>
                <Insets topRightBottomLeft="10" />
            </padding>

@@ -76,7 +76,6 @@ public class TestAccueil extends ApplicationTest {
         verifyThat("#boutonSeConnecterAccueil", hasText("Se connecter"));
     }
 
-    @Disabled
     @Test
     public void button_se_connecter_should_redirect_to_connexion_administrateur() {
         clickOn("#boutonSeConnecterAccueil");

@@ -2,7 +2,10 @@ package fr.univ_amu.iut.database;
 
 
 import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.ListAcademies;
 import javafx.application.Application;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -12,19 +15,23 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Table_view extends Application {
 
-    private Connection connection = Database.getDBConnection();
+    private Connection connection = HelloApplication.getDBConnection();
 
     private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
 
@@ -181,7 +188,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setDiscipline(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return discipline;
     }
@@ -194,20 +205,37 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setDegre(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return degre;
     }
     private TableColumn<Typologie,String> initialiserColAcademie(){
+        ObservableList<String> academiesList = FXCollections.observableArrayList(ListAcademies.getAcademiesList());
+
         TableColumn<Typologie, String> academie = new TableColumn<>("Académie");
-        academie.setCellValueFactory(new PropertyValueFactory<>("academie"));
-        academie.setCellFactory(TextFieldTableCell.forTableColumn());
+        academie.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Typologie, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Typologie, String> param) {
+                Typologie t = param.getValue();
+                String academie = t.getAcademie();
+                return new SimpleObjectProperty<>(academie);
+            }
+        });
+        academie.setCellFactory(ComboBoxTableCell.forTableColumn(academiesList));
         academie.setOnEditCommit(event-> {
             TablePosition<Typologie, String> pos = event.getTablePosition();
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setAcademie(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return academie;
     }
@@ -220,7 +248,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setRegion_academique(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return region_academique;
     }
@@ -233,7 +265,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setType_acteur(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return type_acteur;
     }
@@ -247,6 +283,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setIdentite_acteur(nouveau);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return identite_acteur;
     }
@@ -259,7 +300,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setUrl_ressource(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return url_ressource;
     }
@@ -272,7 +317,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setNom_ressource(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return nom_ressource;
     }
@@ -285,7 +334,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setType_source(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return type_source;
     }
@@ -298,7 +351,11 @@ public class Table_view extends Application {
             String nouveau = event.getNewValue();
             Typologie typologie = event.getTableView().getItems().get(pos.getRow());
             typologie.setCommentaires(nouveau);
-            System.out.println(typologie);
+            try {
+                dao.update(typologie);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
         return commentaires;
     }
@@ -343,8 +400,8 @@ public class Table_view extends Application {
             t.setCommentaires(rset.getString(11));
             list.add(t);
         }
-        statement.close();
-        connection.close();
+        //statement.close();
+        //connection.close();
         return list;
 
     }

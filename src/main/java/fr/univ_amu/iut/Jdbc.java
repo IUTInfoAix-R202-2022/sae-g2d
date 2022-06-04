@@ -60,10 +60,20 @@ public class Jdbc {
     }
 
     @FXML
-    public void switchTo() throws IOException {
+    public void switchTo(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource() ;
+        String data = (String) node.getUserData();
         thematiquesUsageGroupByAcademie = null;
-        sceneController.switchTo2(carte, "fxml/accueil.fxml");
+
+        sceneController.switchTo2(node, data);
     }
+
+    @FXML
+    public void switchToConfigurer(ActionEvent event) throws SQLException {
+        thematiquesUsageGroupByAcademie = null;
+        sceneController.switchToConfigurer();
+    }
+
 
     public void initializeButton() throws SQLException {
         typologiesButton = dao.findThematiquesUsage();

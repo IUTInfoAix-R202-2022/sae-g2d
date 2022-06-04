@@ -27,7 +27,7 @@
                 <Font name="System Bold" size="17.0" />
             </font>
         </Label>
-        <Button fx:id="fermer" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" styleClass="closeButton" stylesheets="@../assets/style.css" onAction="#switchTo" HBox.hgrow="SOMETIMES">
+        <Button fx:id="fermer" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" styleClass="closeButton" stylesheets="@../assets/style.css" onAction="#switchTo" userData="fxml/accueil.fxml" HBox.hgrow="SOMETIMES">
             <HBox.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
