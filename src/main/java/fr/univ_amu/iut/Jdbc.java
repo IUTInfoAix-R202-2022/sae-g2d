@@ -102,28 +102,12 @@ public class Jdbc {
             initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
         }
 
-        colors.add("rgba(25, 241, 228, 1)");
-        colors.add("rgba(66, 187, 255, 0.68)");
-        colors.add("rgba(75, 12, 255, 0.68)");
-        colors.add("rgba(47, 59, 101, 0.68)");
-        colors.add("rgba(255, 0, 0, 0.68)");
-        colors.add("rgba(244, 84, 34, 1)");
-        colors.add("rgba(255, 179, 66, 1)");
-        colors.add("rgba(255, 215, 7, 1)");
-        colors.add("rgba(160, 255, 66, 1)");
-        colors.add("rgba(66, 255, 119, 0.68)");
-        colors.add("rgba(79, 183, 90, 1)");
-        colors.add("rgba(55, 125, 44, 1)");
-
         for (Typologie t : typologiesButton) {
             vbox.getChildren().add(new Button(t.getThematique_usage()));
         }
 
         int i = 0;
         for (Node e : vbox.getChildren()) {
-            if (i > colors.size() - 1) {
-                i = 0;
-            }
             Button button = (Button) e;
             button.setOnAction(event -> {
                 try {
@@ -135,10 +119,8 @@ public class Jdbc {
             });
             button.setId("button");
             button.getStylesheets().add(css);
-            button.setStyle("-fx-background-color: " + colors.get(i));
             button.setPrefWidth(1000.0);
             button.setPrefHeight(1000.0);
-            ++i;
         }
 
     }
