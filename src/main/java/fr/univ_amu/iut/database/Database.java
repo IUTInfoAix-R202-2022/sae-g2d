@@ -21,20 +21,18 @@ public class Database {
      * @return
      */
     public static Connection getDBConnection(){
-        Connection connection = null;
-
         // Connexion a la base
         System.out.println("Connexion a " + CONNECT_URL);
 
         try {
-            connection = DriverManager.getConnection(CONNECT_URL,LOGIN,PASSWORD);
+            Connection connection = DriverManager.getConnection(CONNECT_URL,LOGIN,PASSWORD);
             System.out.println("Lien effectue avec la base de données. Connecte\n");
             return connection;
 
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "\n");
             System.out.println("Lien non effectue avec la base de données. Deconnecte\n");
+            return null;
         }
-        return null;
     }
 }

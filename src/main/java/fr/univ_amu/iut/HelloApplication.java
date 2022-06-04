@@ -1,5 +1,7 @@
 package fr.univ_amu.iut;
 
+import fr.univ_amu.iut.database.DAOTypologieJDBC;
+import fr.univ_amu.iut.database.DAOUtilisateurJDBC;
 import fr.univ_amu.iut.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,14 +21,18 @@ public class HelloApplication extends Application {
 
 
     private static Connection connection;// On établie la connexion
+    private static DAOTypologieJDBC daoTypologieJDBC;
+    private static DAOUtilisateurJDBC daoUtilisateurJDBC;
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
 
         connection = Database.getDBConnection();
+        daoTypologieJDBC = new DAOTypologieJDBC();
+        daoUtilisateurJDBC = new DAOUtilisateurJDBC();
         initializeButtonOfCarte();
 
-        Parent root = FXMLLoader.load(getClass().getResource("accueil.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/accueil.fxml"));
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setTitle("Dico Pédago");
         stage.minHeightProperty().set(HEIGHT);
@@ -54,4 +60,7 @@ public class HelloApplication extends Application {
     public static Connection getDBConnection() {
         return connection;
     }
+
+    public static DAOTypologieJDBC getDaoTypologieJDBC(){return daoTypologieJDBC;}
+    public static DAOUtilisateurJDBC getDaoUtilisateurJDBC(){return daoUtilisateurJDBC;}
 }

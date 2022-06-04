@@ -6,9 +6,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane id="background" styleClass="background" stylesheets="@admin.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.LoginController">
+<GridPane id="background" styleClass="background" stylesheets="@../assets/admin.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.LoginController">
     <stylesheets>
-        <URL value="@../../../fr/univ_amu/iut/style.css" />
+        <URL value="@../assets/style.css" />
     </stylesheets>
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="30" />
@@ -26,7 +26,7 @@
                 <Label styleClass="textLabel" text="MOT DE PASSE" />
                 <PasswordField fx:id="motDePasse" maxWidth="200" prefHeight="35" styleClass="textField" />
                 <HBox alignment="CENTER" spacing="30">
-                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#verificationSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="carte_admin.fxml">
+                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#verificationSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="fxml/carte_admin.fxml">
                         <padding>
                             <Insets topRightBottomLeft="10" />
                         </padding>
@@ -35,7 +35,7 @@
                                 <children>
                                     <ImageView>
                                         <image>
-                                            <Image requestedHeight="25" requestedWidth="25" url="@suivant.png" />
+                                            <Image requestedHeight="25" requestedWidth="25" url="@../assets/img/suivant.png" />
                                         </image>
                                     </ImageView>
                                     <Label text="Se connecter" />
@@ -43,7 +43,7 @@
                             </HBox>
                         </graphic>
                     </Button>
-                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#callSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="accueil.fxml">
+                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#callSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="fxml/accueil.fxml">
                         <padding>
                             <Insets topRightBottomLeft="10" />
                         </padding>
@@ -52,7 +52,7 @@
                                 <children>
                                     <ImageView>
                                         <image>
-                                            <Image requestedHeight="25" requestedWidth="25" url="@fermer.png" />
+                                            <Image requestedHeight="25" requestedWidth="25" url="@../assets/img/fermer.png" />
                                         </image>
                                     </ImageView>
                                     <Label text="Annuler" />

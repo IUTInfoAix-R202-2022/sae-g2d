@@ -1,65 +1,75 @@
-/*
+
 package fr.univ_amu.iut.database;
 
+import fr.univ_amu.iut.HelloApplication;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.api.FxToolkit;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import java.util.concurrent.TimeoutException;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(ApplicationExtension.class)
 public class DatabaseTest {
+
+    Stage stage;
+
+    @Start
+    public void start(Stage stage) throws Exception {
+        Platform.runLater(() -> {
+            DatabaseTest.this.stage = new Stage();
+            try {
+                FxToolkit.setupStage((sta) -> {
+                    try {
+                        new HelloApplication().start(DatabaseTest.this.stage);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     @Test
     public void devrait_effectue_le_lien_avec_la_bdd() {
-        assertNotEquals(Database.getDBConnection(),null);
-    }
+        Connection connection = HelloApplication.getDBConnection();
+        assertNotEquals(connection,null);
 
+    }
     @Test
     public void devrait_ajouter_tuple_dans_la_bdd() throws SQLException {
-        Connection connection = Database.getDBConnection();
-        ModificationBDD.setNumeroByCount();
-        int oldNumero = ModificationBDD.numero - 1;
+        DAOTypologieJDBC dao = new DAOTypologieJDBC();
+        Typologie test = new Typologie(1,"x","x","x","x","x","x","x","x","x","x","x");
+        assertEquals(dao.insert(test),test);
 
-        String requete_ajout = "INSERT INTO typologie " +
-                "(NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
-
-        PreparedStatement preparedStatement = connection.prepareStatement(requete_ajout, Statement.RETURN_GENERATED_KEYS);
-
-        preparedStatement.setInt(1,oldNumero + 1);
-        for (int i = 2; i < 13; ++i) {
-            preparedStatement.setString(i, "x");
-        }
-
-        preparedStatement.executeUpdate();
-
-        ModificationBDD.setNumeroByCount();
-        int newNumero = ModificationBDD.numero - 1;
-
-        assertEquals(newNumero, oldNumero + 1);
+        test.setNumero(dao.setNumeroByCount() - 1);
+        dao.delete(test);
     }
 
-    @Test
+   @Test
     public void deverait_supprimer_tuple_dans_la_bdd() throws SQLException {
-        devrait_ajouter_tuple_dans_la_bdd();
+        DAOTypologieJDBC dao = new DAOTypologieJDBC();
+        int actualNumero = dao.setNumeroByCount();
 
-        Connection connection = Database.getDBConnection();
-        ModificationBDD.setNumeroByCount();
-        int oldNumero = ModificationBDD.numero - 1;
+        Typologie test = new Typologie(1,"x","x","x","x","x","x","x","x","x","x","x");
+        dao.insert(test);
+        test.setNumero(dao.setNumeroByCount() - 1);
+        dao.delete(test);
 
-        String requete_suppression = "DELETE FROM typologie WHERE DISCIPLINE=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(requete_suppression, Statement.RETURN_GENERATED_KEYS);
+        int expectedNumero = dao.setNumeroByCount();
+        assertEquals(expectedNumero,actualNumero);
 
-        preparedStatement.setString(1, "x");
-        preparedStatement.executeUpdate();
 
-        ModificationBDD.setNumeroByCount();
-        int newNumero = ModificationBDD.numero - 1;
 
-        assertEquals(newNumero, oldNumero - 1);
     }
 }
-*/
+

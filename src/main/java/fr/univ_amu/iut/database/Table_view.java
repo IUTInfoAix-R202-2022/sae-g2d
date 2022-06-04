@@ -1,6 +1,7 @@
 package fr.univ_amu.iut.database;
 
 
+import fr.univ_amu.iut.HelloApplication;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +26,7 @@ public class Table_view extends Application {
 
     private Connection connection = Database.getDBConnection();
 
-    private DAOTypologieJDBC dao = new DAOTypologieJDBC();
+    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
 
     private static TableView<Typologie> table;
 

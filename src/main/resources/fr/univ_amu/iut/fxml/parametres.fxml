@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" prefHeight="784.0" prefWidth="1044.0" styleClass="borderPage" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.database.ModificationBDD">
+<GridPane alignment="CENTER" prefHeight="784.0" prefWidth="1044.0" styleClass="borderPage" stylesheets="@../assets/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.database.ModificationBDD">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="0.0" prefWidth="450.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="450.0" />
@@ -88,7 +88,7 @@
                             <children>
                                 <ImageView fitHeight="25.0" fitWidth="25.0" HBox.hgrow="SOMETIMES">
                                     <image>
-                                        <Image url="@importer.png" />
+                                        <Image url="@../assets/img/importer.png" />
                                     </image>
                                 </ImageView>
                                 <Label text="Importer" HBox.hgrow="SOMETIMES">
@@ -109,7 +109,7 @@
                             <children>
                                 <ImageView fitHeight="25.0" fitWidth="25.0" HBox.hgrow="SOMETIMES">
                                     <image>
-                                        <Image url="@finaliser.png" />
+                                        <Image url="@../assets/img/finaliser.png" />
                                     </image>
                                 </ImageView>
                                 <Label text="Finaliser" HBox.hgrow="SOMETIMES">
@@ -130,7 +130,7 @@
                             <children>
                                 <ImageView fitHeight="25.0" fitWidth="25.0" HBox.hgrow="SOMETIMES">
                                     <image>
-                                        <Image url="@supprimer.png" />
+                                        <Image url="@../assets/img/supprimer.png" />
                                     </image>
                                 </ImageView>
                                 <Label text="Supprimer" HBox.hgrow="SOMETIMES">
@@ -142,7 +142,7 @@
                         </HBox>
                     </graphic>
                 </Button>
-                <Button alignment="CENTER" maxWidth="140.0" prefHeight="47.0" prefWidth="140.0" styleClass="button" stylesheets="@style.css" onAction="#switchTo" userData="categorie.fxml">
+                <Button alignment="CENTER" maxWidth="140.0" prefHeight="47.0" prefWidth="140.0" styleClass="button" stylesheets="@../assets/style.css" onAction="#switchTo" userData="categorie.fxml">
                     <padding>
                         <Insets topRightBottomLeft="10" />
                     </padding>
@@ -151,7 +151,7 @@
                             <children>
                                 <ImageView fitHeight="25.0" fitWidth="25.0">
                                     <image>
-                                        <Image url="@annuler.png" />
+                                        <Image url="@../assets/img/annuler.png" />
                                     </image>
                                 </ImageView>
                                 <Label text="Annuler">

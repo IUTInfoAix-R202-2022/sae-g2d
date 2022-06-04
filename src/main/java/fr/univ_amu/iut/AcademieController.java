@@ -22,7 +22,7 @@ import java.util.List;
 public class AcademieController {
 
     private SceneController sceneController = new SceneController();
-    private DAOTypologieJDBC dao = new DAOTypologieJDBC();
+    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
 
     private Jdbc jdbc = new Jdbc();
 
@@ -40,7 +40,7 @@ public class AcademieController {
 
     @FXML
     public void switchTo() throws IOException {
-        sceneController.switchTo2(gridPane,"carte.fxml");
+        sceneController.switchTo2(gridPane,"fxml/carte.fxml");
     }
 
 
@@ -50,7 +50,7 @@ public class AcademieController {
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setMinWidth(Double.NEGATIVE_INFINITY);
         hbox.setPrefWidth(100);
-        hbox.getStylesheets().add(getClass().getResource("academie.css").toExternalForm());
+        hbox.getStylesheets().add(getClass().getResource("assets/academie.css").toExternalForm());
 
         Label label = new Label(typologie.getAcademie());
         label.getStyleClass().addAll("labels_donnees", "labels_donnees_academie");
@@ -101,11 +101,8 @@ public class AcademieController {
     @FXML
     public void initialize() throws SQLException {
         academiePath = jdbc.getAcademiePath();
-        System.out.println(academiePath.getAcademie().getNom());
         List<Typologie> donneesAcademie = dao.findByAcademie(academiePath.getAcademie().getNom());
-        System.out.println(donneesAcademie.size());
         for (Typologie t : donneesAcademie) {
-            System.out.println(t);
             vbox.getChildren().add(setNewHbox(t));
         }
     }

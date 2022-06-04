@@ -37,9 +37,7 @@ public class Jdbc {
 
     private SceneController sceneController = new SceneController();
 
-    private Connection connection = HelloApplication.getDBConnection();
-
-    private DAOTypologieJDBC dao = new DAOTypologieJDBC();
+    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
 
     private static AcademiePath academiePath;
 
@@ -57,10 +55,6 @@ public class Jdbc {
 
     List<String> colors = new ArrayList<>();
 
-    // La requête de test
-    static final String req = "SELECT DISTINCT THEMATIQUE_USAGE " +
-            "FROM typologie ";
-
 
     public Jdbc() throws SQLException {
     }
@@ -68,7 +62,7 @@ public class Jdbc {
     @FXML
     public void switchTo() throws IOException {
         thematiquesUsageGroupByAcademie = null;
-        sceneController.switchTo2(carte, "accueil.fxml");
+        sceneController.switchTo2(carte, "fxml/accueil.fxml");
     }
 
     public void initializeButton() throws SQLException {
@@ -78,7 +72,7 @@ public class Jdbc {
 
     @FXML
     public void initialize() throws SQLException {
-        String css = this.getClass().getResource("style.css").toExternalForm();
+        String css = this.getClass().getResource("assets/style.css").toExternalForm();
 
         france = FranceBuilder.create()
                 .backgroundColor(Color.web("#FFFFFF"))
@@ -90,7 +84,7 @@ public class Jdbc {
                 .mousePressHandler(evt -> {
                     academiePath = (AcademiePath) evt.getSource();
                     try {
-                        sceneController.switchTo2(carte, "academie.fxml");
+                        sceneController.switchTo2(carte, "fxml/academie.fxml");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

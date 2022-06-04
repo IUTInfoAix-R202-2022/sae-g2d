@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="fenetre" style="-fx-background-color: #b7b6fe;" stylesheets="@academie.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.AcademieController">
+<GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="fenetre" style="-fx-background-color: #b7b6fe;" stylesheets="@../assets/academie.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.AcademieController">
     <columnConstraints>
         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
     </columnConstraints>
@@ -26,33 +26,33 @@
                 <Insets left="10.0" right="10.0" />
             </HBox.margin>
         </Label>
-        <Button fx:id="fermer" onAction="#switchTo" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" styleClass="bouton_fermer" stylesheets="@style.css">
+        <Button fx:id="fermer" onAction="#switchTo" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" styleClass="bouton_fermer" stylesheets="@../assets/style.css">
             <graphic>
                 <ImageView blendMode="SRC_ATOP" fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@fermer.png" />
+                        <Image url="@../assets/img/fermer.png" />
                     </image>
                 </ImageView>
             </graphic>
         </Button>
-        <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="false" styleClass="scroll_pane" stylesheets="@style.css" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
+        <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="false" styleClass="scroll_pane" stylesheets="@../assets/style.css" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
             <content>
                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;">
                     <children >
                         <VBox fx:id="vbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0" style="-fx-background-color: white;">
                             <children>
-                                <HBox alignment="CENTER_LEFT" spacing="8.0" stylesheets="@style.css" VBox.vgrow="SOMETIMES">
+                                <HBox alignment="CENTER_LEFT" spacing="8.0" stylesheets="@../assets/style.css" VBox.vgrow="SOMETIMES">
                                     <children>
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Académies" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Disciplines" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Degrés" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Régions académiques" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Types d'acteurs" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Identités des acteurs" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Liens des ressources" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Noms des ressources" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Type source" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@style.css" text="Commentaires" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Académies" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Disciplines" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Degrés" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Régions académiques" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Types d'acteurs" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Identités des acteurs" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Liens des ressources" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Noms des ressources" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Type source" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Commentaires" HBox.hgrow="SOMETIMES" />
                                     </children>
                                     <VBox.margin>
                                         <Insets left="10.0" />
