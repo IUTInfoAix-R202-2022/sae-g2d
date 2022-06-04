@@ -8,9 +8,9 @@
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="background" stylesheets="@../assets/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.SceneController">
     <columnConstraints>
-        <ColumnConstraints maxWidth="971.3334147135416" minWidth="10.0" prefWidth="802.4739379882812" />
-        <ColumnConstraints maxWidth="1645.3334045410156" minWidth="10.0" prefWidth="627.5228271484375" />
-        <ColumnConstraints maxWidth="1645.3334045410156" minWidth="10.0" prefWidth="490.9771728515625" />
+        <ColumnConstraints maxWidth="971.3334147135416" minWidth="10.0" prefWidth="737.6666666666666" />
+        <ColumnConstraints maxWidth="1645.3334045410156" minWidth="10.0" prefWidth="746.3333333333334" />
+        <ColumnConstraints maxWidth="1645.3334045410156" minWidth="10.0" prefWidth="436.33333333333326" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="915.9998779296875" minHeight="10.0" prefHeight="294.00001525878906" />
@@ -20,11 +20,11 @@
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="969.0" spacing="80.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <children>
-                <Button alignment="CENTER" contentDisplay="CENTER" onAction="#switchTo" userData="fxml/carte.fxml" prefHeight="50.0" prefWidth="124.0" styleClass="button" GridPane.columnIndex="2" GridPane.rowIndex="2" id="boutonAccederAccueil">
+                <Button id="boutonAccederAccueil" alignment="CENTER" contentDisplay="CENTER" onAction="#switchTo" prefHeight="50.0" prefWidth="124.0" styleClass="button" userData="fxml/carte.fxml" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <graphic>
                         <HBox alignment="CENTER" prefHeight="107.0" prefWidth="108.0" spacing="20.0">
                             <children>
-                                <Label text="Accéder" HBox.hgrow="SOMETIMES" id="labelBoutonAccederAccueil">
+                                <Label id="labelBoutonAccederAccueil" text="Accéder" HBox.hgrow="SOMETIMES">
                            <font>
                               <Font size="15.0" />
                            </font></Label>
@@ -37,27 +37,27 @@
                         </HBox>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#switchTo" prefHeight="52.0" prefWidth="130.0" text="Se connecter" userData="fxml/connexion_administrateur.fxml" id="boutonSeConnecterAccueil">
+                <Button id="boutonSeConnecterAccueil" mnemonicParsing="false" onAction="#switchTo" prefHeight="52.0" prefWidth="130.0" text="Se connecter" userData="fxml/connexion_administrateur.fxml">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Button>
             </children>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1328.0" GridPane.columnIndex="1">
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="642.0" GridPane.columnIndex="1">
             <children>
-                <Label text="Bienvenue !">
+                <Label text="Bienvenue !" textFill="#b7b6fe">
                     <font>
-                        <Font size="52.0" />
+                        <Font name="System Bold" size="52.0" />
                     </font>
                 </Label>
             </children>
         </HBox>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1097.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="531.0" prefWidth="727.0" text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." textAlignment="JUSTIFY" wrapText="true">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="372.0" prefWidth="746.0" styleClass="textAccueilBorder" stylesheets="@../assets/style.css" text="DicoPedago est un logiciel créé pour les équipes éducatives afin de visualiser les différentes innovations pédagogiques au travers de la France. Vous y retrouverez une carte interactive ainsi que de nombreux boutons afin de filtrer par usages. Les innovations de votre région vous intéressent ? Cliquez sur celles-cis et une nouvelle fenêtre s’ouvre à vous pour vous présenter les différents projets au sein de votre académie. Cette fenêtre regroupe toutes les informations utiles pour une bonne compréhension du projet pédagogique, comme la matière engagée, un lien vers la ressource ou encore un commentaire de l’auteur du projet. En cas de proposition pour une nouvelle innovation, merci de vous référer à un membre de la DNE." textAlignment="JUSTIFY" wrapText="true">
                     <font>
-                        <Font size="15.0" />
+                        <Font size="17.0" />
                     </font>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
