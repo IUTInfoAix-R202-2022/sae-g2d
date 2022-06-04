@@ -15,7 +15,7 @@
         <RowConstraints maxHeight="1.7976931348623157E308" valignment="CENTER" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label fx:id="usage_selectionne" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Usage sélectionné" wrapText="true" HBox.hgrow="SOMETIMES">
+        <Label fx:id="academie_selectionne" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Académie sélectionné" wrapText="true" HBox.hgrow="SOMETIMES">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
@@ -43,7 +43,7 @@
                             <children>
                                 <HBox alignment="CENTER_LEFT" spacing="8.0" stylesheets="@../assets/style.css" VBox.vgrow="SOMETIMES">
                                     <children>
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Académies" HBox.hgrow="SOMETIMES" />
+                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Thématique usage" HBox.hgrow="SOMETIMES" />
                                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Disciplines" HBox.hgrow="SOMETIMES" />
                                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Degrés" HBox.hgrow="SOMETIMES" />
                                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Régions académiques" HBox.hgrow="SOMETIMES" />
@@ -61,52 +61,6 @@
                                         <Insets left="5.0" right="5.0" />
                                     </padding>
                                 </HBox>
-                                <!--<HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefWidth="100.0" spacing="8.0" stylesheets="@style.css" VBox.vgrow="SOMETIMES">
-                                    <children>
-                                        <Label styleClass="labels_donnees, labels_donnees_academie" stylesheets="@style.css" text="AcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémies" wrapText="true" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Disciplines" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Degrés" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Régions académiques" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Types d'acteurs" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Identités des acteurs" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" HBox.hgrow="SOMETIMES">
-                                            <graphic>
-                                                <Hyperlink text="https://iutinfoaix.notion.site/iutinfoaix/Cartographie-des-usages-p-dagogiques-8b91072fe9f2467c862124a3ca2b8184" wrapText="true" />
-                                            </graphic>
-                                        </Label>
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Noms des ressources" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Commentaires" HBox.hgrow="SOMETIMES" />
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets left="10.0" />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets left="5.0" right="5.0" />
-                                    </padding>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefWidth="100.0" spacing="8.0" stylesheets="@style.css" VBox.vgrow="SOMETIMES">
-                                    <children>
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_academie" stylesheets="@style.css" text="AcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémiesAcadémies" wrapText="true" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Disciplines" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Degrés" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Régions académiques" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Types d'acteurs" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Identités des acteurs" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" HBox.hgrow="SOMETIMES">
-                                            <graphic>
-                                                <Hyperlink text="https://iutinfoaix.notion.site/iutinfoaix/Cartographie-des-usages-p-dagogiques-8b91072fe9f2467c862124a3ca2b8184" wrapText="true" />
-                                            </graphic>
-                                        </Label>
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Noms des ressources" HBox.hgrow="SOMETIMES" />
-                                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees, labels_donnees_informations" stylesheets="@style.css" text="Commentaires" HBox.hgrow="SOMETIMES" />
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets left="10.0" />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets left="5.0" right="5.0" />
-                                    </padding>
-                                </HBox>-->
                             </children>
                             <padding>
                                 <Insets bottom="10.0" top="20.0" />

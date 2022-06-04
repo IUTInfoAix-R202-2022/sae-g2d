@@ -34,6 +34,8 @@ public class AcademieController {
     @FXML
     private VBox vbox;
 
+    @FXML
+    private Label academie_selectionne;
 
     public AcademieController() throws SQLException {
     }
@@ -52,9 +54,16 @@ public class AcademieController {
         hbox.setPrefWidth(100);
         hbox.getStylesheets().add(getClass().getResource("assets/academie.css").toExternalForm());
 
-        Label label = new Label(typologie.getAcademie());
-        label.getStyleClass().addAll("labels_donnees", "labels_donnees_academie");
+
+        Label label = new Label(typologie.getThematique_usage());
+        label.getStyleClass().addAll("labels_donnees", "labels_donnees_usage");
         hbox.getChildren().add(label);
+
+        /*
+        label = new Label(typologie.getThematique_usage());
+        label.getStyleClass().addAll("labels_donnees", "labels_donnees_informations");
+        hbox.getChildren().add(label);
+        */
 
         label = new Label(typologie.getDiscipline());
         label.getStyleClass().addAll("labels_donnees", "labels_donnees_informations");
@@ -101,6 +110,7 @@ public class AcademieController {
     @FXML
     public void initialize() throws SQLException {
         academiePath = jdbc.getAcademiePath();
+        academie_selectionne.setText(academiePath.getAcademie().getNom());
         List<Typologie> donneesAcademie = dao.findByAcademie(academiePath.getAcademie().getNom());
         for (Typologie t : donneesAcademie) {
             vbox.getChildren().add(setNewHbox(t));
