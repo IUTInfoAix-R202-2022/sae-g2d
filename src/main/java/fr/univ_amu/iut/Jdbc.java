@@ -45,6 +45,8 @@ public class Jdbc {
 
     private static List<Typologie> thematiquesUsageGroupByAcademie;
 
+    private static List<Typologie> typologiesButton;
+
     @FXML
     private VBox vbox;
 
@@ -57,7 +59,7 @@ public class Jdbc {
 
     // La requête de test
     static final String req = "SELECT DISTINCT THEMATIQUE_USAGE " +
-                            "FROM typologie ";
+            "FROM typologie ";
 
 
     public Jdbc() throws SQLException {
@@ -65,10 +67,17 @@ public class Jdbc {
 
     @FXML
     public void switchTo() throws IOException {
-        sceneController.switchTo2(carte,"accueil.fxml");
+        thematiquesUsageGroupByAcademie = null;
+        sceneController.switchTo2(carte, "accueil.fxml");
     }
+
+    public void initializeButton() throws SQLException {
+        typologiesButton = dao.findThematiquesUsage();
+    }
+
+
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException {
         String css = this.getClass().getResource("style.css").toExternalForm();
 
         france = FranceBuilder.create()
@@ -80,8 +89,8 @@ public class Jdbc {
                 .selectedColor(Color.web("#b81111"))
                 .mousePressHandler(evt -> {
                     academiePath = (AcademiePath) evt.getSource();
-                   try {
-                        sceneController.switchTo2(carte,"academie.fxml");
+                    try {
+                        sceneController.switchTo2(carte, "academie.fxml");
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -95,7 +104,7 @@ public class Jdbc {
         /**
          * On récupère les anciennes academies sélectionnées
          */
-        if (thematiquesUsageGroupByAcademie != null){
+        if (thematiquesUsageGroupByAcademie != null) {
             initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
         }
 
@@ -112,56 +121,44 @@ public class Jdbc {
         colors.add("rgba(79, 183, 90, 1)");
         colors.add("rgba(55, 125, 44, 1)");
 
-        try {
-            Statement statement = connection.createStatement();
-
-            ResultSet rset = statement.executeQuery(req);
-
-            while(rset.next()) {
-                vbox.getChildren().add(new Button(rset.getString("THEMATIQUE_USAGE")));
-            }
-
-            int i = 0;
-            for (Node e : vbox.getChildren()){
-                if (i > colors.size() - 1) { i = 0; }
-                Button button = (Button) e;
-                button.setOnAction(event -> {
-                    try {
-                        thematiquesUsageGroupByAcademie = dao.findByThematiquesUsageGroupByAcademie(button.getText());
-                        initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
-                        } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-                button.setId("button");
-                button.getStylesheets().add(css);
-                button.setStyle("-fx-background-color: " + colors.get(i));
-                button.setPrefWidth(1000.0);
-                button.setPrefHeight(1000.0);
-                ++i;
-            }
-            // Fermeture de l'instruction (libération des ressources)
-            statement.close();
-            System.out.println("\nOk.\n");
-
-        } catch (SQLException e) {
-            //Ceci n'est pas une gestion réaliste des erreurs
-            e.printStackTrace();// Arggg!!!
-            System.out.println(e.getMessage() + "\n");
+        for (Typologie t : typologiesButton) {
+            vbox.getChildren().add(new Button(t.getThematique_usage()));
         }
+
+        int i = 0;
+        for (Node e : vbox.getChildren()) {
+            if (i > colors.size() - 1) {
+                i = 0;
+            }
+            Button button = (Button) e;
+            button.setOnAction(event -> {
+                try {
+                    thematiquesUsageGroupByAcademie = dao.findByThematiquesUsageGroupByAcademie(button.getText());
+                    initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            button.setId("button");
+            button.getStylesheets().add(css);
+            button.setStyle("-fx-background-color: " + colors.get(i));
+            button.setPrefWidth(1000.0);
+            button.setPrefHeight(1000.0);
+            ++i;
+        }
+
     }
 
 
     /**
-     *
      * @param list
      * @
      */
-    public void initializeColorsOfCarte(List<Typologie> list){
+    public void initializeColorsOfCarte(List<Typologie> list) {
         france.setFillColor(Color.web("#b6b6ff"));
-        for (Academie a : Academie.toutes()){
-            for (Typologie typologie : list){
-                if (typologie.getAcademie().equals(a.getNom())){
+        for (Academie a : Academie.toutes()) {
+            for (Typologie typologie : list) {
+                if (typologie.getAcademie() != null && typologie.getAcademie().equals(a.getNom())) {
                     academiePath = AcademiePath.get(a);
                     academiePath.setFill(Color.RED);
                 }

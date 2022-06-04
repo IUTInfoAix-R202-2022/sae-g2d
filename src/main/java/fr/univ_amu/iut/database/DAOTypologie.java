@@ -7,5 +7,6 @@ public interface DAOTypologie extends DAO<Typologie, Integer> {
 
     List<Typologie> findByAcademie(String nomAcademie) throws SQLException;
     List<Typologie> findByThematiquesUsageGroupByAcademie(String nomThematiqueUsage) throws SQLException;
+    List<Typologie> findThematiquesUsage() throws SQLException;
 
 }

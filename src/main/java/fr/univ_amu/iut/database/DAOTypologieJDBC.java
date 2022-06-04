@@ -14,6 +14,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
     private final PreparedStatement updateStatement;
     private final PreparedStatement findByAcademie;
     private final PreparedStatement findByThematiquesUsageGroupByAcademie;
+    private final Statement findThematiquesUsage;
 
     private final Connection connection = HelloApplication.getDBConnection();   //On récupère la connection
 
@@ -31,6 +32,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
                 ", DISCIPLINE = ?, DEGRE = ?, ACADEMIE = ?, REGION_ACADEMIQUE = ?, TYPE_ACTEUR = ?, IDENTITE_ACTEUR = ?, URL_RESSOURCE = ?, NOM_RESSOURCE = ?, TYPE_SOURCE = ?, COMMENTAIRES = ? WHERE NUMERO = ?");
         findByAcademie = connection.prepareStatement("SELECT * FROM typologie WHERE ACADEMIE = ?");
         findByThematiquesUsageGroupByAcademie = connection.prepareStatement("SELECT ACADEMIE FROM typologie WHERE THEMATIQUE_USAGE = ?");
+        findThematiquesUsage = connection.createStatement();
     }
 
     /**
@@ -162,5 +164,19 @@ public class DAOTypologieJDBC implements DAOTypologie {
 
         return donneesAcademie;
 
+    }
+
+    @Override
+    public List<Typologie> findThematiquesUsage() throws SQLException {
+        List<Typologie> donneesAcademie = new ArrayList<>();
+
+        ResultSet resultSet = findThematiquesUsage.executeQuery("SELECT DISTINCT THEMATIQUE_USAGE FROM typologie");
+        while (resultSet.next()){
+            Typologie typologie = new Typologie();
+            typologie.setThematique_usage(resultSet.getString(1));
+            donneesAcademie.add(typologie);
+        }
+        resultSet.close();
+        return donneesAcademie;
     }
 }
