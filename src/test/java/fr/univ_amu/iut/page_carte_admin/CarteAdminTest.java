@@ -1,4 +1,4 @@
-package fr.univ_amu.iut.page_carte;
+package fr.univ_amu.iut.page_carte_admin;
 
 import fr.univ_amu.iut.HelloApplication;
 import fr.univ_amu.iut.database.DAOTypologieJDBC;
@@ -25,17 +25,17 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class CarteTest {
+public class CarteAdminTest {
     Stage stage;
 
     @Start
     public void start(Stage stage) throws Exception {
         Platform.runLater(() -> {
-            CarteTest.this.stage = new Stage();
+            fr.univ_amu.iut.page_carte_admin.CarteAdminTest.this.stage = new Stage();
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(CarteTest.this.stage);
+                        new HelloApplication().start(fr.univ_amu.iut.page_carte_admin.CarteAdminTest.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -94,4 +94,11 @@ public class CarteTest {
         assertEquals(ActualfindByThematiquesUsageGroupByAcademie.size(),0);
     }
 
+    /*
+    @Test
+    public void should_have_button_configurer() {
+        robot.clickOn
+        verifyThat("#labelButtonConfigureCarteAdmin", hasText("Configurer"));}
+
+     */
 }

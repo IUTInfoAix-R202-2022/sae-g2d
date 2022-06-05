@@ -12,7 +12,6 @@ import org.testfx.api.FxRobot;
 import org.testfx.api.FxRobotException;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.framework.junit5.Start;
 
 import java.util.concurrent.TimeoutException;
@@ -86,10 +85,9 @@ public class TestAccueil {
     public void should_initialize_DAOTypologie() {
         assertNotEquals(HelloApplication.getDaoTypologieJDBC(),null);
     }
+
     @Test
     public void should_initialize_DAOUtilisateur() {
         assertNotEquals(HelloApplication.getDaoUtilisateurJDBC(),null);
     }
-
-
 }
