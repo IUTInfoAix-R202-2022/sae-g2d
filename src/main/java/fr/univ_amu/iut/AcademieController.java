@@ -45,8 +45,6 @@ public class AcademieController {
         sceneController.switchTo2(gridPane,"fxml/carte.fxml");
     }
 
-
-
     private HBox setNewHbox(Typologie typologie){
         HBox hbox = new HBox(8);
         hbox.setAlignment(Pos.CENTER_LEFT);

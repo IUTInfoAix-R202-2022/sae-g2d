@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane id="gridpane" style="-fx-background-color: white" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.Jdbc">
+<GridPane fx:id="gridpane" id="gridpane" style="-fx-background-color: white" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.univ_amu.iut.Jdbc">
 
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />

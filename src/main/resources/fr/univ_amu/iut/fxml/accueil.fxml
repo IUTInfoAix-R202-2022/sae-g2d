@@ -46,7 +46,7 @@
         </HBox>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="642.0" GridPane.columnIndex="1">
             <children>
-                <Label text="Bienvenue !" textFill="#b7b6fe">
+                <Label fx:id="labelBienvenue" text="Bienvenue !" textFill="#b7b6fe">
                     <font>
                         <Font name="System Bold" size="52.0" />
                     </font>
