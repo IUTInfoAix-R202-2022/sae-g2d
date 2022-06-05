@@ -31,10 +31,14 @@ public class SceneController {
     private Scene scene;
     private Parent root;
 
+    private static String data;
+
+    public static String getData() { return data; }
+
     @FXML
     public void switchTo(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource() ;
-        String data = (String) node.getUserData();
+        data = (String) node.getUserData();
 
         root = FXMLLoader.load(getClass().getResource(data));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

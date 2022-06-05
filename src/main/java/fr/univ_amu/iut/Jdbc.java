@@ -107,6 +107,7 @@ public class Jdbc {
         }
 
         for (Typologie t : typologiesButton) {
+            if (t.getThematique_usage() != null && !t.getThematique_usage().isEmpty())
             vbox.getChildren().add(new Button(t.getThematique_usage()));
         }
 

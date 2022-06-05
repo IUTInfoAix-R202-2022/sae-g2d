@@ -1,6 +1,7 @@
 package fr.univ_amu.iut.page_carte_admin;
 
 import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.SceneController;
 import fr.univ_amu.iut.database.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import javafx.application.Platform;
@@ -55,28 +56,33 @@ public class CarteAdminTest {
     }
 
     @Test
-    public void should_initialize_stage_is_showing() {
+    public void should_initialize_stage_is_showing(FxRobot robot) {
+        robot.clickOn("#boutonSeConnecterAccueil");
         assertThat(stage.isShowing()).isTrue();
     }
 
     @Test
-    public void should_initialize_window_with_correct_title(){
+    public void should_initialize_window_with_correct_title(FxRobot robot){
+        robot.clickOn("#boutonSeConnecterAccueil");
         assertThat(stage.getTitle().equals("Dico Pédago"));
     }
 
     @Test
-    public void should_initialize_height_of_window_to_720(){
+    public void should_initialize_height_of_window_to_720(FxRobot robot){
+        robot.clickOn("#boutonSeConnecterAccueil");
         assertThat(stage.getScene().getHeight() == 720);
     }
 
     @Test
-    public void should_initialize_width_of_window_to_1280(){
+    public void should_initialize_width_of_window_to_1280(FxRobot robot){
+        robot.clickOn("#boutonSeConnecterAccueil");
         assertThat(stage.getScene().getWidth() == 1280);
     }
 
 
     @Test
-    public void should_intialize_vbox_with_usage_in_the_database() throws SQLException {
+    public void should_intialize_vbox_with_usage_in_the_database(FxRobot robot) throws SQLException {
+        robot.clickOn("#boutonSeConnecterAccueil");
         DAOTypologieJDBC dao = new DAOTypologieJDBC();
         Typologie typologie = new Typologie(10, "a", "a", "a","a","a","a","a","a","a","a","a");
         dao.insert(typologie);
@@ -88,17 +94,18 @@ public class CarteAdminTest {
     }
 
     @Test
-    public void should_not_have_academie_for_this_thematique_usage() throws SQLException {
+    public void should_not_have_academie_for_this_thematique_usage(FxRobot robot) throws SQLException {
+        robot.clickOn("#boutonSeConnecterAccueil");
         DAOTypologieJDBC dao = new DAOTypologieJDBC();
         List<Typologie> ActualfindByThematiquesUsageGroupByAcademie = dao.findByThematiquesUsageGroupByAcademie("a");
         assertEquals(ActualfindByThematiquesUsageGroupByAcademie.size(),0);
     }
 
-    /*
+     /*
     @Test
     public void should_have_button_configurer() {
         robot.clickOn
         verifyThat("#labelButtonConfigureCarteAdmin", hasText("Configurer"));}
-
      */
+
 }

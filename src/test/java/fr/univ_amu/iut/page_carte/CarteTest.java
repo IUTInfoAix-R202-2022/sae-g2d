@@ -55,11 +55,6 @@ public class CarteTest {
     }
 
     @Test
-    public void should_initialize_stage_is_showing() {
-        assertThat(stage.isShowing()).isTrue();
-    }
-
-    @Test
     public void should_initialize_window_with_correct_title(){
         assertThat(stage.getTitle().equals("Dico Pédago"));
     }
