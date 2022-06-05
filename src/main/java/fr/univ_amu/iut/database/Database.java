@@ -14,6 +14,7 @@ public class Database {
     private static final String CONNECT_URL = "jdbc:postgresql://kesavan.db.elephantsql.com/cssqfxzf";
     private static final String LOGIN = "cssqfxzf";
     private static final String PASSWORD = "M6crtbHWKBQW0Cl7iXPIQeLmuCaeDMdj";
+    private static Connection connection;
 
     /**
      * Retourne la connection direct de la base de données ElephantSQL
@@ -22,10 +23,10 @@ public class Database {
      */
     public static Connection getDBConnection(){
         // Connexion a la base
-        System.out.println("Connexion a " + CONNECT_URL);
+        System.out.println("C onnexion a " + CONNECT_URL);
 
         try {
-            Connection connection = DriverManager.getConnection(CONNECT_URL,LOGIN,PASSWORD);
+            connection = DriverManager.getConnection(CONNECT_URL,LOGIN,PASSWORD);
             System.out.println("Lien effectue avec la base de données. Connecte\n");
             return connection;
 
@@ -33,6 +34,17 @@ public class Database {
             System.out.println(e.getMessage() + "\n");
             System.out.println("Lien non effectue avec la base de données. Deconnecte\n");
             return null;
+        }
+
+    }
+
+    public static boolean closeDBConnection() {
+        try {
+            connection.close();
+            System.out.println("Connexion fermée");
+            return true;
+        } catch (SQLException e) {
+            return false;
         }
     }
 }

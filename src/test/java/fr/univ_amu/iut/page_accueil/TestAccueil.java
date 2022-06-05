@@ -18,11 +18,12 @@ import org.testfx.framework.junit5.Start;
 import java.util.concurrent.TimeoutException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.util.NodeQueryUtils.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class TestAccueil extends ApplicationTest {
+public class TestAccueil {
     Stage stage;
 
     @Start
@@ -48,6 +49,7 @@ public class TestAccueil extends ApplicationTest {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
+        HelloApplication.closeDBConnection();
     }
 
     @Test
@@ -71,8 +73,23 @@ public class TestAccueil extends ApplicationTest {
     }
 
     @Test
-    public void button_se_connecter_should_redirect_to_connexion_administrateur() {
-        assertThat(clickOn("#boutonSeConnecterAccueil").equals(new FxRobotException("")));//On vérifie qu'on est plus sur la page accueil'
+    public void button_se_connecter_should_redirect_to_connexion_administrateur(FxRobot robot) {
+        assertThat(robot.clickOn("#boutonSeConnecterAccueil").equals(new FxRobotException("")));//On vérifie qu'on est plus sur la page accueil'
     }
+
+    @Test
+    public void should_initialize_bdd() {
+        assertNotEquals(HelloApplication.getDBConnection(),null);
+    }
+
+    @Test
+    public void should_initialize_DAOTypologie() {
+        assertNotEquals(HelloApplication.getDaoTypologieJDBC(),null);
+    }
+    @Test
+    public void should_initialize_DAOUtilisateur() {
+        assertNotEquals(HelloApplication.getDaoUtilisateurJDBC(),null);
+    }
+
 
 }

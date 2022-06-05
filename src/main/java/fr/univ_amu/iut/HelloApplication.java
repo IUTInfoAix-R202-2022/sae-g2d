@@ -60,6 +60,9 @@ public class HelloApplication extends Application {
     public static Connection getDBConnection() {
         return connection;
     }
+    public static boolean closeDBConnection(){
+        return Database.closeDBConnection();
+    }
 
     public static DAOTypologieJDBC getDaoTypologieJDBC(){return daoTypologieJDBC;}
     public static DAOUtilisateurJDBC getDaoUtilisateurJDBC(){return daoUtilisateurJDBC;}

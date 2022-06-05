@@ -3,9 +3,13 @@ package fr.univ_amu.iut.database;
 
 import fr.univ_amu.iut.HelloApplication;
 import javafx.application.Platform;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.api.FxRobot;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
@@ -37,6 +41,14 @@ public class DatabaseTest {
                 e.printStackTrace();
             }
         });
+    }
+
+    @AfterEach
+    void afterEachTest(FxRobot robot) throws TimeoutException {
+        FxToolkit.cleanupStages();
+        robot.release(new KeyCode[]{});
+        robot.release(new MouseButton[]{});
+        HelloApplication.closeDBConnection();
     }
 
     @Test
