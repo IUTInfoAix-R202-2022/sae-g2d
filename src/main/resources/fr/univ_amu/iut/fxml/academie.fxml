@@ -26,7 +26,7 @@
                 <Insets left="10.0" right="10.0" />
             </HBox.margin>
         </Label>
-        <Button fx:id="fermer" onAction="#switchTo" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" styleClass="bouton_fermer" stylesheets="@../assets/style.css">
+        <Button id="fermer" onAction="#switchTo" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" styleClass="bouton_fermer" stylesheets="@../assets/style.css">
             <graphic>
                 <ImageView blendMode="SRC_ATOP" fitHeight="25.0" pickOnBounds="true" preserveRatio="true">
                     <image>

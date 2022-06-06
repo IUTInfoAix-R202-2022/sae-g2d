@@ -21,12 +21,12 @@
     <children>
         <VBox id="vbox" alignment="CENTER" maxHeight="300" maxWidth="400" spacing="20" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
             <children>
-                <Label fx:id="labelIdentifiant" styleClass="textLabel" text="IDENTIFIANT" textAlignment="LEFT" />
+                <Label id="labelIdentifiant" styleClass="textLabel" text="IDENTIFIANT" textAlignment="LEFT" />
                 <TextField fx:id="identifiant" maxWidth="200" prefHeight="35" styleClass="textField" />
-                <Label fx:id="labelMotDePasseAdmin" styleClass="textLabel" text="MOT DE PASSE" />
+                <Label id="labelMotDePasseAdmin" styleClass="textLabel" text="MOT DE PASSE" />
                 <PasswordField fx:id="motDePasse" maxWidth="200" prefHeight="35" styleClass="textField" />
                 <HBox alignment="CENTER" spacing="30">
-                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#verificationSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="fxml/carte_admin.fxml">
+                    <Button id="buttonConnect" alignment="CENTER" maxWidth="150" onAction="#verificationSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="fxml/carte_admin.fxml">
                         <padding>
                             <Insets topRightBottomLeft="10" />
                         </padding>
@@ -38,12 +38,12 @@
                                             <Image requestedHeight="25" requestedWidth="25" url="@../assets/img/suivant.png" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="labelConnecter" text="Se connecter" />
+                                    <Label id="labelConnecter" text="Se connecter" />
                                 </children>
                             </HBox>
                         </graphic>
                     </Button>
-                    <Button id="button" alignment="CENTER" maxWidth="150" onAction="#callSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="fxml/accueil.fxml">
+                    <Button id="buttonCancel" alignment="CENTER" maxWidth="150" onAction="#callSwitchTo" prefHeight="49.0" prefWidth="130.0" userData="fxml/accueil.fxml">
                         <padding>
                             <Insets topRightBottomLeft="10" />
                         </padding>
@@ -55,7 +55,7 @@
                                             <Image requestedHeight="25" requestedWidth="25" url="@../assets/img/fermer.png" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="labelAnnuler" text="Annuler" />
+                                    <Label id="labelAnnuler" text="Annuler" />
                                 </children>
                             </HBox>
                         </graphic>
