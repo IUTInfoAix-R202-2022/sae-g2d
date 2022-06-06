@@ -65,5 +65,17 @@
                 </Label>
             </children>
         </HBox>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <Button mnemonicParsing="false" onAction="#switchTo" prefHeight="46.0" prefWidth="99.0" text="Contact" userData="fxml/contact.fxml">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="30.0" right="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
     </children>
 </GridPane>
