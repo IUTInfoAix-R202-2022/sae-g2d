@@ -52,8 +52,8 @@ public class HelloApplication extends Application {
      * @throws SQLException
      */
     public void initializeButtonOfCarte() throws SQLException {
-        Jdbc jdbc = new Jdbc();
-        jdbc.initializeButton();
+        CarteController carteController = new CarteController();
+        carteController.initializeButton();
     }
 
 

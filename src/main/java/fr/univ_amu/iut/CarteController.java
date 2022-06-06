@@ -1,17 +1,13 @@
 package fr.univ_amu.iut;
 
 import fr.univ_amu.iut.database.DAOTypologieJDBC;
-import fr.univ_amu.iut.database.Database;
 import fr.univ_amu.iut.database.Typologie;
 import fr.univ_amu.iut.model.Academie;
 import fr.univ_amu.iut.view.map.AcademiePath;
 import fr.univ_amu.iut.view.map.France;
 import fr.univ_amu.iut.view.map.FranceBuilder;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,14 +18,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Jdbc {
+public class CarteController {
 
     private Stage stage;
     private Scene scene;

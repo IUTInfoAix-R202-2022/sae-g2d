@@ -3,16 +3,13 @@ package fr.univ_amu.iut;
 import fr.univ_amu.iut.database.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import fr.univ_amu.iut.view.map.AcademiePath;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -24,7 +21,7 @@ public class AcademieController {
     private SceneController sceneController = new SceneController();
     private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
 
-    private Jdbc jdbc = new Jdbc();
+    private CarteController carteController = new CarteController();
 
     private AcademiePath academiePath;
 
@@ -107,7 +104,7 @@ public class AcademieController {
 
     @FXML
     public void initialize() throws SQLException {
-        academiePath = jdbc.getAcademiePath();
+        academiePath = carteController.getAcademiePath();
         academie_selectionne.setText(academiePath.getAcademie().getNom());
         List<Typologie> donneesAcademie = dao.findByAcademie(academiePath.getAcademie().getNom());
         for (Typologie t : donneesAcademie) {

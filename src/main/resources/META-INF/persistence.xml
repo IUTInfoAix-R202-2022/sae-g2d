@@ -7,9 +7,9 @@
 
         <properties>
             <!-- database connection properties -->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:derby:memory:usageBD;create=true"/>
-            <property name="jakarta.persistence.jdbc.user" value=""/>
-            <property name="jakarta.persistence.jdbc.password" value=""/>
+            <property name="jakarta.persistence.carteController.url" value="carteController:derby:memory:usageBD;create=true"/>
+            <property name="jakarta.persistence.carteController.user" value=""/>
+            <property name="jakarta.persistence.carteController.password" value=""/>
 
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
             <property name="eclipselink.ddl-generation" value="create-tables"/>

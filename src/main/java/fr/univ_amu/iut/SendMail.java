@@ -22,18 +22,11 @@ public class SendMail {
 
     @FXML
     public void switchTo(ActionEvent event) throws IOException {
+        SceneController sc = new SceneController();
         Node node = (Node) event.getSource() ;
         data = (String) node.getUserData();
+        sc.switchTo2(node,data);
 
-        root = FXMLLoader.load(getClass().getResource(data));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root,stage.getMinWidth(),stage.getMinHeight());
-        stage.minHeightProperty().set(stage.getMinHeight());
-        stage.minWidthProperty().set(stage.getMinWidth());
-        stage.setTitle("Dico Pédago");
-        stage.setScene(scene);
-        stage.show();
-        System.out.println();
     }
     @FXML
     public void sendMessage() throws IOException {
