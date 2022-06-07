@@ -5,6 +5,7 @@ import fr.univ_amu.iut.DAO.DAOUtilisateurJDBC;
 import fr.univ_amu.iut.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
@@ -41,8 +42,15 @@ public class Main extends Application {
         initializeButtonOfCarte();
 
         Parent root = FXMLLoader.load(getClass().getResource("fxml/accueil.fxml"));
-        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        Scene scene = new Scene(root);
         stage.setTitle("Dico Pédago");
+
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+        stage.setWidth(bounds.getWidth());
+        stage.setHeight(bounds.getHeight());
+
+        stage.setMaximized(true);
         stage.minHeightProperty().set(HEIGHT); //Initialisation de la taille de la stage
         stage.minWidthProperty().set(WIDTH); //Initialisation de la longueur de la stage
         stage.setScene(scene);

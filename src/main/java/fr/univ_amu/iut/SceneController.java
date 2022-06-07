@@ -44,7 +44,6 @@ public class SceneController {
         stage.setTitle("Dico Pédago");
         stage.setScene(scene);
         stage.show();
-        System.out.println();
     }
 
     /**
