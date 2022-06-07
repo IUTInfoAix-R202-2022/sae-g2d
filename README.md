@@ -21,7 +21,7 @@ usages.
 ## Démarrage
 Pour lancer l'application via un IDE lancer simplement le fichier Main.java, et exécuter cette ligne
 ```java
-public void start(Stage stage) throws IOException, SQLException
+public class Main extends Application {
 ```
 L'application fonctionne avec une base de données `PostgreSQL`. Voici les différentes chaine de connexion si besoin est :
 ```java

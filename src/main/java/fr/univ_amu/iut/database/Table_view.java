@@ -180,7 +180,7 @@ public class Table_view extends Application {
      */
     private void ajouterLigne() throws SQLException {
         Typologie typologie = new Typologie();
-        typologie.setNumero(table.getItems().size() + 1);
+        typologie.setNumero(dao.setNumeroByCount());
         table.scrollTo(table.getItems().size());
         donnees.add(typologie);
         dao.insert(typologie);
