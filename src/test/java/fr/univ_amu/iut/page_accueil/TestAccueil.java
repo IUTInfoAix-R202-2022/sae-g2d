@@ -1,6 +1,6 @@
 package fr.univ_amu.iut.page_accueil;
 
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.Main;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -32,7 +32,7 @@ public class TestAccueil {
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(TestAccueil.this.stage);
+                        new Main().start(TestAccueil.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -48,7 +48,7 @@ public class TestAccueil {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
-        HelloApplication.closeDBConnection();
+        Main.closeDBConnection();
     }
 
     @Test
@@ -78,16 +78,16 @@ public class TestAccueil {
 
     @Test
     public void should_initialize_bdd() {
-        assertNotEquals(HelloApplication.getDBConnection(),null);
+        assertNotEquals(Main.getDBConnection(),null);
     }
 
     @Test
     public void should_initialize_DAOTypologie() {
-        assertNotEquals(HelloApplication.getDaoTypologieJDBC(),null);
+        assertNotEquals(Main.getDaoTypologieJDBC(),null);
     }
 
     @Test
     public void should_initialize_DAOUtilisateur() {
-        assertNotEquals(HelloApplication.getDaoUtilisateurJDBC(),null);
+        assertNotEquals(Main.getDaoUtilisateurJDBC(),null);
     }
 }

@@ -1,6 +1,6 @@
 package fr.univ_amu.iut.page_carte_admin;
 
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.Main;
 import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import javafx.application.Platform;
@@ -35,7 +35,7 @@ public class CarteAdminTest {
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(fr.univ_amu.iut.page_carte_admin.CarteAdminTest.this.stage);
+                        new Main().start(fr.univ_amu.iut.page_carte_admin.CarteAdminTest.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -51,7 +51,7 @@ public class CarteAdminTest {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
-        HelloApplication.closeDBConnection();
+        Main.closeDBConnection();
     }
 
     @Test

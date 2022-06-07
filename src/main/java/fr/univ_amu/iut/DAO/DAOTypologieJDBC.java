@@ -1,6 +1,6 @@
 package fr.univ_amu.iut.DAO;
 
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.Main;
 import fr.univ_amu.iut.database.Typologie;
 
 import java.sql.*;
@@ -17,7 +17,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
     private final PreparedStatement findByThematiquesUsageGroupByAcademie;
     private final Statement findThematiquesUsage;
 
-    private final Connection connection = HelloApplication.getDBConnection();   //On récupère la connection
+    private final Connection connection = Main.getDBConnection();   //On récupère la connection
 
     /**
      * Constructeur | Initialise tout les prepareStatement

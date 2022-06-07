@@ -1,6 +1,6 @@
 package fr.univ_amu.iut.academie;
 
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.Main;
 import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import fr.univ_amu.iut.model.Academie;
@@ -18,8 +18,6 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import static org.testfx.api.FxAssert.verifyThat;
@@ -37,7 +35,7 @@ public class TestAcademie {
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(TestAcademie.this.stage);
+                        new Main().start(TestAcademie.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -53,7 +51,7 @@ public class TestAcademie {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
-        HelloApplication.closeDBConnection();
+        Main.closeDBConnection();
     }
 
     @Test

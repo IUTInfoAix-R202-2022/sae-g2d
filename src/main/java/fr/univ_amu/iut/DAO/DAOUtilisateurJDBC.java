@@ -1,6 +1,6 @@
 package fr.univ_amu.iut.DAO;
 
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.Main;
 import fr.univ_amu.iut.database.Utilisateur;
 
 import java.sql.*;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DAOUtilisateurJDBC implements DAOUtilisateur{
 
-    private final Connection connection = HelloApplication.getDBConnection();
+    private final Connection connection = Main.getDBConnection();
     private final PreparedStatement findAllStatement;
 
     /**

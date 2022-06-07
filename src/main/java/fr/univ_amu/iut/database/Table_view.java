@@ -2,7 +2,7 @@ package fr.univ_amu.iut.database;
 
 
 import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.Main;
 import fr.univ_amu.iut.ListAcademies;
 import javafx.application.Application;
 import javafx.beans.property.SimpleObjectProperty;
@@ -30,9 +30,9 @@ import java.sql.Statement;
 
 public class Table_view extends Application {
 
-    private Connection connection = HelloApplication.getDBConnection();
+    private Connection connection = Main.getDBConnection();
 
-    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
+    private DAOTypologieJDBC dao = Main.getDaoTypologieJDBC();
 
     private TableColumn<Typologie,Integer> numero;
     private TableColumn<Typologie,String> thematique_usage;

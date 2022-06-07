@@ -2,7 +2,8 @@
 package fr.univ_amu.iut.database;
 
 import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.DAO.DAOUtilisateurJDBC;
+import fr.univ_amu.iut.Main;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -17,6 +18,7 @@ import org.testfx.framework.junit5.Start;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +35,7 @@ public class DatabaseTest {
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(DatabaseTest.this.stage);
+                        new Main().start(DatabaseTest.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -49,12 +51,12 @@ public class DatabaseTest {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
-        HelloApplication.closeDBConnection();
+        Main.closeDBConnection();
     }
 
     @Test
     public void should_initialize_bdd_link() {
-        Connection connection = HelloApplication.getDBConnection();
+        Connection connection = Main.getDBConnection();
         assertNotEquals(connection,null);
 
     }
@@ -80,7 +82,19 @@ public class DatabaseTest {
 
         int expectedNumero = dao.setNumeroByCount();
         assertEquals(expectedNumero,actualNumero);
+    }
 
+    @Test
+    public void should_get_password_and_login_from_bdd() throws SQLException {
+        //Récupération de l'identidiant et du mot de passe dans la bdd
+        DAOUtilisateurJDBC dao = new DAOUtilisateurJDBC();
+        List<Utilisateur> utilisateurBDD = dao.findAll();
+        String idBDD = utilisateurBDD.get(0).getID();
+        String mdpBDD = utilisateurBDD.get(0).getMotDePasse();
+
+        //Comparaison
+        assertEquals(idBDD, "c3a7f1359ce25b31dc601b8fa0ea3a62ec90abbe89dc0628f8706821baed2759d56de24ac8072c3b12dd46bfa313d937c9e062cd450a3c55168324bd6f857233");
+        assertEquals(mdpBDD, "117a0202c08f4723df863b52bcb93237742914e5e2fe297d4059e44fd6aa506ba3bb9d00fa4fefd09952f23f6ac816399ea67e24577fb5a7997593944ff0ffc");
     }
 }
 

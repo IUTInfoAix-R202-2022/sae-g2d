@@ -20,7 +20,7 @@ public class AcademieController {
 
     private SceneController sceneController = new SceneController();
     private CarteController carteController = new CarteController();
-    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
+    private DAOTypologieJDBC dao = Main.getDaoTypologieJDBC();
     private AcademiePath academiePath;
 
     @FXML

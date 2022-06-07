@@ -71,7 +71,7 @@ public class LoginController {
      * @throws SQLException
      */
     public List<Utilisateur> initialiseDatabaseLogin() throws SQLException {
-        DAOUtilisateurJDBC daoJDBC = HelloApplication.getDaoUtilisateurJDBC();
+        DAOUtilisateurJDBC daoJDBC = Main.getDaoUtilisateurJDBC();
         List<Utilisateur> listUtilisateur;
         listUtilisateur = daoJDBC.findAll();    //Obtention du login
         return listUtilisateur;

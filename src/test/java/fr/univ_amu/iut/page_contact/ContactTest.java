@@ -1,7 +1,6 @@
 package fr.univ_amu.iut.page_contact;
 
-import fr.univ_amu.iut.HelloApplication;
-import fr.univ_amu.iut.TestParcoursUtilisateur1;
+import fr.univ_amu.iut.Main;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -32,7 +31,7 @@ public class ContactTest {
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(ContactTest.this.stage);
+                        new Main().start(ContactTest.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -48,7 +47,7 @@ public class ContactTest {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
-        HelloApplication.closeDBConnection();
+        Main.closeDBConnection();
     }
 
     @Test

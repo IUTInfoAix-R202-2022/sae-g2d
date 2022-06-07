@@ -1,6 +1,6 @@
 package fr.univ_amu.iut.page_carte;
 
-import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.Main;
 import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import javafx.application.Platform;
@@ -34,7 +34,7 @@ public class CarteTest {
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(CarteTest.this.stage);
+                        new Main().start(CarteTest.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -50,7 +50,7 @@ public class CarteTest {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
-        HelloApplication.closeDBConnection();
+        Main.closeDBConnection();
     }
 
     @Test

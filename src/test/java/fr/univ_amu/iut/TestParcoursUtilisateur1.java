@@ -32,7 +32,7 @@ public class TestParcoursUtilisateur1 {
             try {
                 FxToolkit.setupStage((sta) -> {
                     try {
-                        new HelloApplication().start(TestParcoursUtilisateur1.this.stage);
+                        new Main().start(TestParcoursUtilisateur1.this.stage);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -48,7 +48,7 @@ public class TestParcoursUtilisateur1 {
         FxToolkit.cleanupStages();
         robot.release(new KeyCode[]{});
         robot.release(new MouseButton[]{});
-        HelloApplication.closeDBConnection();
+        Main.closeDBConnection();
     }
 
 

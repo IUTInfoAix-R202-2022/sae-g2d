@@ -22,7 +22,7 @@ public class CarteController {
 
     private SceneController sceneController = new SceneController();
 
-    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
+    private DAOTypologieJDBC dao = Main.getDaoTypologieJDBC();
 
     private static AcademiePath academiePath;
 

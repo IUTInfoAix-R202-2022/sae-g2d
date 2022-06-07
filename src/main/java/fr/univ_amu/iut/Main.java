@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
 
     //Declaration et initialisation des valeurs de la taille et de la longueur de la stage
     private final double HEIGHT = Screen.getPrimary().getBounds().getHeight() / 1.2;
