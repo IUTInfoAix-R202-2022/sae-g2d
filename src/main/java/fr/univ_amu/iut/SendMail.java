@@ -2,11 +2,7 @@ package fr.univ_amu.iut;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import java.awt.Desktop;
 
@@ -14,10 +10,6 @@ import java.io.IOException;
 import java.net.URI;
 
 public class SendMail {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
     private static String data;
 
     @FXML
@@ -28,6 +20,11 @@ public class SendMail {
         sc.switchTo2(node,data);
 
     }
+
+    /**
+     * Renvoie vers un gestionnaire de messagerie
+     * @throws IOException
+     */
     @FXML
     public void sendMessage() throws IOException {
         Desktop desktop = Desktop.getDesktop();

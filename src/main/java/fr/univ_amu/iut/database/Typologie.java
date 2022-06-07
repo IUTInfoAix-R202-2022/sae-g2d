@@ -1,9 +1,5 @@
 package fr.univ_amu.iut.database;
 
-import fr.univ_amu.iut.model.Academie;
-import fr.univ_amu.iut.model.RegionAcademique;
-import jakarta.persistence.Transient;
-
 public class Typologie {
 
     private int numero;
@@ -30,10 +26,27 @@ public class Typologie {
 
     private String commentaires;
 
+    /**
+     * Constructeur par défaut de la clase Typologie
+     */
     public Typologie(){
-
     }
 
+    /**
+     * Contruteur de la classe Typologie
+     * @param numero
+     * @param thematique_usage
+     * @param discipline
+     * @param degre
+     * @param academie
+     * @param region_academique
+     * @param type_acteur
+     * @param identite_acteur
+     * @param url_ressource
+     * @param nom_ressource
+     * @param type_source
+     * @param commentaires
+     */
     public Typologie(int numero, String thematique_usage, String discipline, String degre, String academie, String region_academique, String type_acteur, String identite_acteur, String url_ressource, String nom_ressource, String type_source, String commentaires) {
         this.numero = numero;
         this.thematique_usage = thematique_usage;
@@ -49,32 +62,64 @@ public class Typologie {
         this.commentaires = commentaires;
     }
 
+    /**
+     * Obtenir numero de la typologie
+     * @return numero
+     */
     public int getNumero() {
         return numero;
     }
 
+    /**
+     * Modifier le numero de la typologie
+     * @param numero
+     */
     public void setNumero(int numero) {
         this.numero = numero;
     }
 
+    /**
+     * Obtenir la thematique usage de la typologie
+     * @return thematique_usage
+     */
     public String getThematique_usage() {
         return thematique_usage;
     }
 
+    /**
+     * Modifier la thematique usage de la typologie
+     * @param thematique_usage
+     */
     public void setThematique_usage(String thematique_usage) { this.thematique_usage = thematique_usage; }
 
+    /**
+     * Obtenir la discipline de la typologie
+     * @return discipline
+     */
     public String getDiscipline() {
         return discipline;
     }
 
+    /**
+     * Modifier la discipline de la typologie
+     * @param discipline
+     */
     public void setDiscipline(String discipline) {
         this.discipline = discipline;
     }
 
+    /**
+     * Obtenir le degre de la typologie
+     * @return degre
+     */
     public String getDegre() {
         return degre;
     }
 
+    /**
+     * Modifier le degre de la typologie
+     * @param degre
+     */
     public void setDegre(String degre) {
         this.degre = degre;
     }
@@ -141,6 +186,10 @@ public class Typologie {
         this.commentaires = commentaires;
     }
 
+    /**
+     * Retourne le tuple
+     * @return String
+     */
     @Override
     public String toString() {
         return "Typologie{" +

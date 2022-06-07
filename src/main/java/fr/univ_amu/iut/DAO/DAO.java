@@ -1,7 +1,5 @@
 package fr.univ_amu.iut.DAO;
 
-import jakarta.persistence.Entity;
-
 import java.sql.SQLException;
 
 public interface DAO<Entity, Key> {

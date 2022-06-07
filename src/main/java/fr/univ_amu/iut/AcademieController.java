@@ -19,14 +19,14 @@ import java.util.List;
 public class AcademieController {
 
     private SceneController sceneController = new SceneController();
-    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
-
     private CarteController carteController = new CarteController();
-
+    private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
     private AcademiePath academiePath;
 
     @FXML
     private GridPane gridPane;
+
+    private HBox hbox;
 
     @FXML
     private VBox vbox;
@@ -34,22 +34,22 @@ public class AcademieController {
     @FXML
     private Label academie_selectionne;
 
-    public AcademieController() throws SQLException {
-    }
-
+    /**
+     * Initialise une nouvelle scene, carte.fxml
+     * @throws IOException
+     */
     @FXML
     public void switchTo() throws IOException {
         sceneController.switchTo2(gridPane,"fxml/carte.fxml");
     }
 
+    /**
+     * Créer un nouvelle HBox, et initialise les différents labels
+     * @param typologie
+     * @return HBox
+     */
     private HBox setNewHbox(Typologie typologie){
-        HBox hbox = new HBox(8);
-        hbox.setId("hbox_academie");
-        hbox.setAlignment(Pos.CENTER_LEFT);
-        hbox.setMinWidth(Double.NEGATIVE_INFINITY);
-        hbox.setPrefWidth(100);
-        hbox.getStylesheets().add(getClass().getResource("assets/academie.css").toExternalForm());
-
+        setHboxCarac();
 
         Label label = new Label(typologie.getThematique_usage());
         label.getStyleClass().addAll("labels_donnees", "labels_donnees_usage");
@@ -95,8 +95,22 @@ public class AcademieController {
         return hbox;
     }
 
+    /**
+     * Initialise Hbox avec ses caractéristiques
+     */
+    private void setHboxCarac(){
+        hbox = new HBox(8);
+        hbox.setId("hbox_academie");
+        hbox.setAlignment(Pos.CENTER_LEFT);
+        hbox.setMinWidth(Double.NEGATIVE_INFINITY);
+        hbox.setPrefWidth(100);
+        hbox.getStylesheets().add(getClass().getResource("assets/academie.css").toExternalForm());
+    }
 
-
+    /**
+     * Initialisation de la page academie
+     * @throws SQLException
+     */
     @FXML
     public void initialize() throws SQLException {
         academiePath = carteController.getAcademiePath();
@@ -106,12 +120,5 @@ public class AcademieController {
             vbox.getChildren().add(setNewHbox(t));
         }
     }
-
-
-
-
-
-
-
 }
 

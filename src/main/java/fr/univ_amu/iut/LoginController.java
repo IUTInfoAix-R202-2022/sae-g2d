@@ -17,17 +17,28 @@ import java.util.List;
 
 public class LoginController {
 
+    private SceneController sc = new SceneController();
     @FXML
     private TextField identifiant;
     @FXML
     private TextField motDePasse;
 
+    /**
+     * Appel la méthode switchTo pour changer de scène.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void callSwitchTo(ActionEvent event) throws IOException {
-        SceneController s = new SceneController();
-        s.switchTo(event);
+        sc.switchTo(event);
     }
 
+    /**
+     * Vérification de la véracité du login et du mot de passe
+     * @param event
+     * @throws SQLException
+     * @throws IOException
+     */
     @FXML
     public void verificationSwitchTo(ActionEvent event) throws SQLException, IOException {
         //Récupération du login de la BDD
@@ -54,6 +65,11 @@ public class LoginController {
 
     }
 
+    /**
+     * Initialisation des login de la base de données
+     * @return listUtilisateur
+     * @throws SQLException
+     */
     public List<Utilisateur> initialiseDatabaseLogin() throws SQLException {
         DAOUtilisateurJDBC daoJDBC = HelloApplication.getDaoUtilisateurJDBC();
         List<Utilisateur> listUtilisateur;
@@ -61,6 +77,10 @@ public class LoginController {
         return listUtilisateur;
     }
 
+    /**
+     * Initialisation des login utilisateurs
+     * @return login
+     */
     public List<String> initialiseUtilisateurLogin() {
         List<String> login = new ArrayList<>();
         login.add(identifiant.getText());
@@ -68,6 +88,12 @@ public class LoginController {
         return login;
     }
 
+    /**
+     * Chiffrement du login utilisateur
+     * @param input
+     * @return hashtext
+     * @throws RuntimeException
+     */
     public static String encryptLogin(String input)
     {
         try {
@@ -91,7 +117,6 @@ public class LoginController {
             }
             return hashtext;
         }
-
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }

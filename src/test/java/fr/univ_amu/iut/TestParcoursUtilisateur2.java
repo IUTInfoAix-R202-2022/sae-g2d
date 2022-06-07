@@ -4,7 +4,6 @@ import fr.univ_amu.iut.model.Academie;
 import fr.univ_amu.iut.view.map.AcademiePath;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;

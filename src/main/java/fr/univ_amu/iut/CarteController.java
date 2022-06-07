@@ -10,22 +10,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class CarteController {
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     private SceneController sceneController = new SceneController();
 
@@ -45,6 +38,11 @@ public class CarteController {
 
     France france;
 
+    /**
+     * Initialise une nouvelle scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void switchTo(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource() ;
@@ -54,22 +52,73 @@ public class CarteController {
         sceneController.switchTo2(node, data);
     }
 
+    /**
+     * Initialise une nouvelle scene, configuration (tableview)
+     * @throws SQLException
+     */
     @FXML
-    public void switchToConfigurer(ActionEvent event) throws SQLException {
+    public void switchToConfigurer() throws SQLException {
         thematiquesUsageGroupByAcademie = null;
         sceneController.switchToConfigurer();
     }
 
-
+    /**
+     * Initialise tous les boutons du menu situé sur la gauche.
+     * @throws SQLException
+     */
     public void initializeButton() throws SQLException {
         typologiesButton = dao.findThematiquesUsage();
     }
 
-
+    /**
+     * Initialisation de la page carte, avec une carte de france, menu à gauche, etc
+     */
     @FXML
-    public void initialize() throws SQLException {
+    public void initialize() {
         String css = this.getClass().getResource("assets/style.css").toExternalForm();
 
+        initialiserCarteFrance();
+
+        carte.getChildren().addAll(france);
+        carte.setBackground(new Background(new BackgroundFill(france.getBackgroundColor(), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        // On récupère les anciennes academies sélectionnées
+        if (thematiquesUsageGroupByAcademie != null) initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
+
+        initialiserBoutons(css);
+    }
+
+    /**
+     * Initialiser le menu de gauche, avec les boutons contenant le nom des thématiques
+     * @param stylesheet
+     */
+    private void initialiserBoutons(String stylesheet){
+        for (Typologie t : typologiesButton) {
+            if (t.getThematique_usage() != null && !t.getThematique_usage().isEmpty())
+                vbox.getChildren().add(new Button(t.getThematique_usage()));
+        }
+
+        for (Node e : vbox.getChildren()) {
+            Button button = (Button) e;
+            button.setOnAction(event -> {
+                try {
+                    thematiquesUsageGroupByAcademie = dao.findByThematiquesUsageGroupByAcademie(button.getText());
+                    initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            button.setId("button");
+            button.getStylesheets().add(stylesheet);
+            button.setPrefWidth(1000.0);
+            button.setPrefHeight(1000.0);
+        }
+    }
+
+    /**
+     * Initialise la carte de france
+     */
+    private void initialiserCarteFrance(){
         france = FranceBuilder.create()
                 .backgroundColor(Color.web("#FFFFFF"))
                 .fillColor(Color.web("#b6b6ff"))
@@ -87,45 +136,12 @@ public class CarteController {
                 })
                 .selectionEnabled(true)
                 .build();
-
-        carte.getChildren().addAll(france);
-        carte.setBackground(new Background(new BackgroundFill(france.getBackgroundColor(), CornerRadii.EMPTY, Insets.EMPTY)));
-
-        /**
-         * On récupère les anciennes academies sélectionnées
-         */
-        if (thematiquesUsageGroupByAcademie != null) {
-            initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
-        }
-
-        for (Typologie t : typologiesButton) {
-            if (t.getThematique_usage() != null && !t.getThematique_usage().isEmpty())
-            vbox.getChildren().add(new Button(t.getThematique_usage()));
-        }
-
-        int i = 0;
-        for (Node e : vbox.getChildren()) {
-            Button button = (Button) e;
-            button.setOnAction(event -> {
-                try {
-                    thematiquesUsageGroupByAcademie = dao.findByThematiquesUsageGroupByAcademie(button.getText());
-                    initializeColorsOfCarte(thematiquesUsageGroupByAcademie);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            button.setId("button");
-            button.getStylesheets().add(css);
-            button.setPrefWidth(1000.0);
-            button.setPrefHeight(1000.0);
-        }
-
     }
 
-
     /**
+     * Initialise les couleurs de la carte (chaque académie) lors du clique sur une thématique
      * @param list
-     * @
+     * @return
      */
     public AcademiePath initializeColorsOfCarte(List<Typologie> list) {
         france.setFillColor(Color.web("#b6b6ff"));
@@ -140,6 +156,10 @@ public class CarteController {
         return academiePath;
     }
 
+    /**
+     * Renvoie academiePath pour la carte de france
+     * @return
+     */
     public static AcademiePath getAcademiePath() {
         return academiePath;
     }

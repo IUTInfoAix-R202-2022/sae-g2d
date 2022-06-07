@@ -36,8 +36,8 @@ public class DAOTypologieJDBC implements DAOTypologie {
         updateStatement = connection.prepareStatement("UPDATE typologie SET THEMATIQUE_USAGE = ?" +
                 ", DISCIPLINE = ?, DEGRE = ?, ACADEMIE = ?, REGION_ACADEMIQUE = ?, TYPE_ACTEUR = ?, IDENTITE_ACTEUR = ?, URL_RESSOURCE = ?, NOM_RESSOURCE = ?, TYPE_SOURCE = ?, COMMENTAIRES = ? WHERE NUMERO = ?");
 
-        // Requête pour trouver les tuples par rapport à une académie
-        findByAcademie = connection.prepareStatement("SELECT * FROM typologie WHERE ACADEMIE = ?");
+        // Requête pour trouver les tuples par rapport à une académie et les trier par thematique usage
+        findByAcademie = connection.prepareStatement("SELECT * FROM typologie WHERE ACADEMIE = ? ORDER BY THEMATIQUE_USAGE");
 
         // Requête pour trouver les tuples par rapport à une thématique usage, et on regroupe ses tuples par rapport à leur académie
         findByThematiquesUsageGroupByAcademie = connection.prepareStatement("SELECT ACADEMIE FROM typologie WHERE THEMATIQUE_USAGE = ?");

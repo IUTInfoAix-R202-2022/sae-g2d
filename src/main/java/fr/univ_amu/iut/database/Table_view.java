@@ -27,24 +27,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Table_view extends Application {
 
     private Connection connection = HelloApplication.getDBConnection();
 
     private DAOTypologieJDBC dao = HelloApplication.getDaoTypologieJDBC();
-
-    private static TableView<Typologie> table;
-
-    private TextField filterField;
-
-    private Label filterLabel;
-
-
-    private Button buttonAdd;
-    private Button buttonDelete;
 
     private TableColumn<Typologie,Integer> numero;
     private TableColumn<Typologie,String> thematique_usage;
@@ -59,61 +47,114 @@ public class Table_view extends Application {
     private TableColumn<Typologie,String> type_source;
     private TableColumn<Typologie,String> commentaires;
 
-    private ObservableList<Typologie> data;
+    private ObservableList<Typologie> donnees;
 
-    public Table_view() throws SQLException {
-    }
+    private GridPane root;
+    private TextField filtreField;
+    private Label filtreLabel;
+    private Button boutonAjouter;
+    private Button boutonSupprimer;
+    private ColumnConstraints colonne1;
+    private ColumnConstraints colonne2;
+    private static TableView<Typologie> table;
+    private StackPane stackPane;
+    private HBox bas;
 
-    // private static TableColumn
+    /**
+     * Lancement de la page
+     * @param stage
+     * @throws SQLException
+     */
     @Override
     public void start(Stage stage) throws SQLException {
+        initialiserRoot();
 
-        GridPane root = new GridPane();
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(30);
-        column1.setHgrow(Priority.SOMETIMES);
+        stage.setTitle("TableView");
+        Scene scene = new Scene(root, 450, 300);
+        stage.setScene(scene);
+        stage.show();
+    }
 
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(70);
-        column1.setHgrow(Priority.SOMETIMES);
+    /**
+     * Initialisation du root
+     * @throws SQLException
+     */
+    private void initialiserRoot() throws SQLException {
+        root = new GridPane();
+        initialiserColonnesRoot();
+        initialiserTextFieldAndLabelSearchBar();
+        initialiserStackPane();
+        initialiserContent();
+    }
 
-        root.getColumnConstraints().addAll(column1, column2);
+    /**
+     * Initialisation du stackpane
+     * @throws SQLException
+     */
+    private void initialiserStackPane() throws SQLException {
+        stackPane = new StackPane();
+        stackPane.setPadding(new Insets(5));
 
+        initialiserTableView();
+        stackPane.getChildren().add(table);
+        root.add(stackPane, 0, 1, 2, 1);
+    }
+
+    /**
+     * Initialisation de la tableview
+     * @throws SQLException
+     */
+    private void initialiserTableView() throws SQLException {
         table = new TableView<>();
         table.setEditable(true);
         table.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
         );
 
+        donnees = ajouterTypologies(); // On entre les données
+        table.setItems(donnees);
+
         initialiserColonnes();
-        table.getColumns().addAll(numero,thematique_usage, discipline, degre, academie, region_academique, type_acteur, identite_acteur, url_ressource, nom_ressource, type_source, commentaires);
+        initialiserBarreDeRecherche();
+
+    }
+
+    /**
+     * Initialisation des colonnes du root
+     */
+    private void initialiserColonnesRoot() {
+        colonne1 = new ColumnConstraints();
+        colonne1.setPercentWidth(30);
+        colonne1.setHgrow(Priority.SOMETIMES);
+        colonne1.setHalignment(HPos.CENTER);
 
 
-        data = ajouterTypologies(); // On entre les données
-        table.setItems(data);
+        colonne2 = new ColumnConstraints();
+        colonne2.setPercentWidth(70);
+        colonne2.setHgrow(Priority.SOMETIMES);
 
-        StackPane tableview = new StackPane();
-        tableview.setPadding(new Insets(5));
-        tableview.getChildren().add(table);
+        root.getColumnConstraints().addAll(colonne1, colonne2);
+    }
 
-        filterField = new TextField();
-        filterLabel = new Label("Search");
-        column1.setHalignment(HPos.CENTER);
-        filterLabel.setPadding(new Insets(5));
+    /**
+     * Initialisation du bas de la page (Bouton 'Ajouter' et 'Supprimer')
+     */
+    private void initialiserContent() {
+        bas = new HBox();
+        bas.setAlignment(Pos.CENTER);
+        bas.setSpacing(5);
+        initialiserBoutons();
+        root.add(bas,0,5,2,1);
+    }
 
-        // Search
-        initialiserSearchBar();
+    /**
+     * Initialisation des boutons 'Ajouter' et 'Supprimer'
+     */
+    private void initialiserBoutons() {
+        boutonAjouter = new Button("Ajouter");
+        boutonSupprimer = new Button("Supprimer");
 
-        root.add(filterField, 1, 0);
-        root.add(filterLabel,0,0);
-        root.add(tableview, 0, 1, 2, 1);
-
-        HBox content = new HBox();
-
-        buttonAdd = new Button("Ajouter");
-        buttonDelete = new Button("Supprimer");
-
-        buttonAdd.setOnAction(event -> {
+        boutonAjouter.setOnAction(event -> {
             System.out.println("ajouté");
             try {
                 ajouterLigne();
@@ -122,7 +163,7 @@ public class Table_view extends Application {
             }
         });
 
-        buttonDelete.setOnAction(event -> {
+        boutonSupprimer.setOnAction(event -> {
             try {
                 supprimerLigne();
             } catch (SQLException e) {
@@ -130,38 +171,45 @@ public class Table_view extends Application {
             }
         });
 
-        content.getChildren().addAll(buttonAdd,buttonDelete);
-
-        root.add(content,0,5,2,1);
-        content.setAlignment(Pos.CENTER);
-        content.setSpacing(5);
-
-        stage.setTitle("TableView");
-        Scene scene = new Scene(root, 450, 300);
-        stage.setScene(scene);
-        stage.show();
+        bas.getChildren().addAll(boutonAjouter,boutonSupprimer);
     }
 
-
+    /**
+     * Ajoute une ligne dans la tableview et dans la base de données
+     * @throws SQLException
+     */
     private void ajouterLigne() throws SQLException {
         Typologie typologie = new Typologie();
         typologie.setNumero(table.getItems().size() + 1);
         table.scrollTo(table.getItems().size());
-        data.add(typologie);
+        donnees.add(typologie);
         dao.insert(typologie);
     }
 
+    /**
+     * Supprime la ligne sélectionnée de la tableview et de la base de données
+     * @throws SQLException
+     */
     private void supprimerLigne() throws SQLException {
         Typologie typologie = table.getSelectionModel().getSelectedItem();
-        dao.delete(typologie);
-
-        data.remove(typologie);
+        dao.delete(typologie);  //Suppresion dans la base de données
+        donnees.remove(typologie); //Suppresion dans la tableview
     }
+
+    /**
+     * Initialise les colonnes de la tableview : numéro
+     * @return TableColumn
+     */
     private TableColumn<Typologie,Integer> initialiserColNumero(){
         TableColumn<Typologie, Integer> numero = new TableColumn<>("Numéro");
         numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
         return numero;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : thematique_usage
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColThematique_usage(){
         TableColumn<Typologie, String> thematique_usage = new TableColumn<>("Thématique_usage");
         thematique_usage.setCellValueFactory(new PropertyValueFactory<>("thematique_usage"));
@@ -180,6 +228,10 @@ public class Table_view extends Application {
         });
         return thematique_usage;
     }
+    /**
+     * Initialise les colonnes de la tableview : discipline
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColDiscipline(){
         TableColumn<Typologie, String> discipline = new TableColumn<>("Discipline");
         discipline.setCellValueFactory(new PropertyValueFactory<>("discipline"));
@@ -197,6 +249,11 @@ public class Table_view extends Application {
         });
         return discipline;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : degre
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColDegre(){
         TableColumn<Typologie, String> degre = new TableColumn<>("Degré");
         degre.setCellValueFactory(new PropertyValueFactory<>("degre"));
@@ -214,6 +271,11 @@ public class Table_view extends Application {
         });
         return degre;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : academie
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColAcademie(){
         ObservableList<String> academiesList = FXCollections.observableArrayList(ListAcademies.getAcademiesList());
 
@@ -240,6 +302,11 @@ public class Table_view extends Application {
         });
         return academie;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : region_academique
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColRegion_academique(){
         TableColumn<Typologie, String> region_academique = new TableColumn<>("Region_Acédemique");
         region_academique.setCellValueFactory(new PropertyValueFactory<>("region_academique"));
@@ -257,6 +324,11 @@ public class Table_view extends Application {
         });
         return region_academique;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : type_acteur
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColType_acteur(){
         TableColumn<Typologie, String> type_acteur = new TableColumn<>("Type_Acteur");
         type_acteur.setCellValueFactory(new PropertyValueFactory<>("type_acteur"));
@@ -274,6 +346,11 @@ public class Table_view extends Application {
         });
         return type_acteur;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : identite_acteur
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColIdentite_acteur(){
         TableColumn<Typologie, String> identite_acteur = new TableColumn<>("Identité_Acteur");
         identite_acteur.setCellValueFactory(new PropertyValueFactory<>("identite_acteur"));
@@ -292,6 +369,11 @@ public class Table_view extends Application {
         });
         return identite_acteur;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : url_ressource
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColUrl_ressource(){
         TableColumn<Typologie, String> url_ressource = new TableColumn<>("Url_ressource");
         url_ressource.setCellValueFactory(new PropertyValueFactory<>("url_ressource"));
@@ -309,6 +391,11 @@ public class Table_view extends Application {
         });
         return url_ressource;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : nom_ressource
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColNom_ressource(){
         TableColumn<Typologie, String> nom_ressource = new TableColumn<>("Nom_ressource");
         nom_ressource.setCellValueFactory(new PropertyValueFactory<>("nom_ressource"));
@@ -326,6 +413,11 @@ public class Table_view extends Application {
         });
         return nom_ressource;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : type_source
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColType_source(){
         TableColumn<Typologie, String> type_source = new TableColumn<>("Type_source");
         type_source.setCellValueFactory(new PropertyValueFactory<>("type_source"));
@@ -343,6 +435,11 @@ public class Table_view extends Application {
         });
         return type_source;
     }
+
+    /**
+     * Initialise les colonnes de la tableview : commentaires
+     * @return TableColumn
+     */
     private TableColumn<Typologie,String> initialiserColCommentaires(){
         TableColumn<Typologie, String> commentaires = new TableColumn<>("Comentaires");
         commentaires.setCellValueFactory(new PropertyValueFactory<>("commentaires"));
@@ -361,7 +458,10 @@ public class Table_view extends Application {
         return commentaires;
     }
 
-    private void initialiserColonnes() throws SQLException {
+    /**
+     * Initialisation des colonnes de la tableview
+     */
+    private void initialiserColonnes() {
         numero = initialiserColNumero();
         thematique_usage = initialiserColThematique_usage();
         discipline = initialiserColDiscipline();
@@ -374,9 +474,14 @@ public class Table_view extends Application {
         nom_ressource = initialiserColNom_ressource();
         type_source = initialiserColType_source();
         commentaires = initialiserColCommentaires();
+        table.getColumns().addAll(numero,thematique_usage, discipline, degre, academie, region_academique, type_acteur, identite_acteur, url_ressource, nom_ressource, type_source, commentaires);
     }
 
-
+    /**
+     * Ajouter tous les tuples de la base de données dans la tableview
+     * @return ObservableList<Typologie>
+     * @throws SQLException
+     */
     private ObservableList<Typologie> ajouterTypologies() throws SQLException {
 
         Statement statement = connection.createStatement();
@@ -407,12 +512,28 @@ public class Table_view extends Application {
 
     }
 
-    private void initialiserSearchBar() {
+    /**
+     * Initialisation de la barre de recherche
+     */
+    private void initialiserTextFieldAndLabelSearchBar() {
+        filtreField = new TextField();
+        filtreLabel = new Label("Search");
+        filtreLabel.setPadding(new Insets(5));
+
+        root.add(filtreField, 1, 0);
+        root.add(filtreLabel,0,0);
+    }
+
+    /**
+     * Fonctionnement de la barre de recherche
+     */
+    private void initialiserBarreDeRecherche() {
+
         // ObservableList => FilteredList
-        FilteredList<Typologie> filteredData = new FilteredList<>(data, p -> true);
+        FilteredList<Typologie> filteredData = new FilteredList<>(donnees, p -> true);
 
         // Listener
-        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+        filtreField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(filterWords -> {
                 // si le texte est vide, on laisse comme c'était
                 if (newValue == null || newValue.isEmpty()) {

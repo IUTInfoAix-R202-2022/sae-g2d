@@ -20,8 +20,17 @@ public class SceneController {
 
     private static String data;
 
+    /**
+     * Retourne la data (nom du fichier fxml)
+     * @return
+     */
     public static String getData() { return data; }
 
+    /**
+     * Méthode permettant de changer de scène avec ActionEvent. data contient le nom du fichier source fxml.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void switchTo(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource() ;
@@ -38,6 +47,12 @@ public class SceneController {
         System.out.println();
     }
 
+    /**
+     * Méthode permettant de changer de scène sans ActionEvent.
+     * @param node : contient le noeud courant
+     * @param filename : nom du fichier source
+     * @throws IOException
+     */
     public void switchTo2(Node node, String filename) throws IOException {
         root = FXMLLoader.load(getClass().getResource(filename));
         stage = (Stage) node.getScene().getWindow();
@@ -49,11 +64,13 @@ public class SceneController {
         stage.show();
     }
 
+    /**
+     * Méthode permettant de changer de scène et d'aller vers la configuration de la BDD
+     * @throws SQLException
+     */
     public void switchToConfigurer() throws SQLException {
         Table_view tb = new Table_view();
         Stage stage = new Stage();
         tb.start(stage);
-
-
     }
 }

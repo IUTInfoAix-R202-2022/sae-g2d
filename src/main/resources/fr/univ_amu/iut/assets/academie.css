@@ -30,6 +30,7 @@
     -fx-text-alignment: CENTER;
     -fx-wrap-text: true;
     -fx-label-padding: 3.0 3.0 3.0 3.0;
+    -fx-max-height: Infinity;
 }
 
 .labels_donnees_usage {

@@ -4,13 +4,17 @@ import fr.univ_amu.iut.model.Academie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Servira à avoir un menu déroulant contenant l'ensemble des académies disponibles dans la tableview
+ */
 public class ListAcademies {
 
     private static ObservableList<String> academiesList = FXCollections.observableArrayList();
 
+    /**
+     * Obtenir l'ensemble des noms des academies
+     * @return academiesList
+     */
     public static ObservableList<String> getAcademiesList(){
         academiesList.add(Academie.Corse.getNom());
         academiesList.add(Academie.Versailles.getNom());
@@ -44,5 +48,4 @@ public class ListAcademies {
         academiesList.add(Academie.Toulouse.getNom());
         return academiesList;
     }
-
 }
