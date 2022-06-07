@@ -37,6 +37,20 @@ Application fonctionnelle sur :
 
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
+## Mode administrateur
+
+Nous avons aussi un mode administrateur sur notre application, pour modifier les données présentes dans la base de données, voici les chaines de connexions :
+
+IDENTIFIANT : 
+```
+DicoPedago-Admin
+```
+
+MOT DE PASSE : 
+```
+Joindre Tenir Crocodile Droit Veuve Immersion Vote Amerique Fils Authentique DicoPedago-Admin
+```
+
 ## Auteurs 🌟
 Il y a 7 collaborateurs pour ce projet.
 - Autant Félix
