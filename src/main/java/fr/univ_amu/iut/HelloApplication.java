@@ -1,7 +1,7 @@
 package fr.univ_amu.iut;
 
-import fr.univ_amu.iut.database.DAOTypologieJDBC;
-import fr.univ_amu.iut.database.DAOUtilisateurJDBC;
+import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
+import fr.univ_amu.iut.DAO.DAOUtilisateurJDBC;
 import fr.univ_amu.iut.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

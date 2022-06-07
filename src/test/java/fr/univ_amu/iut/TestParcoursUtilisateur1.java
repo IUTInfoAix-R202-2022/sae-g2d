@@ -1,5 +1,7 @@
 package fr.univ_amu.iut;
 
+import fr.univ_amu.iut.model.Academie;
+import fr.univ_amu.iut.view.map.AcademiePath;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -65,19 +67,15 @@ public class TestParcoursUtilisateur1 {
     @Test
     void should_open_the_description_of_the_usage(FxRobot robot){
         robot.clickOn("#boutonAccederAccueil");
-        robot.moveBy(-600,0);
-        robot.clickOn(MouseButton.PRIMARY);
-        robot.moveBy(650,-400);
-        robot.clickOn(MouseButton.PRIMARY);
+        AcademiePath.get(Academie.Poitiers).setId("poitier");
+        robot.clickOn("#poitier");
         verifyThat("#academie_selectionne", isVisible());
     }
     @Test
     void should_close_the_description_of_the_usage_and_return_to_accueil(FxRobot robot){
         robot.clickOn("#boutonAccederAccueil");
-        robot.moveBy(-600,0);
-        robot.clickOn(MouseButton.PRIMARY);
-        robot.moveBy(650,-400);
-        robot.clickOn(MouseButton.PRIMARY);
+        AcademiePath.get(Academie.Poitiers).setId("poitier");
+        robot.clickOn("#poitier");
         robot.clickOn("#fermer");
         robot.clickOn("#fermer");
         verifyThat("#labelBienvenue", isVisible());

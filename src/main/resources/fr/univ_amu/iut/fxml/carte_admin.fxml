@@ -58,7 +58,7 @@
                                <Image requestedHeight="25" requestedWidth="25" url="@../assets/img/parametres.png" />
                            </image>
                        </ImageView>
-                       <Label text="Configurer" id="labelButtonConfigureCarteAdmin"/>
+                       <Label id="labelButtonConfigureCarteAdmin" text="Configurer"/>
                    </children>
                </HBox>
            </graphic>

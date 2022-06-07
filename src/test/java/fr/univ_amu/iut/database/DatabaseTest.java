@@ -1,6 +1,7 @@
 
 package fr.univ_amu.iut.database;
 
+import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
 import fr.univ_amu.iut.HelloApplication;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;

@@ -1,7 +1,7 @@
 package fr.univ_amu.iut.page_carte;
 
 import fr.univ_amu.iut.HelloApplication;
-import fr.univ_amu.iut.database.DAOTypologieJDBC;
+import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
@@ -22,7 +22,6 @@ import java.util.concurrent.TimeoutException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
-import static org.testfx.util.NodeQueryUtils.hasText;
 
 @ExtendWith(ApplicationExtension.class)
 public class CarteTest {

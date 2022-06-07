@@ -19,11 +19,11 @@ public class Database {
     /**
      * Retourne la connection direct de la base de données ElephantSQL
      *
-     * @return
+     * @return Connection
      */
     public static Connection getDBConnection(){
         // Connexion a la base
-        System.out.println("C onnexion a " + CONNECT_URL);
+        System.out.println("Connexion a " + CONNECT_URL);
 
         try {
             connection = DriverManager.getConnection(CONNECT_URL,LOGIN,PASSWORD);
@@ -38,6 +38,10 @@ public class Database {
 
     }
 
+    /**
+     * Permet de fermer la connexion avec la base de données
+     * @return boolean
+     */
     public static boolean closeDBConnection() {
         try {
             connection.close();

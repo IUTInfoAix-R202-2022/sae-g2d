@@ -1,5 +1,7 @@
 package fr.univ_amu.iut;
 
+import fr.univ_amu.iut.model.Academie;
+import fr.univ_amu.iut.view.map.AcademiePath;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -73,9 +75,9 @@ public class TestParcoursUtilisateur2 {
     @Test
     void should_open_the_usage_of_academie(FxRobot robot){
         robot.clickOn("#labelBoutonAccederAccueil");
-        robot.moveBy(0,-200);
-        robot.clickOn(MouseButton.PRIMARY);
-        verifyThat("#academie_selectionne", isVisible());
+        AcademiePath.get(Academie.Creteil).setId("cretiel");
+        robot.clickOn("#cretiel");
+        verifyThat("#academie_selectionne", hasText(Academie.Creteil.getNom()));
     }
     @Test
     void should_realize_all_actions(FxRobot robot){
@@ -85,16 +87,11 @@ public class TestParcoursUtilisateur2 {
         robot.clickOn("#buttonCancel");
         robot.clickOn("#labelBoutonAccederAccueil");
         assertEquals(SceneController.getData(), "fxml/carte.fxml");
-        robot.moveBy(0,-200);
-        robot.clickOn(MouseButton.PRIMARY);
-        verifyThat("#academie_selectionne", isVisible());
+        AcademiePath.get(Academie.Creteil).setId("creteil");
+        robot.clickOn("#creteil");
+        verifyThat("#academie_selectionne", hasText(Academie.Creteil.getNom()));
         robot.clickOn("#fermer");
         robot.clickOn("#fermer");
         verifyThat("#labelBienvenue", isVisible());
     }
-
-
-
-
-
 }

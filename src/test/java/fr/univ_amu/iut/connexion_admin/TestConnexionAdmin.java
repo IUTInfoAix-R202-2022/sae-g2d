@@ -2,7 +2,7 @@ package fr.univ_amu.iut.connexion_admin;
 
 import fr.univ_amu.iut.HelloApplication;
 import fr.univ_amu.iut.SceneController;
-import fr.univ_amu.iut.database.DAOUtilisateurJDBC;
+import fr.univ_amu.iut.DAO.DAOUtilisateurJDBC;
 import fr.univ_amu.iut.database.Utilisateur;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;

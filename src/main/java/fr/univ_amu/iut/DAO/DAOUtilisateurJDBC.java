@@ -1,7 +1,7 @@
-package fr.univ_amu.iut.database;
+package fr.univ_amu.iut.DAO;
 
 import fr.univ_amu.iut.HelloApplication;
-import javafx.scene.chart.PieChart;
+import fr.univ_amu.iut.database.Utilisateur;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,11 +13,12 @@ public class DAOUtilisateurJDBC implements DAOUtilisateur{
     private final PreparedStatement findAllStatement;
 
     /**
-     * Constructeur
+     * Constructeur | Initialise tout les prepareStatement
      *
      * @throws SQLException
      */
     public DAOUtilisateurJDBC() throws SQLException {
+        //Requête
         findAllStatement = connection.prepareStatement("SELECT * FROM utilisateur");
     }
 
@@ -40,18 +41,33 @@ public class DAOUtilisateurJDBC implements DAOUtilisateur{
         return utilisateurs;
     }
 
+    /**
+     * Permet de créer une entrée dans la base de données par rapport à un objet
+     * @return Utilisateur
+     * @param obj Utilisateur à insérer dans la base
+     */
     @Override
-    public Utilisateur insert(Utilisateur obj) throws SQLException {
+    public Utilisateur insert(Utilisateur obj) {
         return null;
     }
 
+    /**
+     * Permet la suppression d'un tuple de la base
+     * @return boolean
+     * @param obj Utilisateur à supprimer dans la base
+     */
     @Override
-    public boolean delete(Utilisateur obj) throws SQLException {
+    public boolean delete(Utilisateur obj) {
         return false;
     }
 
+    /**
+     * Permet de mettre à jour les données d'un tuple dans la base à partir d'un objet passé en paramètre
+     * @return boolean
+     * @param obj Utilisateur à mettre à jour dans la base
+     */
     @Override
-    public boolean update(Utilisateur obj) throws SQLException {
+    public boolean update(Utilisateur obj) {
         return false;
     }
 }

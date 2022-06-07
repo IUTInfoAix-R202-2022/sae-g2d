@@ -1,8 +1,7 @@
 package fr.univ_amu.iut.page_carte_admin;
 
 import fr.univ_amu.iut.HelloApplication;
-import fr.univ_amu.iut.SceneController;
-import fr.univ_amu.iut.database.DAOTypologieJDBC;
+import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
@@ -23,7 +22,7 @@ import java.util.concurrent.TimeoutException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.api.FxAssert.verifyThat;
-import static org.testfx.util.NodeQueryUtils.hasText;
+import static org.testfx.util.NodeQueryUtils.isVisible;
 
 @ExtendWith(ApplicationExtension.class)
 public class CarteAdminTest {
@@ -101,11 +100,16 @@ public class CarteAdminTest {
         assertEquals(ActualfindByThematiquesUsageGroupByAcademie.size(),0);
     }
 
-     /*
+
     @Test
-    public void should_have_button_configurer() {
-        robot.clickOn
-        verifyThat("#labelButtonConfigureCarteAdmin", hasText("Configurer"));}
-     */
+    public void should_have_button_configurer(FxRobot robot) {
+        robot.clickOn("#boutonSeConnecterAccueil");
+        robot.write("DicoPedago-Admin");
+        robot.clickOn("#motDePasse");
+        robot.write("Joindre Tenir Crocodile Droit Veuve Immersion Vote Amerique Fils Authentique");
+        robot.clickOn("#buttonConnect");
+        verifyThat("#button", isVisible());
+    }
+
 
 }

@@ -1,6 +1,7 @@
-package fr.univ_amu.iut.database;
+package fr.univ_amu.iut.DAO;
 
 import fr.univ_amu.iut.HelloApplication;
+import fr.univ_amu.iut.database.Typologie;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 public class DAOTypologieJDBC implements DAOTypologie {
 
     public static int numero;
-    private final PreparedStatement createStatement;
+    private final PreparedStatement insertStatement;
     private final PreparedStatement deleteStatament;
     private final PreparedStatement updateStatement;
     private final PreparedStatement findByAcademie;
@@ -19,24 +20,35 @@ public class DAOTypologieJDBC implements DAOTypologie {
     private final Connection connection = HelloApplication.getDBConnection();   //On récupère la connection
 
     /**
-     * Constructeur
+     * Constructeur | Initialise tout les prepareStatement
      *
      * @throws SQLException
      */
     public DAOTypologieJDBC() throws SQLException {
-        createStatement = connection.prepareStatement("INSERT INTO typologie (NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);", Statement.RETURN_GENERATED_KEYS);      //On prépare la requête pour insérer un tuple
+        // Requête pour insérer un tuple
+        insertStatement = connection.prepareStatement("INSERT INTO typologie (NUMERO, THEMATIQUE_USAGE, DISCIPLINE, DEGRE, ACADEMIE, REGION_ACADEMIQUE, TYPE_ACTEUR, IDENTITE_ACTEUR, URL_RESSOURCE, NOM_RESSOURCE, TYPE_SOURCE, COMMENTAIRES) " +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+
+        // Requête pour supprimer un tuple
         deleteStatament = connection.prepareStatement("DELETE FROM typologie WHERE NUMERO = ?");
+
+        // Requête pour modifier un tuple
         updateStatement = connection.prepareStatement("UPDATE typologie SET THEMATIQUE_USAGE = ?" +
                 ", DISCIPLINE = ?, DEGRE = ?, ACADEMIE = ?, REGION_ACADEMIQUE = ?, TYPE_ACTEUR = ?, IDENTITE_ACTEUR = ?, URL_RESSOURCE = ?, NOM_RESSOURCE = ?, TYPE_SOURCE = ?, COMMENTAIRES = ? WHERE NUMERO = ?");
+
+        // Requête pour trouver les tuples par rapport à une académie
         findByAcademie = connection.prepareStatement("SELECT * FROM typologie WHERE ACADEMIE = ?");
+
+        // Requête pour trouver les tuples par rapport à une thématique usage, et on regroupe ses tuples par rapport à leur académie
         findByThematiquesUsageGroupByAcademie = connection.prepareStatement("SELECT ACADEMIE FROM typologie WHERE THEMATIQUE_USAGE = ?");
+
+        // Requête pour trouver toutes les thématiques usages
         findThematiquesUsage = connection.createStatement();
     }
 
     /**
-     * On récupère le prochain numero;
-     *
+     * On récupère le prochain numero
+     * @return int
      * @throws SQLException
      */
     public int setNumeroByCount() throws SQLException {
@@ -54,25 +66,25 @@ public class DAOTypologieJDBC implements DAOTypologie {
 
     /**
      * Insérer un tuple dans la BDD
-     *
+     * @return Typologie
      * @param typologie
      */
     @Override
     public Typologie insert(Typologie typologie) throws SQLException {
-        createStatement.setInt(1, setNumeroByCount());
-        createStatement.setString(2, typologie.getThematique_usage());
-        createStatement.setString(3, typologie.getDiscipline());
-        createStatement.setString(4, typologie.getDegre());
-        createStatement.setString(5, typologie.getAcademie());
-        createStatement.setString(6, typologie.getRegion_academique());
-        createStatement.setString(7, typologie.getType_acteur());
-        createStatement.setString(8, typologie.getIdentite_acteur());
-        createStatement.setString(9, typologie.getUrl_ressource());
-        createStatement.setString(10, typologie.getNom_ressource());
-        createStatement.setString(11, typologie.getType_source());
-        createStatement.setString(12, typologie.getCommentaires());
+        insertStatement.setInt(1, setNumeroByCount());
+        insertStatement.setString(2, typologie.getThematique_usage());
+        insertStatement.setString(3, typologie.getDiscipline());
+        insertStatement.setString(4, typologie.getDegre());
+        insertStatement.setString(5, typologie.getAcademie());
+        insertStatement.setString(6, typologie.getRegion_academique());
+        insertStatement.setString(7, typologie.getType_acteur());
+        insertStatement.setString(8, typologie.getIdentite_acteur());
+        insertStatement.setString(9, typologie.getUrl_ressource());
+        insertStatement.setString(10, typologie.getNom_ressource());
+        insertStatement.setString(11, typologie.getType_source());
+        insertStatement.setString(12, typologie.getCommentaires());
 
-        createStatement.executeUpdate();
+        insertStatement.executeUpdate();
         //createStatement.close();
         return typologie;
 
@@ -80,7 +92,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
 
     /**
      * Supprimer un tuple de la BDD
-     *
+     * @return boolean
      * @param typologie
      */
     @Override
@@ -97,7 +109,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
 
     /**
      * Modifier un tuple de la BDD
-     *
+     * @return boolean
      * @param typologie
      * @throws SQLException
      */
@@ -124,6 +136,12 @@ public class DAOTypologieJDBC implements DAOTypologie {
         return true;
     }
 
+    /**
+     * Permet d'obtenir les tuples par rapport à une académie donnée
+     * @param nomAcademie
+     * @return List<Typologie>
+     * @throws SQLException
+     */
     @Override
     public List<Typologie> findByAcademie(String nomAcademie) throws SQLException {
         List<Typologie> donneesAcademie = new ArrayList<>();
@@ -146,9 +164,16 @@ public class DAOTypologieJDBC implements DAOTypologie {
             typologie.setCommentaires(resultSet.getString(12));
             donneesAcademie.add(typologie);
         }
+
         return donneesAcademie;
     }
 
+    /**
+     * Permet d'obtenir les tuples par rapport à une thématique usage donnée, et on regroupe ses tuples par rapport à leur académie
+     * @param nomThematiqueUsage
+     * @return List<Typologie>
+     * @throws SQLException
+     */
     @Override
     public List<Typologie> findByThematiquesUsageGroupByAcademie(String nomThematiqueUsage) throws SQLException {
         List<Typologie> donneesAcademie = new ArrayList<>();
@@ -162,19 +187,24 @@ public class DAOTypologieJDBC implements DAOTypologie {
         }
 
         return donneesAcademie;
-
     }
 
+    /**
+     * Permet d'obtenir toutes les thématiques usages
+     * @return List<Typologie>
+     * @throws SQLException
+     */
     @Override
     public List<Typologie> findThematiquesUsage() throws SQLException {
         List<Typologie> donneesAcademie = new ArrayList<>();
 
-        ResultSet resultSet = findThematiquesUsage.executeQuery("SELECT DISTINCT THEMATIQUE_USAGE FROM typologie");
+        ResultSet resultSet = findThematiquesUsage.executeQuery("SELECT DISTINCT THEMATIQUE_USAGE FROM typologie"); // Requête pour trouver toutes les thématiques usages
         while (resultSet.next()){
             Typologie typologie = new Typologie();
             typologie.setThematique_usage(resultSet.getString(1));
             donneesAcademie.add(typologie);
         }
+
         //resultSet.close();
         return donneesAcademie;
     }

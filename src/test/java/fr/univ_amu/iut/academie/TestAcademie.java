@@ -1,9 +1,10 @@
 package fr.univ_amu.iut.academie;
 
 import fr.univ_amu.iut.HelloApplication;
-import fr.univ_amu.iut.database.DAOTypologieJDBC;
+import fr.univ_amu.iut.DAO.DAOTypologieJDBC;
 import fr.univ_amu.iut.database.Typologie;
 import fr.univ_amu.iut.model.Academie;
+import fr.univ_amu.iut.view.map.AcademiePath;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -58,43 +59,43 @@ public class TestAcademie {
     @Test
     public void should_label_of_academie_page_selected_have_correct_name(FxRobot robot) {
         robot.clickOn("#boutonAccederAccueil");
-        robot.moveBy(-600,-750);
-        robot.clickOn(MouseButton.PRIMARY);
-        robot.moveBy(950,650);
-        robot.clickOn(MouseButton.PRIMARY);
+        AcademiePath academiePath = AcademiePath.get(Academie.Nice);
+        academiePath.setId("nice");
+        robot.clickOn("#nice");
         verifyThat("#academie_selectionne", hasText(Academie.Nice.getNom()));
     }
 
     @Test
-    public void should_label_of_nice_academie_page_selected_have_correct_name(FxRobot robot) {
+    public void should_label_of_poitier_academie_page_selected_have_correct_name(FxRobot robot) {
         robot.clickOn("#boutonAccederAccueil");
-        robot.moveBy(350,-100);
-        robot.clickOn(MouseButton.PRIMARY);
-        verifyThat("#academie_selectionne", hasText(Academie.Nice.getNom()));
+        AcademiePath academiePath = AcademiePath.get(Academie.Poitiers);
+        academiePath.setId("poitier");
+        robot.clickOn("#poitier");
+        verifyThat("#academie_selectionne", hasText(Academie.Poitiers.getNom()));
     }
 
     @Test
     public void should_label_of_aix_marseille_academie_page_selected_have_correct_name(FxRobot robot) {
         robot.clickOn("#boutonAccederAccueil");
-        robot.moveBy(300,-100);
-        robot.clickOn(MouseButton.PRIMARY);
+        AcademiePath academiePath = AcademiePath.get(Academie.AixMarseille);
+        academiePath.setId("aix");
+        robot.clickOn("#aix");
         verifyThat("#academie_selectionne", hasText(Academie.AixMarseille.getNom()));
     }
 
     @Test
     public void should_initialize_number_of_hbox_of_aix_marseille_academine_page_selected_have_correct_number(FxRobot robot) throws SQLException {
-        List<Typologie> typologieList = new ArrayList<>();
         DAOTypologieJDBC daoTypologieJDBC = new DAOTypologieJDBC();
         int nombreDeHbox = daoTypologieJDBC.findByAcademie(Academie.AixMarseille.getNom()).size();
         robot.clickOn("#boutonAccederAccueil");
-        robot.moveBy(300,-100);
-        robot.clickOn(MouseButton.PRIMARY);
+        AcademiePath academiePath = AcademiePath.get(Academie.AixMarseille);
+        academiePath.setId("aix");
+        robot.clickOn("#aix");
         verifyThat("#anchorPane_academie", hasChildren(1 + nombreDeHbox, "#hbox_academie"));
     }
 
     @Test
     public void should_increase_number_of_hbox_of_aix_marseille_academie_page_selected_have_correct_number(FxRobot robot) throws SQLException {
-        List<Typologie> typologieList = new ArrayList<>();
         DAOTypologieJDBC daoTypologieJDBC = new DAOTypologieJDBC();
         int nombreDeHbox = daoTypologieJDBC.findByAcademie(Academie.AixMarseille.getNom()).size();
 
@@ -103,8 +104,9 @@ public class TestAcademie {
         daoTypologieJDBC.insert(typologie);
 
         robot.clickOn("#boutonAccederAccueil");
-        robot.moveBy(300,-100);
-        robot.clickOn(MouseButton.PRIMARY);
+        AcademiePath academiePath = AcademiePath.get(Academie.AixMarseille);
+        academiePath.setId("aix");
+        robot.clickOn("#aix");
         verifyThat("#anchorPane_academie", hasChildren(1 + nombreDeHbox + 1, "#hbox_academie"));
         typologie.setNumero(daoTypologieJDBC.setNumeroByCount() - 1);
         daoTypologieJDBC.delete(typologie);
