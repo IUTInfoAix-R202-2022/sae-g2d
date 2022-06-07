@@ -37,11 +37,11 @@
         </Button>
         <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="false" styleClass="scroll_pane" stylesheets="@../assets/style.css" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
             <content>
-                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;">
+                <AnchorPane id="anchorPane_academie" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;">
                     <children >
                         <VBox fx:id="vbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0" style="-fx-background-color: white;">
                             <children>
-                                <HBox alignment="CENTER_LEFT" spacing="8.0" stylesheets="@../assets/style.css" VBox.vgrow="SOMETIMES">
+                                <HBox id="hbox_academie" alignment="CENTER_LEFT" spacing="8.0" stylesheets="@../assets/style.css" VBox.vgrow="SOMETIMES">
                                     <children>
                                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Thématique usage" HBox.hgrow="SOMETIMES" />
                                         <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="labels_donnees" stylesheets="@../assets/style.css" text="Disciplines" HBox.hgrow="SOMETIMES" />

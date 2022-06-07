@@ -41,7 +41,7 @@ public class DAOTypologieJDBC implements DAOTypologie {
      */
     public int setNumeroByCount() throws SQLException {
         Statement statement = connection.createStatement();
-        String reqNumero = "SELECT COUNT(*) FROM typologie;";
+        String reqNumero = "SELECT MAX(NUMERO) FROM typologie;";
         System.out.println("Execution de la requête : " + reqNumero);
         ResultSet rset = statement.executeQuery(reqNumero);
 

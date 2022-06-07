@@ -44,6 +44,7 @@ public class AcademieController {
 
     private HBox setNewHbox(Typologie typologie){
         HBox hbox = new HBox(8);
+        hbox.setId("hbox_academie");
         hbox.setAlignment(Pos.CENTER_LEFT);
         hbox.setMinWidth(Double.NEGATIVE_INFINITY);
         hbox.setPrefWidth(100);
@@ -53,12 +54,6 @@ public class AcademieController {
         Label label = new Label(typologie.getThematique_usage());
         label.getStyleClass().addAll("labels_donnees", "labels_donnees_usage");
         hbox.getChildren().add(label);
-
-        /*
-        label = new Label(typologie.getThematique_usage());
-        label.getStyleClass().addAll("labels_donnees", "labels_donnees_informations");
-        hbox.getChildren().add(label);
-        */
 
         label = new Label(typologie.getDiscipline());
         label.getStyleClass().addAll("labels_donnees", "labels_donnees_informations");
