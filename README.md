@@ -48,7 +48,7 @@ DicoPedago-Admin
 
 MOT DE PASSE : 
 ```
-Joindre Tenir Crocodile Droit Veuve Immersion Vote Amerique Fils Authentique DicoPedago-Admin
+Joindre Tenir Crocodile Droit Veuve Immersion Vote Amerique Fils Authentique
 ```
 
 ## Auteurs 🌟
