@@ -37,6 +37,10 @@ Application fonctionnelle sur :
 
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
+Exécutables MacOS et Windows (.app et .exe) disponibles en cliquant sur le bouton suivant :
+
+[![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://drive.google.com/uc?export=download&id=1QjQUIYfL2q10FisQWfhiG_Ohg6mirXBk)
+
 ## Mode administrateur
 
 Nous avons aussi un mode administrateur sur notre application, pour modifier les données présentes dans la base de données, voici les chaines de connexions :
