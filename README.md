@@ -39,7 +39,7 @@ Application fonctionnelle sur :
 
 Exécutables MacOS et Windows (.app et .exe) disponibles en cliquant sur le bouton suivant :
 
-[![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://drive.google.com/uc?export=download&id=1QjQUIYfL2q10FisQWfhiG_Ohg6mirXBk)
+[![Download zip](https://custom-icon-badges.herokuapp.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://drive.google.com/uc?export=download&id=1wkvOfPdMITRaNcSzXUQIO00jtylAWhlq)
 
 ## Mode administrateur
 
